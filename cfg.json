@@ -33,12 +33,12 @@
             "margin_mode": 2
         },
         "margin_size": "row",
-        "notional_limit": 50.0,
+        "notional_limit": 20.0,
         "margin_over_size_pct": 1,
         "hedge_mode": false,
         "quarantine": {
             "min_quarantine_threshold_usdt": -0.2,
-            "force_quarantine_threshold_usdt": -4.0,
+            "force_quarantine_threshold_usdt": -2.0,
             "max_consecutive_fails": 2,
             "quarantine_hours": "inf"
         }
@@ -58,7 +58,20 @@
                 "enable": true,
                 "spread_to_entry_pct": 2.0,
                 "update_prices_sec": 0.25,
-                "ttl_sec": 1
+                "ttl_sec": 2
+            },
+            "fair_price_filter": {
+                "enable": true,
+                "min_fair_spread_pct": 0.05
+            },
+            "rsi_filter": {
+                "enable": true,
+                "interval": "1m",
+                "limit": 50,
+                "window": 14,
+                "overbought": 75,
+                "oversold": 25,
+                "full_update_min": 10
             },
             "orderbook_filter": {
                 "_fields": {
@@ -68,7 +81,7 @@
                 "min_first_row_usdt_notional": 10,
                 "max_first_row_usdt_notional": 15000,
                 "max_spread_pct": 0.75,
-                "pattern_ttl_sec": 1
+                "pattern_ttl_sec": 2
             },
             "funding_pattern1": {
                 "enable": true,
@@ -99,12 +112,12 @@
                 "enable": true,
                 "stabilization_ttl": 1.5,
                 "negative_spread_pct": 0,
-                "negative_ttl": 30
+                "negative_ttl": 60
             },
             "breakeven_ttl_close": {
                 "enable": true,
                 "order_timeout_sec": 0.5,
-                "position_ttl": 600,
+                "position_ttl": 900,
                 "breakeven_wait_sec": 2,
                 "to_entry_orientation": 0.0
             }

@@ -17,7 +17,7 @@ class BaseScenario:
         self.enable = cfg["enable"] 
         self.stab_ttl = cfg["stabilization_ttl"]
         self.min_target_rate = cfg["min_target_rate"]
-        self.spread_to_exit_pct = cfg["spread_to_exit_pct"]
+        self.spread_to_exit_pct = abs(cfg["spread_to_exit_pct"])
 
     def _calc_virtual_tp(self, pos: ActivePosition) -> float:
         """Вычисляет виртуальный TP без сайд-эффектов."""
@@ -37,10 +37,10 @@ class BaseScenario:
 
         # 1. Base checking:
         if pos.side == "LONG":
-            if current_price_spread >= self.spread_to_exit_pct:
+            if current_price_spread > self.spread_to_exit_pct:
                 return None
         else:
-            if current_price_spread <= self.spread_to_exit_pct:
+            if current_price_spread < -self.spread_to_exit_pct:
                 return None
 
         if self.min_target_rate is None:

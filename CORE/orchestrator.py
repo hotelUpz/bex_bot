@@ -38,6 +38,9 @@ from ANALYTICS.tracker import PerformanceTracker, format_duration
 from c_log import UnifiedLogger
 from utils import get_config_summary
 
+from API.PHEMEX.klines import PhemexKlinesAPI
+from CORE.rsi_manager import RSIManager
+
 if TYPE_CHECKING:
     from API.PHEMEX.stakan import DepthTop
 
@@ -80,8 +83,10 @@ class TradingBot:
         self.phemex_ticker_api = PhemexTickerAPI(session=self.session)        
         self.phemex_funding_api = PhemexFunding(session=self.session)
         self.binance_funding_api = BinanceFunding(session=self.session)
+        self.klines_api = PhemexKlinesAPI(session=self.session)
+        self.rsi_manager = RSIManager(self.klines_api, self.cfg["entry"].get("rsi_filter", {}))
 
-        self.price_manager = PriceCacheManager(self.binance_ticker_api, self.phemex_ticker_api, upd_sec)
+        self.price_manager = PriceCacheManager(self.binance_ticker_api, self.phemex_ticker_api, upd_sec, self.rsi_manager)
         self.private_client = PhemexPrivateClient(api_key, api_secret, self.session)
         self.private_ws = PhemexPrivateWS(api_key, api_secret)
 
@@ -100,7 +105,7 @@ class TradingBot:
             self.binance_funding_api
         )
 
-        self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager)
+        self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager, self.rsi_manager)
 
         # --- ОТЧЕТНОСТЬ (как в uranus) ---
         report_id = os.getenv("REPORT_CHAT_ID")
@@ -398,7 +403,9 @@ class TradingBot:
 
     async def _evaluate_entry_signal(self, snap: DepthTop, symbol: str) -> None:
         b_price, p_price = self.price_manager.get_prices(symbol)
-        signal: "EntryPayload" = self.signal_engine.analyze(snap, b_price, p_price)
+        b_fair, p_fair = self.price_manager.get_fair_prices(symbol)
+        
+        signal: "EntryPayload" = self.signal_engine.analyze(snap, b_price, p_price, b_fair, p_fair)
         if not signal: return
 
         pos_key = f"{symbol}_{signal.side}"
@@ -642,6 +649,7 @@ class TradingBot:
         await self.private_ws.aclose()
         if self.tg: 
             await self.tg.aclose()
+        await self.klines_api.aclose()
         
         # 2. Закрываем единую сессию для всех REST-клиентов
         if self.session:
@@ -658,6 +666,7 @@ class TradingBot:
         if self.tg: await self.tg.send_message("⏹ Остановка процессов...")
         self.price_manager.stop()
         self.funding_manager.stop()
+        self.rsi_manager.stop()
         if self._stream: self._stream.stop()
         await self.private_ws.aclose()
         await self._await_task(getattr(self, '_price_updater_task', None))

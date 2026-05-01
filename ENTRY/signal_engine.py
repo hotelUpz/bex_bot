@@ -17,17 +17,21 @@ if TYPE_CHECKING:
     from API.PHEMEX.stakan import DepthTop
     from ENTRY.funding_filters import FundingFilter1, FundingFilter2
     from ENTRY.funding_manager import FundingManager
+    from CORE.rsi_manager import RSIManager
 
 
 logger = UnifiedLogger("signal_engine")
 
 class SignalEngine:
-    def __init__(self, cfg: Dict[str, Any], funding_manager: 'FundingManager'):
+    def __init__(self, cfg: Dict[str, Any], funding_manager: 'FundingManager', rsi_manager: Optional['RSIManager'] = None):
         self.cfg = cfg
         self.funding_manager = funding_manager  
+        self.rsi_manager = rsi_manager
         
         self.spread_cfg = cfg["pattern"]["main_spread_pattern"]
         self.ob_cfg = cfg["pattern"]["orderbook_filter"]
+        self.fair_cfg = cfg["pattern"].get("fair_price_filter", {"enable": False})
+        self.rsi_cfg = cfg["pattern"].get("rsi_filter", {"enable": False})
         
         self.pattern_math = StakanEntryPattern(self.ob_cfg)
         
@@ -40,13 +44,22 @@ class SignalEngine:
         self.ob_enabled = self.ob_cfg["enable"]
         self.ob_ttl = self.ob_cfg["pattern_ttl_sec"]
         
+        # fair_price_filter
+        self.fair_enabled = self.fair_cfg.get("enable", False)
+        self.min_fair_spread_pct = self.fair_cfg.get("min_fair_spread_pct", 0.0)
+
+        # rsi_filter
+        self.rsi_enabled = self.rsi_cfg.get("enable", False)
+        self.rsi_overbought = self.rsi_cfg.get("overbought", 70)
+        self.rsi_oversold = self.rsi_cfg.get("oversold", 30)
+
         self.allowed_directions: list[str] = []
         self._setup_directions(cfg)
         
         self._pattern_first_seen: Dict[str, float] = {}
         self._spread_first_seen: Dict[str, float] = {}
 
-    def analyze(self, depth: DepthTop, b_price: float, p_price: float) -> Optional[EntryPayload]:
+    def analyze(self, depth: DepthTop, b_price: float, p_price: float, b_fair: float = 0.0, p_fair: float = 0.0) -> Optional[EntryPayload]:
         symbol: str = depth.symbol
         now: float = time.time()
         
@@ -76,7 +89,28 @@ class SignalEngine:
                 self._spread_first_seen.pop(k, None)
                 self._pattern_first_seen.pop(k, None)
             return None
+
+        # 1.1 Фильтр: Справедливая цена Phemex
+        if self.fair_enabled and p_fair > 0:
+            fair_diff_pct = (p_fair - p_price) / p_price * 100
+            if direction == "LONG":
+                if fair_diff_pct < self.min_fair_spread_pct:
+                    return None
+            else: # SHORT
+                if fair_diff_pct > -self.min_fair_spread_pct:
+                    return None
             
+        # 1.2 Фильтр: RSI
+        if self.rsi_enabled and self.rsi_manager:
+            rsi = self.rsi_manager.get_rsi(symbol)
+            if rsi is not None:
+                if direction == "LONG" and rsi >= self.rsi_overbought:
+                    logger.debug(f"⚠️ RSI Filter [LONG]: {symbol} RSI={rsi:.1f} >= {self.rsi_overbought} (Overbought)")
+                    return None
+                if direction == "SHORT" and rsi <= self.rsi_oversold:
+                    logger.debug(f"⚠️ RSI Filter [SHORT]: {symbol} RSI={rsi:.1f} <= {self.rsi_oversold} (Oversold)")
+                    return None
+
         pos_key = f"{symbol}_{direction}"
 
         # TTL для спреда

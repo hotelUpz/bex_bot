@@ -89,3 +89,23 @@
 2026-05-01 19:47:16 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
 2026-05-01 19:47:16 | INFO | api | ✅ Авторизация успешна! Подписываемся на канал (aop_p.subscribe)...
 2026-05-01 19:47:17 | INFO | api | 🎯 Подписка ПРИНЯТА БИРЖЕЙ! Канал USDT-фьючерсов открыт.
+2026-05-01 21:44:37 | INFO | api | Fetching klines for ['BTCUSDT', 'ETHUSDT', 'SOLUSDT']...
+2026-05-01 21:44:37 | INFO | api | ✅ Batch klines saved to test_klines.json
+2026-05-01 21:44:37 | INFO | api | BTCUSDT: Last Close = 7804.32 at 1777671780
+2026-05-01 21:44:37 | INFO | api | ETHUSDT: Last Close = 22.8611 at 1777671780
+2026-05-01 21:44:37 | INFO | api | SOLUSDT: Last Close = 0.8362999999999999 at 1777671780
+2026-05-01 21:47:18 | INFO | api | Fetching klines for ['BTCUSDT', 'ETHUSDT', 'SOLUSDT']...
+2026-05-01 21:47:18 | INFO | api | ✅ Batch klines saved to test_klines.json
+2026-05-01 21:47:18 | INFO | api | BTCUSDT: Last Close = 7807.9 at 1777671960
+2026-05-01 21:47:18 | INFO | api | ETHUSDT: Last Close = 22.8796 at 1777671960
+2026-05-01 21:47:18 | INFO | api | SOLUSDT: Last Close = 0.8367 at 1777671900
+2026-05-01 21:49:23 | INFO | api | Fetching klines for ['BTCUSDT', 'ETHUSDT', 'SOLUSDT']...
+2026-05-01 21:49:23 | INFO | api | ✅ Batch klines saved to test_klines.json
+2026-05-01 21:49:23 | INFO | api | BTCUSDT: Last Close = 7810.960000000001 at 1777672080
+2026-05-01 21:49:23 | INFO | api | ETHUSDT: Last Close = 22.892 at 1777672080
+2026-05-01 21:49:23 | INFO | api | SOLUSDT: Last Close = 0.8365 at 1777672080
+2026-05-01 21:51:10 | INFO | api | Fetching klines for ['BTCUSDT', 'ETHUSDT', 'SOLUSDT']...
+2026-05-01 21:51:11 | INFO | api | ✅ Batch klines saved to test_klines.json
+2026-05-01 21:51:11 | INFO | api | BTCUSDT: Last Close = 78120.9 at 1777672200
+2026-05-01 21:51:11 | INFO | api | ETHUSDT: Last Close = 2289.65 at 1777672200
+2026-05-01 21:51:11 | INFO | api | SOLUSDT: Last Close = 83.65 at 1777672200

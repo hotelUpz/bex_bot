@@ -8,7 +8,7 @@ import asyncio
 import json
 import time
 from pathlib import Path
-from typing import Dict, List, Tuple, TYPE_CHECKING
+from typing import Dict, List, Tuple, TYPE_CHECKING, Optional
 from ENTRY.signal_engine import SignalEngine
 from c_log import UnifiedLogger
 
@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from API.PHEMEX.ticker import PhemexTickerAPI
     from API.BINANCE.ticker import BinanceTickerAPI
     from CORE.models_fsm import EntryPayload
+    from CORE.rsi_manager import RSIManager
 
 logger = UnifiedLogger("core")
 
@@ -67,12 +68,16 @@ class BlackListManager:
 
 class PriceCacheManager:
     """Асинхронный кэш цен тикеров Binance/Phemex, обновляемый в фоне."""
-    def __init__(self, binance_api: 'BinanceTickerAPI', phemex_api: 'PhemexTickerAPI', upd_sec: float = 0.2):
+    def __init__(self, binance_api: 'BinanceTickerAPI', phemex_api: 'PhemexTickerAPI', upd_sec: float = 0.2, rsi_manager: Optional['RSIManager'] = None):
         self.binance_api = binance_api
         self.phemex_api = phemex_api
         self.upd_sec = upd_sec
+        self.rsi_manager = rsi_manager
         self.binance_prices: Dict[str, float] = {}
         self.phemex_prices: Dict[str, float] = {}
+        self.binance_fair_prices: Dict[str, float] = {}
+        self.phemex_fair_prices: Dict[str, float] = {}
+        
         self._is_running = False
         self._last_fetch_ts = 0.0
 
@@ -82,16 +87,23 @@ class PriceCacheManager:
     async def _fetch(self):
         try:
             # Используем gather для параллельного получения цен
-            b_prices, p_prices = await asyncio.gather(
-                self.binance_api.get_all_prices(),
-                self.phemex_api.get_all_prices(),
+            b_tickers, p_tickers = await asyncio.gather(
+                self.binance_api.get_all_tickers(),
+                self.phemex_api.get_all_tickers(),
                 return_exceptions=True
             )
             
-            if isinstance(b_prices, dict):
-                self.binance_prices = b_prices
-            if isinstance(p_prices, dict):
-                self.phemex_prices = p_prices
+            if isinstance(b_tickers, dict):
+                self.binance_prices = {sym: t.price for sym, t in b_tickers.items()}
+                self.binance_fair_prices = {sym: t.fair_price for sym, t in b_tickers.items()}
+            if isinstance(p_tickers, dict):
+                self.phemex_prices = {sym: t.price for sym, t in p_tickers.items()}
+                self.phemex_fair_prices = {sym: t.fair_price for sym, t in p_tickers.items()}
+                
+                # Обновляем RSI менеджер горячими ценами Phemex
+                if self.rsi_manager:
+                    for sym, t in p_tickers.items():
+                        self.rsi_manager.update_price(sym, t.price)
                 
             self._last_fetch_ts = time.time()
         except Exception as e:
@@ -115,6 +127,10 @@ class PriceCacheManager:
     def get_prices(self, symbol: str) -> Tuple[float, float]:
         """Возвращает (BinancePrice, PhemexPrice)"""
         return self.binance_prices.get(symbol, 0.0), self.phemex_prices.get(symbol, 0.0)
+
+    def get_fair_prices(self, symbol: str) -> Tuple[float, float]:
+        """Возвращает (BinanceFairPrice, PhemexFairPrice)"""
+        return self.binance_fair_prices.get(symbol, 0.0), self.phemex_fair_prices.get(symbol, 0.0)
 
     def get_all_phemex_prices(self) -> Dict[str, float]:
         return self.phemex_prices

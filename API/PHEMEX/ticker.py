@@ -13,6 +13,7 @@ logger = UnifiedLogger("api")
 @dataclass
 class TickerData:
     price: float
+    fair_price: float
     volume_24h_usd: float
 
 class PhemexTickerAPI:
@@ -40,16 +41,24 @@ class PhemexTickerAPI:
             for item in items:
                 if not isinstance(item, dict): continue
                 sym = item.get("symbol")
-                raw_price = item.get("lastRp") or item.get("lastPriceRp") or item.get("lastPrice")
-                raw_volume = item.get("turnoverRv") or item.get("turnoverRp") or item.get("turnover24hRp") or "0"
+                if not sym: continue
                 
-                if not sym or raw_price is None: continue
+                # Поля из MD V3: lastRp (hot), markRp (fair), turnoverRv (volume)
+                raw_price = item.get("lastRp")
+                raw_fair = item.get("markRp")
+                raw_volume = item.get("turnoverRv") or "0"
                 
                 try:
-                    price = float(raw_price)
+                    price = float(raw_price) if raw_price else 0.0
+                    fair = float(raw_fair) if raw_fair else 0.0
                     volume = float(raw_volume)
+                    
                     if price > 0:
-                        result[sym] = TickerData(price=price, volume_24h_usd=volume)
+                        result[sym] = TickerData(
+                            price=price, 
+                            fair_price=fair,
+                            volume_24h_usd=volume
+                        )
                 except (ValueError, TypeError):
                     continue
             return result
@@ -70,10 +79,16 @@ if __name__ == "__main__":
     async def test():
         api = PhemexTickerAPI()
         try:
-            res = await api.get_all_tickers()
-            print(f"Fetched {len(res)} tickers")
-            if "BTCUSDT" in res:
-                print(f"BTC Price: {res['BTCUSDT'].price}")
+            tickers = await api.get_all_tickers()
+            print(f"Fetched {len(tickers)} tickers from Phemex")
+            
+            for i, (sym, data) in enumerate(tickers.items()):
+                print(f"{sym}: Hot={data.price} | Fair={data.fair_price} | Vol={data.volume_24h_usd}")
+                if i >= 9:
+                    break
+
+            if "BTCUSDT" in tickers:
+                print(f"\nBTCUSDT Data: {tickers['BTCUSDT']}")
         finally:
             await api.aclose()
     asyncio.run(test())
