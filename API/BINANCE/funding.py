@@ -1,18 +1,16 @@
-
 # ============================================================
 # FILE: API/BINANCE/funding.py
-# ROLE: Binance USDT-M Futures funding via REST (ONLY funding here).
+# ROLE: Binance USDT-M Futures funding via REST (curl_cffi)
 # ENDPOINT: GET https://fapi.binance.com/fapi/v1/premiumIndex
 # ============================================================
-
-from __future__ import annotations
-
+import ujson
 import asyncio
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
+from curl_cffi.requests import AsyncSession
+from c_log import UnifiedLogger
 
-import aiohttp
-
+logger = UnifiedLogger("api")
 
 @dataclass(frozen=True)
 class FundingInfo:
@@ -20,72 +18,37 @@ class FundingInfo:
     funding_rate: float
     next_funding_time_ms: int
 
-
 @dataclass(frozen=True)
 class FundingIntervalInfo:
     symbol: str
     interval_hours: int
 
-
 class BinanceFunding:
-    """Public funding REST client.
-
-    Notes:
-        - symbol=None => Binance returns LIST for ALL symbols
-        - symbol=str  => returns single object
-
-    This implementation uses a shared aiohttp.ClientSession (connection pooling).
-    """
+    """Public funding REST client using curl_cffi."""
 
     BASE_URL = "https://fapi.binance.com"
 
-    def __init__(self, timeout_sec: float = 20.0, retries: int = 3):
-        self._timeout = aiohttp.ClientTimeout(total=float(timeout_sec))
-        self._retries = int(retries)
-        self._session: aiohttp.ClientSession | None = None
-        self._session_lock = asyncio.Lock()
-
-    async def _get_session(self) -> aiohttp.ClientSession:
-        if self._session is not None and not self._session.closed:
-            return self._session
-        async with self._session_lock:
-            if self._session is not None and not self._session.closed:
-                return self._session
-            connector = aiohttp.TCPConnector(limit=50, ttl_dns_cache=300, enable_cleanup_closed=True)
-            self._session = aiohttp.ClientSession(timeout=self._timeout, connector=connector)
-            return self._session
+    def __init__(self, session: Optional[AsyncSession] = None):
+        self.session = session or AsyncSession(
+            impersonate="chrome120",
+            http_version=2,
+            verify=True
+        )
 
     async def aclose(self) -> None:
-        if self._session is not None:
-            try:
-                await self._session.close()
-            except Exception:
-                pass
-        self._session = None
+        await self.session.close()
 
     async def _get_json(self, path: str, params: Optional[dict] = None) -> Any:
         url = f"{self.BASE_URL}{path}"
-        last_err: Optional[Exception] = None
-
-        for attempt in range(1, self._retries + 1):
-            try:
-                session = await self._get_session()
-                async with session.get(url, params=params) as resp:
-                    text = await resp.text()
-                    if resp.status != 200:
-                        raise RuntimeError(f"HTTP {resp.status}: {text}")
-                    return await resp.json()
-            except Exception as e:
-                last_err = e
-                s = (str(e) or "").lower()
-                if "session is closed" in s or "connector is closed" in s or "clientconnectorerror" in s:
-                    self._session = None
-                if attempt < self._retries:
-                    await asyncio.sleep(0.4 * attempt)
-                else:
-                    break
-
-        raise RuntimeError(f"Binance funding failed: {path} params={params} err={last_err}")
+        try:
+            resp = await self.session.get(url, params=params, timeout=15.0)
+            if resp.status_code != 200:
+                logger.error(f"Binance funding error: HTTP {resp.status_code} path={path}")
+                return None
+            return ujson.loads(resp.content)
+        except Exception as e:
+            logger.error(f"Binance funding exception: {e} path={path}")
+            return None
 
     @staticmethod
     def _to_float(v: Any, default: float = 0.0) -> float:
@@ -148,12 +111,7 @@ class BinanceFunding:
         return None
 
     async def get_interval_overrides(self) -> Dict[str, int]:
-        """Return symbol -> fundingIntervalHours overrides.
-
-        Binance exposes variable funding intervals through GET /fapi/v1/fundingInfo.
-        The endpoint returns only symbols that currently have an adjusted interval/cap/floor;
-        all other symbols should be treated as default 8h.
-        """
+        """Return symbol -> fundingIntervalHours overrides."""
         data = await self._get_json("/fapi/v1/fundingInfo", params=None)
         out: Dict[str, int] = {}
 
@@ -172,20 +130,22 @@ class BinanceFunding:
 
         return out
 
-
 # ----------------------------
 # SELF TEST
 # ----------------------------
-async def _main():
-    api = BinanceFunding()
-    rows = await api.get_all()
-    print(f"Funding rows: {len(rows)}")
-    top = sorted(rows, key=lambda r: abs(r.funding_rate), reverse=True)[:20]
-    for i, r in enumerate(top, 1):
-        print(f"{i:02d}. {r.symbol:<12} rate={r.funding_rate:+.6f} next={r.next_funding_time_ms}")
-    print("BTCUSDT:", await api.get_one("BTCUSDT"))
-    await api.aclose()
-
-
 if __name__ == "__main__":
+    async def _main():
+        api = BinanceFunding()
+        try:
+            rows = await api.get_all()
+            print(f"Funding rows: {len(rows)}")
+            top = sorted(rows, key=lambda r: abs(r.funding_rate), reverse=True)[:20]
+            for i, r in enumerate(top, 1):
+                print(f"{i:02d}. {r.symbol:<12} rate={r.funding_rate:+.6f} next={r.next_funding_time_ms}")
+            print("BTCUSDT:", await api.get_one("BTCUSDT"))
+        finally:
+            await api.aclose()
+
     asyncio.run(_main())
+
+# python -m API.BINANCE.funding

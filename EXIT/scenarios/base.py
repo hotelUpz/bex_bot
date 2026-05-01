@@ -25,7 +25,7 @@ class BaseScenario:
             return pos.entry_price + (pos.base_target_price_100 - pos.entry_price) * self.min_target_rate
         return pos.entry_price - (pos.entry_price - pos.base_target_price_100) * self.min_target_rate
 
-    def scen_base_analyze(self, depth: DepthTop, pos: ActivePosition, current_price_spread: float, now: float) -> bool | None:
+    def scen_base_analyze(self, depth: DepthTop, pos: ActivePosition, current_price_spread: float, now: float) -> float | None:
         if not self.enable:
             return None   
 
@@ -44,12 +44,13 @@ class BaseScenario:
                 return None
 
         if self.min_target_rate is None:
-            return True
+            preety_target_price = depth.bids[0][0] if pos.side == "LONG" else depth.asks[0][0]
+            return preety_target_price
 
         # 2. 
         virtual_tp = self._calc_virtual_tp(pos)
 
-        stakan_condition = False
+        preety_target_price = None
         max_vol = -1.0
 
         if pos.side == "LONG":
@@ -57,7 +58,7 @@ class BaseScenario:
                 if price >= virtual_tp:
                     if vol > max_vol:
                         max_vol = vol
-                        stakan_condition = True
+                        preety_target_price = price
                 else:
                     break
         else:
@@ -65,8 +66,8 @@ class BaseScenario:
                 if price <= virtual_tp:
                     if vol > max_vol:
                         max_vol = vol
-                        stakan_condition = True
+                        preety_target_price = price
                 else:
                     break
 
-        return stakan_condition
+        return preety_target_price

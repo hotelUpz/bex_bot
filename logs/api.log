@@ -1,0 +1,75 @@
+2026-05-01 17:56:42 | INFO | api | 🌐 Stakan WS подключен: на 1 монет.
+2026-05-01 19:11:29 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:11:29 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:32 | INFO | api | 🔐 Private WS Подключен. Отправляем авторизацию...
+2026-05-01 19:11:32 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:33 | INFO | api | 🌐 Stakan WS подключен: на 38 монет.
+2026-05-01 19:11:33 | INFO | api | ✅ Авторизация успешна! Подписываемся на канал (aop_p.subscribe)...
+2026-05-01 19:11:33 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:33 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:33 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:11:33 | INFO | api | 🎯 Подписка ПРИНЯТА БИРЖЕЙ! Канал USDT-фьючерсов открыт.
+2026-05-01 19:11:34 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:00 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:01 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:02 | INFO | api | 🌐 Stakan WS подключен: на 38 монет.
+2026-05-01 19:14:02 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:02 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:02 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:02 | INFO | api | 🔐 Private WS Подключен. Отправляем авторизацию...
+2026-05-01 19:14:02 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:02 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:02 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:03 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:03 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:03 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:03 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:03 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:03 | INFO | api | ✅ Авторизация успешна! Подписываемся на канал (aop_p.subscribe)...
+2026-05-01 19:14:03 | INFO | api | 🎯 Подписка ПРИНЯТА БИРЖЕЙ! Канал USDT-фьючерсов открыт.
+2026-05-01 19:14:04 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:04 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:36 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:37 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🔐 Private WS Подключен. Отправляем авторизацию...
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 38 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:40 | INFO | api | ✅ Авторизация успешна! Подписываемся на канал (aop_p.subscribe)...
+2026-05-01 19:14:41 | INFO | api | 🎯 Подписка ПРИНЯТА БИРЖЕЙ! Канал USDT-фьючерсов открыт.
+2026-05-01 19:14:41 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:41 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:14:42 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:51 | ERROR | api | Private API Failed (POST /g-orders): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🔐 Private WS Подключен. Отправляем авторизацию...
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 38 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:19 | INFO | api | ✅ Авторизация успешна! Подписываемся на канал (aop_p.subscribe)...
+2026-05-01 19:42:19 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-01 19:42:20 | INFO | api | 🎯 Подписка ПРИНЯТА БИРЖЕЙ! Канал USDT-фьючерсов открыт.

@@ -21,11 +21,18 @@ class Interference:
     def _find_target(self, depth: DepthTop, pos: ActivePosition, allowed_remains: float) -> tuple[float, float] | None:
         if pos.side == "LONG":
             for price, vol in depth.asks:
-                if price < pos.base_target_price_100 and vol <= allowed_remains: return (price, vol)
+                if price < pos.base_target_price_100:
+                    buy_vol = min(vol, allowed_remains)
+                    if buy_vol > 0:
+                        return (price, buy_vol)
         else:
             for price, vol in depth.bids:
-                if price > pos.base_target_price_100 and vol <= allowed_remains: return (price, vol)
+                if price > pos.base_target_price_100:
+                    buy_vol = min(vol, allowed_remains)
+                    if buy_vol > 0:
+                        return (price, buy_vol)
         return None    
+
 
     def scen_interf_analyze(self, depth: DepthTop, pos: ActivePosition, now: float) -> tuple[float, float] | None:
         if not self.enable:
@@ -58,13 +65,16 @@ class Interference:
         if not target:
             return None
 
-        price, _ = target
+        price, stakan_vol = target
+        # Ограничиваем объем скупки размером одного "чанка" (usual_vol_pct)
         max_chunk_vol = pos.max_allowed_remains * (self.usual_vol_pct / self.max_vol_pct)
-        buy_qty = min(max_chunk_vol, allowed_remains)
+        
+        buy_qty = min(stakan_vol, max_chunk_vol, allowed_remains)
 
         min_qty_asset = self.min_notional_usdt / price  # Переводим 6$ в количество монет
 
-        if buy_qty <= min_qty_asset:
+        if buy_qty < min_qty_asset:
+            # Если даже весь доступный объем в стакане (в пределах лимита) меньше минималки - скипаем
             return None
 
-        return price, buy_qty
+        return price, buy_qty

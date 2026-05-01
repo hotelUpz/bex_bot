@@ -4,17 +4,16 @@
 # ENDPOINT: GET https://api.phemex.com/contract-biz/public/real-funding-rates
 # NOTES:
 #   Phemex paginates this endpoint. To fetch ALL symbols you must iterate pages.
-# NOTE: Single responsibility: ONLY funding.
+# ROLE: Phemex USDT-M Perpetual funding via REST (curl_cffi)
 # ============================================================
-
-from __future__ import annotations
-
+import ujson
 import asyncio
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
+from curl_cffi.requests import AsyncSession
+from c_log import UnifiedLogger
 
-import aiohttp
-
+logger = UnifiedLogger("api")
 
 @dataclass(frozen=True)
 class FundingInfo:
@@ -22,62 +21,32 @@ class FundingInfo:
     funding_rate: float
     next_funding_time_ms: int
 
-
 class PhemexFunding:
-    """Public funding client for Phemex contracts.
-
-    Uses a shared aiohttp.ClientSession.
-    """
+    """Public funding client for Phemex contracts using curl_cffi."""
 
     BASE_URL = "https://api.phemex.com"
 
-    def __init__(self, timeout_sec: float = 20.0, retries: int = 3):
-        self._timeout = aiohttp.ClientTimeout(total=float(timeout_sec))
-        self._retries = int(retries)
-        self._session: aiohttp.ClientSession | None = None
-        self._session_lock = asyncio.Lock()
-
-    async def _get_session(self) -> aiohttp.ClientSession:
-        if self._session is not None and not self._session.closed:
-            return self._session
-        async with self._session_lock:
-            if self._session is not None and not self._session.closed:
-                return self._session
-            connector = aiohttp.TCPConnector(limit=50, ttl_dns_cache=300, enable_cleanup_closed=True)
-            self._session = aiohttp.ClientSession(timeout=self._timeout, connector=connector)
-            return self._session
+    def __init__(self, session: Optional[AsyncSession] = None):
+        self.session = session or AsyncSession(
+            impersonate="chrome120",
+            http_version=2,
+            verify=True
+        )
 
     async def aclose(self) -> None:
-        if self._session is not None:
-            try:
-                await self._session.close()
-            except Exception:
-                pass
-        self._session = None
+        await self.session.close()
 
     async def _get_json(self, path: str, params: Optional[dict] = None) -> Any:
         url = f"{self.BASE_URL}{path}"
-        last_err: Optional[Exception] = None
-
-        for attempt in range(1, self._retries + 1):
-            try:
-                session = await self._get_session()
-                async with session.get(url, params=params) as resp:
-                    text = await resp.text()
-                    if resp.status != 200:
-                        raise RuntimeError(f"HTTP {resp.status}: {text}")
-                    return await resp.json()
-            except Exception as e:
-                last_err = e
-                s = (str(e) or "").lower()
-                if "session is closed" in s or "connector is closed" in s or "clientconnectorerror" in s:
-                    self._session = None
-                if attempt < self._retries:
-                    await asyncio.sleep(0.4 * attempt)
-                else:
-                    break
-
-        raise RuntimeError(f"Phemex funding failed: {path} params={params} err={last_err}")
+        try:
+            resp = await self.session.get(url, params=params, timeout=15.0)
+            if resp.status_code != 200:
+                logger.error(f"Phemex funding error: HTTP {resp.status_code} path={path}")
+                return None
+            return ujson.loads(resp.content)
+        except Exception as e:
+            logger.error(f"Phemex funding exception: {e} path={path}")
+            return None
 
     @staticmethod
     def _to_float(v: Any, default: float = 0.0) -> float:
@@ -98,13 +67,14 @@ class PhemexFunding:
         if not sym:
             return None
         return FundingInfo(
-            symbol=str(sym),
+            symbol=str(sym).upper(),
             funding_rate=self._to_float(obj.get("fundingRate"), 0.0),
             next_funding_time_ms=self._to_int(obj.get("nextFundingTime") or obj.get("nextfundingTime"), 0),
         )
 
     @staticmethod
     def _extract_rows(payload: Any) -> List[Dict[str, Any]]:
+        if not payload: return []
         if isinstance(payload, list):
             return [x for x in payload if isinstance(x, dict)]
 
@@ -152,18 +122,20 @@ class PhemexFunding:
 
         return out
 
-
 # ----------------------------
 # SELF TEST
 # ----------------------------
-async def _main():
-    api = PhemexFunding()
-    rows = await api.get_all()
-    print(f"Funding rows: {len(rows)}")
-    for r in rows[:15]:
-        print(r)
-    await api.aclose()
-
-
 if __name__ == "__main__":
+    async def _main():
+        api = PhemexFunding()
+        try:
+            rows = await api.get_all()
+            print(f"Funding rows: {len(rows)}")
+            for r in rows[:15]:
+                print(r)
+        finally:
+            await api.aclose()
+
     asyncio.run(_main())
+
+# python -m API.PHEMEX.funding

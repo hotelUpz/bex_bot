@@ -1,0 +1,454 @@
+2026-05-01 19:11:27 | INFO | bot | ▶️ Инициализация систем...
+2026-05-01 19:11:27 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>0 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>22</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>2</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>50.0</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-4.0</b>
+    ▪️ max_consecutive_fails: <b>2</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>1.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>1</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>15000</b>
+      ▪️ max_spread_pct: <b>0.75</b>
+      ▪️ pattern_ttl_sec: <b>1</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>0.25</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>30</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>300</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-01 19:11:29 | ERROR | bot | ❌ Ошибка Recovery: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:11:29 | INFO | bot | 📡 Запрашиваем Equity с биржи для инициализации аудита...
+2026-05-01 19:11:29 | ERROR | bot | ❌ Не удалось получить/установить стартовый баланс: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:11:29 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-01 19:11:32 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-01 19:11:32 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-01 19:11:33 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-01 19:11:34 | ERROR | bot | ❌ Ошибка Recovery: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:12:05 | INFO | bot | ⏹ Остановка процессов...
+2026-05-01 19:12:05 | DEBUG | bot | Task shutdown note: name 'time' is not defined
+2026-05-01 19:12:05 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 19:13:59 | INFO | bot | ▶️ Инициализация систем...
+2026-05-01 19:13:59 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>0 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>22</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>2</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>50.0</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-4.0</b>
+    ▪️ max_consecutive_fails: <b>2</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>1.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>1</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>15000</b>
+      ▪️ max_spread_pct: <b>0.75</b>
+      ▪️ pattern_ttl_sec: <b>1</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>0.25</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>30</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>300</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-01 19:14:00 | ERROR | bot | ❌ Ошибка Recovery: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:00 | INFO | bot | 📡 Запрашиваем Equity с биржи для инициализации аудита...
+2026-05-01 19:14:01 | ERROR | bot | ❌ Не удалось получить/установить стартовый баланс: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:01 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-01 19:14:02 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-01 19:14:02 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-01 19:14:03 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-01 19:14:04 | ERROR | bot | ❌ Ошибка Recovery: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:08 | INFO | bot | ⏹ Остановка процессов...
+2026-05-01 19:14:08 | DEBUG | bot | Task shutdown note: name 'time' is not defined
+2026-05-01 19:14:08 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 19:14:35 | INFO | bot | ▶️ Инициализация систем...
+2026-05-01 19:14:35 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>0 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>22</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>2</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>50.0</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-4.0</b>
+    ▪️ max_consecutive_fails: <b>2</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>1.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>1</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>15000</b>
+      ▪️ max_spread_pct: <b>0.75</b>
+      ▪️ pattern_ttl_sec: <b>1</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>0.25</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>30</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>300</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-01 19:14:36 | ERROR | bot | ❌ Ошибка Recovery: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:36 | INFO | bot | 📡 Запрашиваем Equity с биржи для инициализации аудита...
+2026-05-01 19:14:37 | ERROR | bot | ❌ Не удалось получить/установить стартовый баланс: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:37 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-01 19:14:39 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-01 19:14:39 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-01 19:14:41 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-01 19:14:42 | ERROR | bot | ❌ Ошибка Recovery: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:51 | ERROR | bot | [UBUSDT_LONG] Исключение execute_entry: Private API request failed: 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 19:14:51 | WARNING | bot | [UBUSDT] 🚫 Помещен в карантин на 1ч (вход не удался).
+2026-05-01 19:15:23 | INFO | bot | [UBUSDT_LONG] 🛑 Позиция закрыта. 🩸 PnL: -0.1748$ | Время: 32.1s
+2026-05-01 19:15:26 | INFO | bot | ⏹ Остановка процессов...
+2026-05-01 19:15:26 | DEBUG | bot | Task shutdown note: name 'time' is not defined
+2026-05-01 19:15:26 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 19:42:13 | INFO | bot | ▶️ Инициализация систем...
+2026-05-01 19:42:13 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>0 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>22</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>2</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>50.0</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-4.0</b>
+    ▪️ max_consecutive_fails: <b>2</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>2.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>1</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>15000</b>
+      ▪️ max_spread_pct: <b>0.75</b>
+      ▪️ pattern_ttl_sec: <b>1</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>0.25</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>30</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>300</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-01 19:42:15 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-01 19:42:15 | INFO | bot | 📡 Запрашиваем Equity с биржи для инициализации аудита...
+2026-05-01 19:42:16 | INFO | bot | 💰 Стартовый баланс зафиксирован: 9.21 USDT
+2026-05-01 19:42:16 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-01 19:42:18 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-01 19:42:18 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-01 19:42:20 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-01 19:42:21 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-01 19:43:52 | INFO | bot | ⏹ Остановка процессов...
+2026-05-01 19:43:53 | INFO | bot | 💾 Финальное сохранение стейта на диск...

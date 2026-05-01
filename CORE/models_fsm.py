@@ -17,6 +17,20 @@ ExitStatusType = Literal["NORMAL", "EXTREME", "HUNTING", "INTERFERENCE", "BREAKE
 logger = UnifiedLogger("ws")
 
 @dataclass
+class EntryPayload:
+    side: Literal["LONG", "SHORT"]
+    price: float
+    init_ask1: float
+    init_bid1: float
+    row_vol_usdt: float
+    row_vol_asset: float
+    base_target_price_100: float
+    mid_price: float
+    b_price: float = 0.0
+    p_price: float = 0.0
+    spread: float = 0.0
+
+@dataclass
 class ActivePosition:
     symbol: str             
     side: str               

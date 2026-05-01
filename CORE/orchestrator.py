@@ -9,7 +9,7 @@ import time
 import traceback
 from typing import Dict, Any, Set, TYPE_CHECKING, List, Tuple
 import os
-import aiohttp
+from curl_cffi.requests import AsyncSession
 from pathlib import Path
 
 from API.PHEMEX.symbol import PhemexSymbols
@@ -24,7 +24,7 @@ from API.BINANCE.funding import BinanceFunding
 from ENTRY.signal_engine import SignalEngine
 from CORE.restorator import BotState
 from CORE.executor import OrderExecutor
-from CORE.models_fsm import WsInterpreter, ActivePosition
+from CORE.models_fsm import WsInterpreter, ActivePosition, EntryPayload
 from CORE._utils import BlackListManager, PriceCacheManager, ConfigManager, Reporters
 
 from EXIT.scenarios.base import BaseScenario
@@ -40,7 +40,6 @@ from utils import get_config_summary
 
 if TYPE_CHECKING:
     from API.PHEMEX.stakan import DepthTop
-    from ENTRY.pattern_math import EntrySignal
 
 logger = UnifiedLogger("bot")
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,7 +55,9 @@ class TradingBot:
         
         self.signal_timeout_sec = self.cfg["entry"]["signal_timeout_sec"]
         self.hedge_mode = self.cfg["risk"]["hedge_mode"]
-        upd_sec = self.cfg["entry"]["pattern"]["binance"]["update_prices_sec"]
+        
+        # main_spread_pattern update interval
+        upd_sec = self.cfg["entry"]["pattern"]["main_spread_pattern"]["update_prices_sec"]
         
         api_key = os.getenv("API_KEY") or self.cfg["credentials"]["api_key"]
         api_secret = os.getenv("API_SECRET") or self.cfg["credentials"]["api_secret"]
@@ -68,12 +69,17 @@ class TradingBot:
         self.tracker = PerformanceTracker(self.state)   
         self._is_running = False
 
-        self.phemex_sym_api = PhemexSymbols()
-        self.binance_ticker_api = BinanceTickerAPI()
-        self.phemex_ticker_api = PhemexTickerAPI()        
-        self.phemex_funding_api = PhemexFunding()
-        self.binance_funding_api = BinanceFunding()
-        self.session = aiohttp.ClientSession()
+        self.session = AsyncSession(
+            impersonate="chrome120",
+            http_version=2,
+            verify=True
+        )
+
+        self.phemex_sym_api = PhemexSymbols(session=self.session)
+        self.binance_ticker_api = BinanceTickerAPI(session=self.session)
+        self.phemex_ticker_api = PhemexTickerAPI(session=self.session)        
+        self.phemex_funding_api = PhemexFunding(session=self.session)
+        self.binance_funding_api = BinanceFunding(session=self.session)
 
         self.price_manager = PriceCacheManager(self.binance_ticker_api, self.phemex_ticker_api, upd_sec)
         self.private_client = PhemexPrivateClient(api_key, api_secret, self.session)
@@ -96,6 +102,14 @@ class TradingBot:
 
         self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager)
 
+        # --- ОТЧЕТНОСТЬ (как в uranus) ---
+        report_id = os.getenv("REPORT_CHAT_ID")
+        self.report_tg = TelegramSender(
+            os.getenv("TELEGRAM_TOKEN") or tg_cfg.get("token", ""),
+            report_id
+        ) if report_id else None
+        self.report_interval_hours = self.cfg["app"].get("report_interval_hours", 6.0)
+
         self._stream: PhemexStakanStream | None = None
         self._processing: Set[str] = set()
         self._latest_market_data: Dict[str, DepthTop] = {}
@@ -106,6 +120,7 @@ class TradingBot:
 
         self.ws_handler = WsInterpreter(state=self.state, active_positions_locker=self.active_positions_locker) 
         self.executor = OrderExecutor(self)
+        self._entry_lock = asyncio.Lock()
         
         exit_cfg = self.cfg["exit"]
         scen_cfg = exit_cfg["scenarios"]
@@ -309,6 +324,12 @@ class TradingBot:
         now = time.time()
         actions_to_execute: List[Tuple] = []
 
+        b_price, p_price = self.price_manager.get_prices(symbol)
+        if p_price <= 0 or b_price <= 0:
+            return
+
+        current_price_spread = (b_price - p_price) / p_price * 100
+
         for pos_key in (long_key, short_key):
             async with self._get_lock(pos_key):
                 pos = self.state.active_positions.get(pos_key)
@@ -354,7 +375,7 @@ class TradingBot:
 
                 # 3. НОРМАЛЬНЫЙ РЕЖИМ: Охота (HUNTING)
                 if not pos.exit_in_flight:
-                    base_price = self.scen_base.scen_base_analyze(snap, pos, now)
+                    base_price = self.scen_base.scen_base_analyze(snap, pos, current_price_spread, now)
                     if base_price:
                         pos.exit_status = "HUNTING"
                         pos.exit_in_flight = True
@@ -377,7 +398,7 @@ class TradingBot:
 
     async def _evaluate_entry_signal(self, snap: DepthTop, symbol: str) -> None:
         b_price, p_price = self.price_manager.get_prices(symbol)
-        signal: "EntrySignal" = self.signal_engine.analyze(snap, b_price, p_price)
+        signal: "EntryPayload" = self.signal_engine.analyze(snap, b_price, p_price)
         if not signal: return
 
         pos_key = f"{symbol}_{signal.side}"
@@ -433,8 +454,9 @@ class TradingBot:
             pos_long_key, pos_short_key = f"{symbol}_LONG", f"{symbol}_SHORT"
             await self._evaluate_exit_scenarios(snap, symbol, pos_long_key, pos_short_key)
             
-            if not self._check_risk_limits(symbol): return
-            await self._evaluate_entry_signal(snap, symbol)
+            async with self._entry_lock:
+                if not self._check_risk_limits(symbol): return
+                await self._evaluate_entry_signal(snap, symbol)
         except Exception as e:
             err_tb = traceback.format_exc()
             logger.error(f"Pipeline error for {symbol}: {e}\n{err_tb}")
@@ -580,17 +602,54 @@ class TradingBot:
         self._stream_task = asyncio.create_task(self._stream.run(self._stakan_data_sink))
 
         self._game_loop_task = asyncio.create_task(self._main_trading_loop())
+        self._report_task = asyncio.create_task(self._periodic_report_loop())
+
+    async def _send_developer_report(self, is_test: bool = False):
+        """Формирует и отправляет аудит-отчет."""
+        target_tg = self.report_tg or self.tg # Если нет отдельного чата, бьем в основной
+        if not target_tg: return
+        try:
+            summary = self.tracker.get_summary_text()
+            prefix = "🧪 <b>ТЕСТОВЫЙ ОТЧЕТ BEX</b>\n" if is_test else "📅 <b>ПЕРИОДИЧЕСКИЙ ОТЧЕТ BEX</b>\n"
+            await target_tg.send_message(prefix + summary)
+
+            state_file = self.state.filepath
+            if os.path.exists(state_file):
+                await target_tg.send_document(state_file, caption="📄 Текущий стейт бота (bot_state.json)")
+        except Exception as e:
+            logger.error(f"❌ Ошибка отправки отчета разработчику: {e}")
+
+    async def _periodic_report_loop(self):
+        """Фоновый луп для отправки отчетов каждые N часов."""
+        logger.info(f"📊 Цикл отчетов запущен (каждые {self.report_interval_hours}ч)")
+        while self._is_running:
+            try:
+                await asyncio.sleep(self.report_interval_hours * 3600)
+                if self._is_running:
+                    await self._send_developer_report()
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"Error in report loop: {e}")
+                await asyncio.sleep(60)
 
     async def aclose(self):
         await self.stop()
         logger.info("💾 Финальное сохранение стейта на диск...")
         await self.state.save()
-        await self.phemex_sym_api.aclose()
-        await self.binance_ticker_api.aclose()
-        await self.phemex_ticker_api.aclose()
-        await self.phemex_funding_api.aclose()
-        if self.tg: await self.tg.aclose()
-        if self.session and not self.session.closed: await self.session.close()
+        
+        # 1. Закрываем ресурсы с собственными сессиями (WS, TG)
+        await self.private_ws.aclose()
+        if self.tg: 
+            await self.tg.aclose()
+        
+        # 2. Закрываем единую сессию для всех REST-клиентов
+        if self.session:
+            try:
+                await self.session.close()
+                logger.info("🌐 Shared session closed successfully.")
+            except Exception as e:
+                logger.debug(f"Session close note: {e}")
 
     async def stop(self):
         if not getattr(self, '_is_running', False): return
@@ -606,6 +665,7 @@ class TradingBot:
         await self._await_task(getattr(self, '_private_ws_task', None))
         await self._await_task(getattr(self, '_stream_task', None))
         await self._await_task(getattr(self, '_game_loop_task', None))
+        await self._await_task(getattr(self, '_report_task', None))
         self._latest_market_data.clear()
         self._processing.clear()
         self._signal_timeouts.clear()

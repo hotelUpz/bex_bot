@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import time
 from pathlib import Path
 from typing import Dict, List, Tuple, TYPE_CHECKING
 from ENTRY.signal_engine import SignalEngine
@@ -15,7 +16,7 @@ if TYPE_CHECKING:
     from CORE.orchestrator import TradingBot
     from API.PHEMEX.ticker import PhemexTickerAPI
     from API.BINANCE.ticker import BinanceTickerAPI
-    from ENTRY.pattern_math import EntrySignal
+    from CORE.models_fsm import EntryPayload
 
 logger = UnifiedLogger("core")
 
@@ -66,39 +67,57 @@ class BlackListManager:
 
 class PriceCacheManager:
     """Асинхронный кэш цен тикеров Binance/Phemex, обновляемый в фоне."""
-    def __init__(self, binance_api: 'BinanceTickerAPI', phemex_api: 'PhemexTickerAPI', upd_sec: float = 3.0):
+    def __init__(self, binance_api: 'BinanceTickerAPI', phemex_api: 'PhemexTickerAPI', upd_sec: float = 0.2):
         self.binance_api = binance_api
         self.phemex_api = phemex_api
         self.upd_sec = upd_sec
         self.binance_prices: Dict[str, float] = {}
         self.phemex_prices: Dict[str, float] = {}
         self._is_running = False
+        self._last_fetch_ts = 0.0
 
     async def warmup(self):
         await self._fetch()
 
     async def _fetch(self):
         try:
+            # Используем gather для параллельного получения цен
             b_prices, p_prices = await asyncio.gather(
                 self.binance_api.get_all_prices(),
-                self.phemex_api.get_all_prices()
+                self.phemex_api.get_all_prices(),
+                return_exceptions=True
             )
-            self.binance_prices = b_prices
-            self.phemex_prices = p_prices
+            
+            if isinstance(b_prices, dict):
+                self.binance_prices = b_prices
+            if isinstance(p_prices, dict):
+                self.phemex_prices = p_prices
+                
+            self._last_fetch_ts = time.time()
         except Exception as e:
             logger.debug(f"Ошибка фонового обновления цен тикеров: {e}")
 
     async def loop(self):
         self._is_running = True
+        logger.info(f"🚀 PriceCacheManager loop started with interval {self.upd_sec}s")
         while self._is_running:
+            start_t = time.monotonic()
             await self._fetch()
-            await asyncio.sleep(self.upd_sec)
+            
+            # Динамический слип для поддержания частоты
+            elapsed = time.monotonic() - start_t
+            sleep_t = max(0.01, self.upd_sec - elapsed)
+            await asyncio.sleep(sleep_t)
 
     def stop(self):
         self._is_running = False
 
     def get_prices(self, symbol: str) -> Tuple[float, float]:
+        """Возвращает (BinancePrice, PhemexPrice)"""
         return self.binance_prices.get(symbol, 0.0), self.phemex_prices.get(symbol, 0.0)
+
+    def get_all_phemex_prices(self) -> Dict[str, float]:
+        return self.phemex_prices
 
 
 class ConfigManager:
@@ -144,6 +163,22 @@ class ConfigManager:
             if getattr(self.tb, '_is_running', False):
                 self.tb._funding_task = asyncio.create_task(self.tb.funding_manager.run())
 
+            # --- ОБНОВЛЕНИЕ ПАРАМЕТРОВ EXECUTOR ---
+            if hasattr(self.tb, 'executor'):
+                self.tb.executor.cfg = self.tb.cfg
+                self.tb.executor.entry_timeout = self.tb.cfg["entry"]["entry_timeout_sec"]
+                self.tb.executor.max_entry_retries = self.tb.cfg["entry"]["max_place_order_retries"]
+                self.tb.executor.max_exit_retries = self.tb.cfg["exit"]["max_place_order_retries"]
+                self.tb.executor.min_order_life_sec = self.tb.cfg.get("exit", {}).get("min_order_life_sec", 0.05)
+                risk = self.tb.cfg["risk"]
+                self.tb.executor.notional_limit = float(risk["notional_limit"])
+                self.tb.executor.margin_over_size_pct = float(risk["margin_over_size_pct"])
+
+            # --- ОБНОВЛЕНИЕ PriceCacheManager ---
+            if hasattr(self.tb, 'price_manager'):
+                new_upd = self.tb.cfg.get("entry", {}).get("pattern", {}).get("main_spread_pattern", {}).get("update_prices_sec", 0.25)
+                self.tb.price_manager.upd_sec = new_upd
+
             # --- ПЕРЕЗАГРУЗКА СЦЕНАРИЕВ ВЫХОДА ---
             exit_cfg = self.tb.cfg.get("exit", {})
             scen_cfg = exit_cfg.get("scenarios", {})
@@ -173,14 +208,16 @@ class ConfigManager:
 
 class Reporters:
     @staticmethod
-    def entry_signal(symbol: str, signal: EntrySignal, b_price: float, p_price: float) -> str:
+    def entry_signal(symbol: str, signal: EntryPayload, b_price: float, p_price: float) -> str:
         side_str = "🟢 LONG" if signal.side == "LONG" else "🔴 SHORT"
+        spread_info = f"Spread: {signal.spread:.2f}%" if hasattr(signal, 'spread') else ""
         return (
             f"<b>#{symbol}</b> | {side_str}\n"
             f"Вход: <b>{signal.price}</b>\n"
-            f"Rate: {signal.rate or 0}x | Spr2: {signal.spr2_pct or 0}% | Spr3: {signal.spr3_pct or 0}%\n\n"
+            f"{spread_info}\n\n"
             f"Binance: {b_price} | Phemex: {p_price}"
         )
+
 
     @staticmethod
     def extrime_alert(symbol: str, reason: str) -> str:

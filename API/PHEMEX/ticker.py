@@ -1,51 +1,84 @@
-import aiohttp
+# ============================================================
+# python -m API.PHEMEX.ticker
+# ROLE: Phemex 24h ticker snapshot (curl_cffi)
+# ============================================================
+import ujson
+from dataclasses import dataclass
 from typing import Dict, Optional
+from curl_cffi.requests import AsyncSession
+from c_log import UnifiedLogger
+
+logger = UnifiedLogger("api")
+
+@dataclass
+class TickerData:
+    price: float
+    volume_24h_usd: float
 
 class PhemexTickerAPI:
     BASE_URL = "https://api.phemex.com"
 
-    def __init__(self, timeout_sec: float = 10.0):
-        self._timeout = aiohttp.ClientTimeout(total=timeout_sec)
-        self._session: Optional[aiohttp.ClientSession] = None
+    def __init__(self, session: Optional[AsyncSession] = None):
+        self.session = session or AsyncSession(
+            impersonate="chrome120",
+            http_version=2,
+            verify=True
+        )
 
-    async def _get_session(self) -> aiohttp.ClientSession:
-        if self._session is None or self._session.closed:
-            connector = aiohttp.TCPConnector(enable_cleanup_closed=True)
-            self._session = aiohttp.ClientSession(timeout=self._timeout, connector=connector)
-        return self._session
-
-    async def aclose(self):
-        if self._session and not self._session.closed:
-            await self._session.close()
-
-    async def get_all_prices(self) -> Dict[str, float]:
-        """Получает горячие цены (Real Price) по всем монетам Phemex (v3 API)"""
-        session = await self._get_session()
-        async with session.get(f"{self.BASE_URL}/md/v3/ticker/24hr/all") as resp:
-            resp.raise_for_status()
-            data = await resp.json()
-
-            items = data.get("result", [])
-            if not isinstance(items, list):
+    async def get_all_tickers(self) -> Dict[str, TickerData]:
+        url = f"{self.BASE_URL}/md/v3/ticker/24hr/all"
+        try:
+            resp = await self.session.get(url, timeout=10.0)
+            if resp.status_code != 200:
+                logger.error(f"Ticker fetch error: HTTP {resp.status_code}")
                 return {}
-
-            result = {}
-            for item in items:
-                if not isinstance(item, dict):
-                    continue
                 
+            data = ujson.loads(resp.content)
+            items = data.get("result", [])
+            
+            result: Dict[str, TickerData] = {}
+            for item in items:
+                if not isinstance(item, dict): continue
                 sym = item.get("symbol")
                 raw_price = item.get("lastRp") or item.get("lastPriceRp") or item.get("lastPrice")
+                raw_volume = item.get("turnoverRv") or item.get("turnoverRp") or item.get("turnover24hRp") or "0"
                 
-                if sym and raw_price is not None:
-                    try:
-                        price = float(raw_price)
-                        if price > 0:
-                            result[sym] = price
-                    except (ValueError, TypeError):
-                        continue
-                        
+                if not sym or raw_price is None: continue
+                
+                try:
+                    price = float(raw_price)
+                    volume = float(raw_volume)
+                    if price > 0:
+                        result[sym] = TickerData(price=price, volume_24h_usd=volume)
+                except (ValueError, TypeError):
+                    continue
             return result
+            
+        except Exception as e:
+            logger.error(f"Error fetching tickers: {e}")
+            return {}
+
+    async def get_all_prices(self) -> Dict[str, float]:
+        tickers = await self.get_all_tickers()
+        return {sym: t.price for sym, t in tickers.items()}
+
+    async def aclose(self):
+        await self.session.close()
+
+if __name__ == "__main__":
+    import asyncio
+    async def test():
+        api = PhemexTickerAPI()
+        try:
+            res = await api.get_all_tickers()
+            print(f"Fetched {len(res)} tickers")
+            if "BTCUSDT" in res:
+                print(f"BTC Price: {res['BTCUSDT'].price}")
+        finally:
+            await api.aclose()
+    asyncio.run(test())
+
+# python -m API.PHEMEX.ticker
 
 # # --- Блок для локального тестирования ---
 # if __name__ == "__main__":

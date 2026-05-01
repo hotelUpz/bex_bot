@@ -31,7 +31,7 @@
             "margin_mode": 2
         },
         "margin_size": "row",
-        "notional_limit": 20.0,
+        "notional_limit": 50.0,
         "margin_over_size_pct": 1,
         "hedge_mode": false,
         "quarantine": {
@@ -51,19 +51,19 @@
         "pattern": {
             "main_spread_pattern": {
                 "enable": true,
-                "spread_to_entry_pct": 1.0,
+                "spread_to_entry_pct": 2.0,
                 "update_prices_sec": 0.25,
-                "ttl_sec": 2
+                "ttl_sec": 1
             },
             "orderbook_filter": {
                 "_fields": {
                     "max_spread_pct": "максимально допустимый разрыв в стакане Phemex ((ask-bid)/bid), иначе скип"
                 },
                 "enable": true,
-                "min_first_row_usdt_notional": 50,
-                "max_first_row_usdt_notional": 5000,
-                "max_spread_pct": 1.0,
-                "pattern_ttl_sec": 2
+                "min_first_row_usdt_notional": 10,
+                "max_first_row_usdt_notional": 15000,
+                "max_spread_pct": 0.75,
+                "pattern_ttl_sec": 1
             },
             "funding_pattern1": {
                 "enable": true,
@@ -85,7 +85,7 @@
         "scenarios": {
             "base": {
                 "enable": true,
-                "spread_to_exit_pct": 0.25,
+                "spread_to_exit_pct": 1.0,
                 "min_target_rate": 0.3,
                 "stabilization_ttl": 0,
                 "order_timeout_sec": 0.5

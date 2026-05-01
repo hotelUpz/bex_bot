@@ -1,0 +1,2 @@
+timestamp,symbol,side,entry_price,exit_price,qty,entry_usd,exit_usd,net_pnl,is_win,duration
+1777662923.3316176,UBUSDT,LONG,0.08806,0.08776,431.0,37.95,37.82,-0.1748,False,32.1s

@@ -15,7 +15,7 @@ from CORE._utils import Reporters
 
 if TYPE_CHECKING:
     from CORE.orchestrator import TradingBot
-    from ENTRY.pattern_math import EntrySignal
+    from CORE.models_fsm import EntryPayload
 
 from dotenv import load_dotenv    
 load_dotenv()
@@ -156,7 +156,7 @@ class OrderExecutor:
             logger.debug(f"[{pos_key}] Ошибка скупки помех: {e}")
         return None
 
-    async def execute_entry(self, symbol: str, pos_key: str, signal: EntrySignal) -> bool:
+    async def execute_entry(self, symbol: str, pos_key: str, signal: EntryPayload) -> bool:
         """
         1. Расчитывает количество ордера и цену постатовки лимитного ордера, согласно рискам.
         2. Ставит ордер через await. Дожидается ответа в течение entry_timeout_sec.
