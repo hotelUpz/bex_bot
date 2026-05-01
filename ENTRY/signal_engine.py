@@ -5,10 +5,11 @@
 from __future__ import annotations
 
 import time
-from typing import Dict, Any, Optional, TYPE_CHECKING
+from typing import Dict, Any, Optional, TYPE_CHECKING, Literal
 
 from ENTRY.pattern_math import StakanEntryPattern
 from CORE.models_fsm import EntryPayload
+from c_log import UnifiedLogger
 
 if TYPE_CHECKING:
     from API.PHEMEX.funding import PhemexFunding
@@ -17,6 +18,8 @@ if TYPE_CHECKING:
     from ENTRY.funding_filters import FundingFilter1, FundingFilter2
     from ENTRY.funding_manager import FundingManager
 
+
+logger = UnifiedLogger("signal_engine")
 
 class SignalEngine:
     def __init__(self, cfg: Dict[str, Any], funding_manager: 'FundingManager'):
@@ -36,6 +39,9 @@ class SignalEngine:
         # orderbook_filter
         self.ob_enabled = self.ob_cfg["enable"]
         self.ob_ttl = self.ob_cfg["pattern_ttl_sec"]
+        
+        self.allowed_directions: list[str] = []
+        self._setup_directions(cfg)
         
         self._pattern_first_seen: Dict[str, float] = {}
         self._spread_first_seen: Dict[str, float] = {}
@@ -64,7 +70,7 @@ class SignalEngine:
         elif spread_pct <= -self.spread_to_entry_pct:
             direction = "SHORT"
             
-        if not direction:
+        if not direction or direction not in self.allowed_directions:
             keys_to_pop = [f"{symbol}_LONG", f"{symbol}_SHORT"]
             for k in keys_to_pop:
                 self._spread_first_seen.pop(k, None)
@@ -131,4 +137,17 @@ class SignalEngine:
         signal.p_price = p_price
         signal.spread = spread_pct
         
-        return signal
+        return signal
+
+    def _setup_directions(self, cfg: Dict[str, Any]) -> None:
+        """Парсинг и валидация разрешенных направлений торговли."""
+        raw_dirs = cfg.get("allowed_directions", ["LONG", "SHORT"])
+        if not isinstance(raw_dirs, list):
+            raw_dirs = [raw_dirs]
+            
+        self.allowed_directions = [str(x).strip().upper() for x in raw_dirs if x]
+        
+        # Гарантируем, что есть хотя бы одно валидное направление
+        if not any(d in ("LONG", "SHORT") for d in self.allowed_directions):
+            logger.warning(f"⚠️ Критическая ошибка в конфиге allowed_directions: {self.allowed_directions}. Сброс на LONG+SHORT.")
+            self.allowed_directions = ["LONG", "SHORT"]

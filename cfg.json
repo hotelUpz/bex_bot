@@ -20,7 +20,9 @@
         "max_lines": 1500,
         "timezone": "UTC"
     },
-    "black_list": [],
+    "black_list": [
+        "UBUSDT"
+    ],
     "quota_asset": "USDT",
     "risk": {
         "leverage": {
@@ -48,6 +50,9 @@
         "quarantine": {
             "quarantine_hours": 1
         },
+        "allowed_directions": [
+            "LONG"
+        ],
         "pattern": {
             "main_spread_pattern": {
                 "enable": true,
@@ -99,7 +104,7 @@
             "breakeven_ttl_close": {
                 "enable": true,
                 "order_timeout_sec": 0.5,
-                "position_ttl": 300,
+                "position_ttl": 600,
                 "breakeven_wait_sec": 2,
                 "to_entry_orientation": 0.0
             }
