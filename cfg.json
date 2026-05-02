@@ -45,8 +45,9 @@
         "max_lines": 1500,
         "timezone": "UTC"
     },
+    "white_list": [],
     "black_list": [
-        "UBUSDT"
+        "LABUSDT"
     ],
     "quota_asset": "USDT",
     "risk": {
@@ -65,8 +66,8 @@
         "margin_over_size_pct": 1,
         "hedge_mode": false,
         "quarantine": {
-            "min_quarantine_threshold_usdt": -0.2,
-            "force_quarantine_threshold_usdt": -2.0,
+            "min_quarantine_threshold_usdt": -0.1,
+            "force_quarantine_threshold_usdt": -1.0,
             "max_consecutive_fails": 1,
             "quarantine_hours": "inf"
         }
@@ -84,18 +85,17 @@
         "pattern": {
             "dex_filter": {
                 "enable": true,
-                "min_dex_spread_pct": 1.0,
-                "update_prices_sec": 0.5
+                "min_dex_spread_pct": 1.5
             },
             "binance_trigger": {
                 "enable": true,
-                "spread_to_entry_pct": 1.5,
+                "spread_to_entry_pct": 0.75,
                 "update_prices_sec": 0.25,
-                "ttl_sec": 0.0
+                "ttl_sec": 0.25
             },
             "fair_price_filter": {
                 "enable": true,
-                "min_fair_spread_pct": 0.01
+                "min_fair_spread_pct": 0.0
             },
             "rsi_filter": {
                 "enable": true,
@@ -113,8 +113,10 @@
                 "enable": true,
                 "min_first_row_usdt_notional": 10,
                 "max_first_row_usdt_notional": 55000,
-                "max_spread_pct": 0.5,
-                "pattern_ttl_sec": 0.1
+                "max_spread_pct": 0.75,
+                "min_imbalance": 1.25,
+                "depth_limit": 3,
+                "pattern_ttl_sec": 0.25
             },
             "funding_pattern1": {
                 "enable": true,
@@ -136,16 +138,17 @@
         "scenarios": {
             "base": {
                 "enable": true,
-                "spread_to_exit_pct": 0.5,
+                "spread_to_exit_pct": 0.75,
                 "min_target_rate": 0.3,
                 "stabilization_ttl": 0,
+                "update_prices_sec": 0.5,
                 "order_timeout_sec": 0.5
             },
             "negative": {
                 "enable": true,
                 "stabilization_ttl": 1.5,
                 "negative_spread_pct": 0,
-                "negative_ttl": 60
+                "negative_ttl": 30
             },
             "breakeven_ttl_close": {
                 "enable": true,

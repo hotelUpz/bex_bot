@@ -26,7 +26,7 @@ from ENTRY.signal_engine import SignalEngine
 from CORE.restorator import BotState
 from CORE.executor import OrderExecutor
 from CORE.models_fsm import WsInterpreter, ActivePosition, EntryPayload
-from CORE._utils import BlackListManager, PriceCacheManager, ConfigManager, Reporters
+from CORE._utils import PriceCacheManager, ConfigManager, Reporters, SymbolListManager, RiskManager, AnalyticsManager, DexUpdater, TradeManager
 
 from EXIT.scenarios.base import BaseScenario
 from EXIT.scenarios.negative import NegativeScenario
@@ -34,7 +34,7 @@ from EXIT.scenarios.breakeven import PositionTTLClose
 from EXIT.interference import Interference
 from EXIT.extrime_close import ExtrimeClose
 from ENTRY.funding_manager import FundingManager
-from ANALYTICS.tracker import PerformanceTracker, format_duration
+from ANALYTICS.tracker import PerformanceTracker
 
 from c_log import UnifiedLogger
 from utils import get_config_summary
@@ -66,10 +66,10 @@ class TradingBot:
         api_key = os.getenv("API_KEY") or self.cfg["credentials"]["api_key"]
         api_secret = os.getenv("API_SECRET") or self.cfg["credentials"]["api_secret"]
 
-        self.bl_manager = BlackListManager(CFG_PATH, self.quota_asset)        
-        self.black_list = self.bl_manager.load_from_config(self.cfg.get("black_list", []))
+        self.symbol_manager = SymbolListManager(CFG_PATH, self.quota_asset)
+        self.symbol_manager.load_from_config(self.cfg.get("black_list", []), self.cfg.get("white_list", []))
         
-        self.state = BotState(black_list=self.black_list)    
+        self.state = BotState(black_list=self.symbol_manager.black_list, white_list=self.symbol_manager.white_list)
         self.tracker = PerformanceTracker(self.state)   
         self._is_running = False
 
@@ -87,7 +87,6 @@ class TradingBot:
         self.klines_api = PhemexKlinesAPI(session=self.session)
         self.rsi_manager = RSIManager(self.klines_api, self.cfg["entry"].get("rsi_filter", {}))
 
-        self.price_manager = PriceCacheManager(self.binance_ticker_api, self.phemex_ticker_api, upd_sec, self.rsi_manager)
         self.private_client = PhemexPrivateClient(api_key, api_secret, self.session)
         self.private_ws = PhemexPrivateWS(api_key, api_secret)
 
@@ -100,14 +99,13 @@ class TradingBot:
         else:
             self.tg = None
 
-        self.funding_manager = FundingManager(
-            self.cfg["entry"]["pattern"],
-            self.phemex_funding_api,
-            self.binance_funding_api
-        )
-
         self.dex_api = DexscreenerAPI(session=self.session)
-        self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager, self.rsi_manager, self.dex_api)
+        self.risk_manager = RiskManager(self.state, self.cfg)
+        self.analytics = AnalyticsManager()
+        self.trade_manager = TradeManager(self.tracker, self.risk_manager, self.analytics, self.tg)
+        
+        upd_sec = self.cfg.get("exit", {}).get("scenarios", {}).get("base", {}).get("update_prices_sec", 0.5)
+        self.dex_updater = DexUpdater(self.dex_api, None, self.state, upd_sec)
 
         # --- ОТЧЕТНОСТЬ (как в uranus) ---
         report_id = os.getenv("REPORT_CHAT_ID")
@@ -116,7 +114,7 @@ class TradingBot:
             report_id
         ) if report_id else None
         self.report_interval_hours = self.cfg["app"].get("report_interval_hours", 6.0)
-        self.dex_upd_sec = self.cfg["entry"]["pattern"]["dex_filter"].get("update_prices_sec", 0.5)
+        self.dex_upd_sec = self.cfg["exit"]["scenarios"]["base"].get("update_prices_sec", 0.5)
 
         self._stream: PhemexStakanStream | None = None
         self._processing: Set[str] = set()
@@ -149,6 +147,14 @@ class TradingBot:
         self._exit_spreads_to_flush: Dict[str, Tuple[float, str]] = {} # symbol -> (spread, source)
         self._last_exit_flush_ts = 0.0
 
+    @property
+    def black_list(self) -> List[str]:
+        return self.symbol_manager.black_list
+
+    @property
+    def white_list(self) -> List[str]:
+        return self.symbol_manager.white_list
+
     async def _await_task(self, task: asyncio.Task | None):
         if not task: return
         task.cancel()
@@ -156,122 +162,17 @@ class TradingBot:
         except asyncio.CancelledError: pass
         except Exception as e: logger.debug(f"Task shutdown note: {e}")
 
-    def set_blacklist(self, symbols: list) -> tuple[bool, str]:
-        success, msg = self.bl_manager.update_and_save(symbols)
-        if success:
-            self.black_list = self.bl_manager.symbols
-            if hasattr(self.state, 'black_list'):
-                self.state.black_list = self.black_list
-        return success, msg    
 
-    async def quarantine_util(self, symbol) -> bool:        
-        if symbol in self.state.quarantine_until:
-            q_val = self.state.quarantine_until[symbol]
-            try: limit_time = float(q_val)
-            except (ValueError, TypeError): limit_time = 0.0
 
-            if time.time() > limit_time:
-                del self.state.quarantine_until[symbol]
-                self.state.consecutive_fails[symbol] = 0
-                asyncio.create_task(self.state.save()) 
-                return True            
-            elif not any(k.startswith(f"{symbol}_") for k in self.state.active_positions): 
-                return False
-        return True
-        
-    def apply_entry_quarantine(self, symbol: str):
-        q_hours = self.cfg.get("entry", {}).get("quarantine", {}).get("quarantine_hours", 1)
-        if str(q_hours).lower() == "inf":
-            self.state.quarantine_until[symbol] = "inf"
-            logger.warning(f"[{symbol}] 🚫 Помещен в бессрочный карантин (вход не удался).")
-        elif float(q_hours) > 0:
-            self.state.quarantine_until[symbol] = time.time() + (float(q_hours) * 3600)
-            logger.warning(f"[{symbol}] 🚫 Помещен в карантин на {q_hours}ч (вход не удался).")
-        asyncio.create_task(self.state.save())
-
-    def apply_loss_quarantine(self, symbol: str, trade_pnl: float):
-        q_cfg = self.cfg.get("risk", {}).get("quarantine", {})
-        max_fails = q_cfg.get("max_consecutive_fails", 1)
-        q_hours = q_cfg.get("quarantine_hours", "inf")
-
-        self.state.consecutive_fails[symbol] = self.state.consecutive_fails.get(symbol, 0) + 1
-        quarantine_condition = (
-            (self.state.consecutive_fails[symbol] >= max_fails and
-            trade_pnl <= self.min_quarantine_threshold_usdt) or (trade_pnl <= self.force_quarantine_threshold_usdt)
-        )
-        if quarantine_condition:
-            if str(q_hours).lower() == "inf": self.state.quarantine_until[symbol] = "inf" 
-            else: self.state.quarantine_until[symbol] = time.time() + (float(q_hours) * 3600)
-            logger.warning(f"[{symbol}] 💀 Карантин ПОТЕРЬ: {self.state.consecutive_fails[symbol]} фейлов. Блокировка на {q_hours}ч.")
-        asyncio.create_task(self.state.save())
-
-    async def _recover_state(self):
-        try:
-            self.state.load()
-            resp = await self.private_client.get_active_positions()
-            data_block = resp.get("data", {})
-            data = data_block.get("positions", []) if isinstance(data_block, dict) else data_block
-            if not isinstance(data, list): data = []
-
-            exchange_positions = {}
-            for item in data:
-                size = float(item.get("sizeRq", item.get("size", 0)))
-                if size != 0:
-                    symbol = item.get("symbol")
-                    pos_side_raw = item.get("posSide", item.get("side", "")).lower()
-                    pos_side = "LONG" if pos_side_raw in ("long", "buy") else "SHORT"
-                    pos_key = f"{symbol}_{pos_side}"
-                    exchange_positions[pos_key] = {"size": abs(size), "side": pos_side, "symbol": symbol}
-
-            keys_to_remove = [k for k in list(self.state.active_positions.keys()) if k not in exchange_positions]
-            for k in keys_to_remove:
-                pos = self.state.active_positions.get(k)
-                
-                # 👇 БАГФИКС: Мягкое удаление для спасения аналитики
-                if pos and pos.in_position:
-                    pos.is_closed_by_exchange = True # Отдаем на растерзание Game Loop
-                else:
-                    self.state.active_positions.pop(k, None) # Удаляем только пустые/фантомные
-
-            for pos_key, ex_data in exchange_positions.items():
-                if pos_key in self.state.active_positions:
-                    self.state.active_positions[pos_key].current_qty = ex_data["size"]
-                    self.state.active_positions[pos_key].in_position = True
-                    self.state.active_positions[pos_key].in_pending = False
-
-            await self.state.save()
-            logger.info(f"✅ Стейт синхронизирован. В памяти {len(self.state.active_positions)} активных позиций.")
-        except Exception as e:
-            logger.error(f"❌ Ошибка Recovery: {e}")
+    async def _on_ws_subscribe(self):
+        """Срабатывает при первом подключении и каждом успешном реконнекте WS"""
+        logger.info("🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...")
+        await self.state.sync_with_exchange(self.private_client)
 
     def _get_lock(self, pos_key: str) -> asyncio.Lock:
         if pos_key not in self.active_positions_locker:
             self.active_positions_locker[pos_key] = asyncio.Lock()
         return self.active_positions_locker[pos_key]
-
-    def _check_risk_limits(self, symbol: str) -> bool:
-        working_symbols = set()
-        has_long, has_short = False, False
-        
-        for pos_key, pos in self.state.active_positions.items():
-            if pos.in_position or pos.in_pending:
-                working_symbols.add(pos.symbol)
-                if pos.symbol == symbol:
-                    if pos.side == "LONG": has_long = True
-                    if pos.side == "SHORT": has_short = True
-
-        if not self.hedge_mode and (has_long or has_short):
-            return False
-
-        if symbol in working_symbols:
-            return True
-
-        if len(working_symbols) >= self.max_active_positions:
-            return False
-            
-        return True
-    
-    # --- СЕТЕВЫЕ ОПЕРАЦИИ (ВНЕ ЛОКА) ---
     async def _payloader(self, action_payload: List[Tuple], symbol: str) -> None:
         
         async def process_action(action: Tuple):
@@ -354,8 +255,10 @@ class TradingBot:
             current_price_spread = (dex_price - p_price) / p_price * 100
         else:
             # Fallback на Binance если DEX еще не прогрузился
-            source = "BIN"
-            current_price_spread = (b_price - p_price) / p_price * 100 if b_price > 0 else 0
+            # source = "BIN"
+            # current_price_spread = (b_price - p_price) / p_price * 100 if b_price > 0 else 0
+            logger.warning(f"[{symbol}] DEX price is not available, skipping exit analysis")
+            return
             
         # Накапливаем данные для логов (анти-спам)
         self._exit_spreads_to_flush[symbol] = (current_price_spread, source)
@@ -430,6 +333,12 @@ class TradingBot:
             await self._payloader(actions_to_execute, symbol)
 
     async def _evaluate_entry_signal(self, snap: DepthTop, symbol: str) -> None:
+        if not self.symbol_manager.is_allowed(symbol):
+            return
+            
+        if not self.risk_manager.check_risk_limits(symbol, self.hedge_mode, self.max_active_positions):
+            return
+
         b_price, p_price = self.price_manager.get_prices(symbol)
         b_fair, p_fair = self.price_manager.get_fair_prices(symbol)
         
@@ -461,7 +370,7 @@ class TradingBot:
             if success:
                 await self.state.save()
             else:
-                self.apply_entry_quarantine(symbol)
+                self.risk_manager.apply_entry_quarantine(symbol)
                 async with self._get_lock(pos_key):
                     p = self.state.active_positions.get(pos_key)
                     if p:
@@ -478,55 +387,21 @@ class TradingBot:
                     if not getattr(p, 'in_position', False):
                         p.marked_for_death_ts = time.time()
 
-    async def _dex_price_updater_loop(self):
-        """
-        Фоновый цикл обновления цен с Dexscreener для всех ОТКРЫТЫХ позиций.
-        Частота ~0.5 сек.
-        """
-        logger.info("🚀 DEX Price Updater loop started (0.5s interval for active positions)")
-        while self._is_running:
-            try:
-                # Берем уникальные символы всех активных позиций
-                active_symbols = set(pos.symbol for pos in self.state.active_positions.values())
-                
-                if active_symbols:
-                    tasks = []
-                    for symbol in active_symbols:
-                        # Используем Phemex цену как референс для точного поиска на DEX
-                        _, p_price = self.price_manager.get_prices(symbol)
-                        tasks.append(self._update_single_dex_price(symbol, p_price))
-                    
-                    if tasks:
-                        await asyncio.gather(*tasks)
-                
-                await asyncio.sleep(self.dex_upd_sec)
-            except Exception as e:
-                logger.error(f"Error in _dex_price_updater_loop: {e}")
-                await asyncio.sleep(1)
-
-    async def _update_single_dex_price(self, symbol: str, ref_price: float):
-        try:
-            pair_data = await self.dex_api.get_price_by_symbol(symbol, ref_price=ref_price)
-            if pair_data:
-                price_str = pair_data.get("priceUsd")
-                if price_str:
-                    self.price_manager.dex_prices[symbol] = float(price_str)
-        except Exception as e:
-            logger.debug(f"Failed to update DEX price for {symbol}: {e}")
 
     async def _process_symbol_pipeline(self, snap: DepthTop):
         symbol = snap.symbol
         if symbol in self._processing: return
         self._processing.add(symbol)
         try:
-            if symbol in self.black_list: return
-            if hasattr(self, 'quarantine_util') and not await self.quarantine_util(symbol): return
-            
+            if not await self.risk_manager.is_in_quarantine(symbol):
+                return
+                
             pos_long_key, pos_short_key = f"{symbol}_LONG", f"{symbol}_SHORT"
             await self._evaluate_exit_scenarios(snap, symbol, pos_long_key, pos_short_key)
             
             async with self._entry_lock:
-                if not self._check_risk_limits(symbol): return
+                if not self.risk_manager.check_risk_limits(symbol, self.hedge_mode, self.max_active_positions):
+                    return
                 await self._evaluate_entry_signal(snap, symbol)
         except Exception as e:
             err_tb = traceback.format_exc()
@@ -559,44 +434,12 @@ class TradingBot:
                                 continue
 
                         if getattr(pos, 'is_closed_by_exchange', False):
-                            if pos.entry_price > 0.0:
-                                
-                                exit_pr = pos.realized_exit_price if pos.realized_exit_price > 0 else (pos.exit_price_hint or pos.avg_price)
-                                duration_sec = time.time() - pos.opened_at
-                                
-                                net_pnl, is_win = self.tracker.register_trade(
-                                    symbol=pos.symbol,
-                                    side=pos.side,
-                                    entry_price=pos.avg_price if pos.avg_price > 0 else pos.entry_price,
-                                    exit_price=exit_pr,
-                                    qty=pos.max_realized_qty,
-                                    duration_sec=duration_sec
-                                )
-
-                                emoji = "💵" if is_win else "🩸"
-
-                                current_status = pos.exit_status if pos.exit_status in ("EXTREME", "BREAKEVEN") else pos.last_exit_status
-                                
-                                if current_status == "EXTREME": 
-                                    semantic = "⚠️ Аварийный выход (EXTREME Mode)"
-                                elif current_status == "BREAKEVEN": 
-                                    semantic = "🛡 Выход по безубытку (TTL)"                                
-                                else: 
-                                    semantic = "🎯 Тейк-профит" if is_win else "📉 Убыток (Ручное/Неизвестно)"
-
-                                if is_win:
-                                    self.state.consecutive_fails[pos.symbol] = 0
-                                    self.state.quarantine_until.pop(pos.symbol, None)
-                                else:
-                                    self.apply_loss_quarantine(pos.symbol, net_pnl)
-
-                                if self.tg:
-                                    msg = Reporters.exit_success(pos_key, semantic, exit_pr, net_pnl, emoji)
-                                    msg += f"\n⏳ Время в сделке: {format_duration(duration_sec)}"
-                                    asyncio.create_task(self.tg.send_message(msg))
-                                    
-                                logger.info(f"[{pos_key}] 🛑 Позиция закрыта. {emoji} PnL: {net_pnl:.4f}$ | Время: {format_duration(duration_sec)}")
-
+                            # Обработка закрытия через TradeManager
+                            await self.trade_manager.process_position_closure(
+                                pos_key, pos, 
+                                self.min_quarantine_threshold_usdt, 
+                                self.force_quarantine_threshold_usdt
+                            )
                             self.state.active_positions.pop(pos_key, None)
                             self.active_positions_locker.pop(pos_key, None) 
                             asyncio.create_task(self.state.save())
@@ -615,7 +458,7 @@ class TradingBot:
     async def _on_ws_subscribe(self):
         """Срабатывает при первом подключении и каждом успешном реконнекте WS"""
         logger.info("🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...")
-        await self._recover_state()
+        await self.state.sync_with_exchange(self.private_client)
 
     async def start(self):
         if getattr(self, '_is_running', False): return
@@ -625,10 +468,32 @@ class TradingBot:
         logger.info(f"⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ\n{summary}")
         if self.tg: asyncio.create_task(self.tg.send_message("🟢 <b>ТОРГОВЛЯ НАЧАТА</b>"))
 
-        symbols_info = await self.phemex_sym_api.get_all(quote=self.bl_manager.quota_asset, only_active=True)
-        self.symbol_specs = {s.symbol: s for s in symbols_info if s and s.symbol not in self.black_list}
+        # 1. Сбор и фильтрация символов
+        all_phm = await self.phemex_sym_api.get_all(quote=self.symbol_manager.quota_asset, only_active=True)
+        self.active_symbols = set(self.symbol_manager.get_filtered_list([s.symbol for s in all_phm if s]))
+        self.symbol_specs = {s.symbol: s for s in all_phm if s and s.symbol in self.active_symbols}
+        
+        if not self.active_symbols:
+            logger.error("❌ Нет доступных символов для торговли (проверьте WhiteList/BlackList)")
+            self._is_running = False
+            return
 
-        await self._recover_state()
+        # 2. Инициализация менеджеров данных с финальным списком
+        upd_sec = self.cfg["entry"]["pattern"]["binance_trigger"]["update_prices_sec"]
+        self.price_manager = PriceCacheManager(self.binance_ticker_api, self.phemex_ticker_api, self.active_symbols, upd_sec, self.rsi_manager)
+        self.funding_manager = FundingManager(self.cfg["entry"]["pattern"], self.phemex_funding_api, self.binance_funding_api, self.symbol_manager)
+        self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager, self.rsi_manager, self.dex_api)
+
+        # Подключаем price_manager к dex_updater
+        self.dex_updater.price_manager = self.price_manager
+
+        # Прогрев RSI (загрузка истории свечей)
+        if self.rsi_manager.enabled:
+            await self.rsi_manager.warmup(list(self.active_symbols))
+            # Запускаем фоновый цикл синхронизации RSI
+            self._rsi_sync_task = asyncio.create_task(self.rsi_manager.background_loop(list(self.active_symbols)))
+
+        await self.state.sync_with_exchange(self.private_client)
 
         # ==========================================
         # ИНИЦИАЛИЗАЦИЯ ФИНАНСОВОГО АУДИТА
@@ -661,7 +526,7 @@ class TradingBot:
         self._funding_task = asyncio.create_task(self.funding_manager.run())
         
         # Запускаем фоновое обновление DEX цен для открытых позиций
-        self._dex_updater_task = asyncio.create_task(self._dex_price_updater_loop())
+        self._dex_updater_task = asyncio.create_task(self.dex_updater.run())
         
         await asyncio.sleep(1)
 
@@ -672,45 +537,17 @@ class TradingBot:
             )
         )
 
-        symbols = [s.symbol for s in symbols_info if s and s.symbol not in self.black_list]
-        self._stream = PhemexStakanStream(symbols=symbols, depth=10, chunk_size=40)
+        # 3. Подписка WebSocket
+        self._stream = PhemexStakanStream(symbols=list(self.active_symbols), depth=10, chunk_size=40)
         self._stream_task = asyncio.create_task(self._stream.run(self._stakan_data_sink))
 
         self._game_loop_task = asyncio.create_task(self._main_trading_loop())
         self._report_task = asyncio.create_task(self._periodic_report_loop())
 
-    async def _send_developer_report(self, is_test: bool = False):
-        """Формирует и отправляет аудит-отчет."""
-        target_tg = self.report_tg or self.tg # Если нет отдельного чата, бьем в основной
-        if not target_tg: return
-        try:
-            summary = self.tracker.get_summary_text()
-            prefix = "🧪 <b>ТЕСТОВЫЙ ОТЧЕТ BEX</b>\n" if is_test else "📅 <b>ПЕРИОДИЧЕСКИЙ ОТЧЕТ BEX</b>\n"
-            await target_tg.send_message(prefix + summary)
 
-            state_file = self.state.filepath
-            if os.path.exists(state_file):
-                await target_tg.send_document(state_file, caption="📄 Текущий стейт бота (bot_state.json)")
-        except Exception as e:
-            logger.error(f"❌ Ошибка отправки отчета разработчику: {e}")
 
     def _flush_exit_spread_logs(self) -> None:
-        if not self._exit_spreads_to_flush:
-            return
-        
-        items = []
-        fallbacks = []
-        for sym, (spr, src) in self._exit_spreads_to_flush.items():
-            items.append(f"{sym}: {spr:.2f}%({src})")
-            if src == "BIN":
-                fallbacks.append(sym)
-        
-        msg = "📊 [EXIT SPREADS]: " + " | ".join(items)
-        logger.debug(msg)
-        
-        if fallbacks:
-            logger.warning(f"⚠️ [EXIT FALLBACK]: {', '.join(fallbacks)} missing DEX price!")
-            
+        self.analytics.flush_exit_spread_logs(self._exit_spreads_to_flush)
         self._exit_spreads_to_flush.clear()
 
     async def _periodic_report_loop(self):
@@ -720,7 +557,7 @@ class TradingBot:
             try:
                 await asyncio.sleep(self.report_interval_hours * 3600)
                 if self._is_running:
-                    await self._send_developer_report()
+                    await self.analytics.send_developer_report(self.tg, self.tracker, self.risk_manager)
             except asyncio.CancelledError:
                 break
             except Exception as e:
@@ -762,6 +599,7 @@ class TradingBot:
         await self._await_task(getattr(self, '_stream_task', None))
         await self._await_task(getattr(self, '_game_loop_task', None))
         await self._await_task(getattr(self, '_report_task', None))
+        await self._await_task(getattr(self, '_rsi_sync_task', None))
         self._latest_market_data.clear()
         self._processing.clear()
         self._signal_timeouts.clear()

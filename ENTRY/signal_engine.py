@@ -45,8 +45,9 @@ class SignalEngine:
         self.spread_ttl = self.binance_trigger_cfg["ttl_sec"]
         
         # orderbook_filter
-        self.ob_enabled = self.ob_cfg["enable"]
-        self.ob_ttl = self.ob_cfg["pattern_ttl_sec"]
+        self.ob_enabled = self.ob_cfg.get("enable", False)
+        self.ob_ttl = self.ob_cfg.get("pattern_ttl_sec", 0.25)
+        self.ob_depth_limit = self.ob_cfg.get("depth_limit", 3)
         
         # fair_price_filter
         self.fair_enabled = self.fair_cfg.get("enable", False)
@@ -116,9 +117,11 @@ class SignalEngine:
             fair_diff_pct = (p_fair - p_price) / p_price * 100
             if direction == "LONG":
                 if fair_diff_pct < self.min_fair_spread_pct:
+                    logger.debug(f"⚠️ [{symbol}] Skip FairPrice: diff {fair_diff_pct:.2f}% < {self.min_fair_spread_pct}%")
                     return None
             else: # SHORT
                 if fair_diff_pct > -self.min_fair_spread_pct:
+                    logger.debug(f"⚠️ [{symbol}] Skip FairPrice: diff {fair_diff_pct:.2f}% > -{self.min_fair_spread_pct}%")
                     return None
             
         # 1.2 Фильтр: RSI
@@ -126,10 +129,10 @@ class SignalEngine:
             rsi = self.rsi_manager.get_rsi(symbol)
             if rsi is not None:
                 if direction == "LONG" and rsi >= self.rsi_overbought:
-                    logger.debug(f"⚠️ RSI Filter [LONG]: {symbol} RSI={rsi:.1f} >= {self.rsi_overbought} (Overbought)")
+                    logger.debug(f"⚠️ [{symbol}] Skip RSI: {rsi:.1f} >= {self.rsi_overbought} (Overbought)")
                     return None
                 if direction == "SHORT" and rsi <= self.rsi_oversold:
-                    logger.debug(f"⚠️ RSI Filter [SHORT]: {symbol} RSI={rsi:.1f} <= {self.rsi_oversold} (Oversold)")
+                    logger.debug(f"⚠️ [{symbol}] Skip RSI: {rsi:.1f} <= {self.rsi_oversold} (Oversold)")
                     return None
 
         pos_key = f"{symbol}_{direction}"
@@ -150,14 +153,13 @@ class SignalEngine:
             # проверяет обе стороны и возвращает EntrySignal с side.
             # Нам нужно убедиться, что EntrySignal.side совпадает с нашим direction.
             
-            bids_sliced = depth.bids[:3] # Мы используем только 2-3 уровня для базовых расчетов
-            asks_sliced = depth.asks[:3]
+            bids_sliced = depth.bids[:self.ob_depth_limit]
+            asks_sliced = depth.asks[:self.ob_depth_limit]
             
-            # Для упрощения вызываем полный анализ и проверяем соответствие стороны
-            full_ob_signal = self.pattern_math.analyze(bids_sliced, asks_sliced)
-            if full_ob_signal and full_ob_signal.side == direction:
-                signal = full_ob_signal
-            else:
+            # Передаем символ и target_direction для точечного анализа и логирования
+            signal = self.pattern_math.analyze(bids_sliced, asks_sliced, symbol, direction)
+            
+            if not signal:
                 self._pattern_first_seen.pop(pos_key, None)
                 return None
         else:

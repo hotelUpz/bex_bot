@@ -1,87 +1,56 @@
 {
     "positions": {},
     "fails": {
-        "BSBUSDT": 0,
-        "KNCUSDT": 1,
-        "LABUSDT": 0,
-        "ORDIUSDT": 1,
-        "APRUSDT": 1
+        "BIOUSDT": 0,
+        "SIRENUSDT": 1
     },
-    "quarantine": {},
+    "quarantine": {
+        "SIRENUSDT": "inf"
+    },
     "analytics": {
-        "start_balance": 7.009788109182,
-        "current_balance": 6.922531765322133,
-        "max_balance": 7.019012995182,
-        "min_balance": 6.922531765322133,
-        "mdd_usd": 0.0965,
-        "mdd_pct": 1.374842,
-        "max_profit_usd": 0.0092,
-        "max_profit_pct": 0.1316,
+        "start_balance": 6.923275394742,
+        "current_balance": 6.795810680742001,
+        "max_balance": 6.923707240742001,
+        "min_balance": 6.795810680742001,
+        "mdd_usd": 0.12789655999999994,
+        "mdd_pct": 1.8472265731774862,
+        "max_profit_usd": 0.0004,
+        "max_profit_pct": 0.006238,
         "total_wins": 1,
-        "total_losses": 3,
-        "total_pnl": -0.08725634385986743,
+        "total_losses": 1,
+        "total_pnl": -0.12746471399999992,
         "symbols": {
-            "BSBUSDT": {
+            "BIOUSDT": {
                 "wins": 1,
                 "losses": 0,
-                "pnl": 0.009224886000000106
+                "pnl": 0.00043184600000016615
             },
-            "KNCUSDT": {
+            "SIRENUSDT": {
                 "wins": 0,
                 "losses": 1,
-                "pnl": -0.08828863999999957
-            },
-            "ORDIUSDT": {
-                "wins": 0,
-                "losses": 1,
-                "pnl": -0.00470269000000028
-            },
-            "APRUSDT": {
-                "wins": 0,
-                "losses": 1,
-                "pnl": -0.00348989985986768
+                "pnl": -0.1278965600000001
             }
         },
         "history": [
             {
-                "ts": 1777737058.0869813,
-                "symbol": "BSBUSDT",
+                "ts": 1777762919.4963691,
+                "symbol": "BIOUSDT",
                 "side": "LONG",
-                "entry_usd": 14.72,
-                "exit_usd": 14.75,
-                "pnl": 0.0092,
+                "entry_usd": 14.97,
+                "exit_usd": 14.99,
+                "pnl": 0.0004,
                 "is_win": true,
-                "duration": "5.7s"
+                "duration": "20.7s"
             },
             {
-                "ts": 1777741710.707408,
-                "symbol": "KNCUSDT",
+                "ts": 1777764677.9824617,
+                "symbol": "SIRENUSDT",
                 "side": "LONG",
-                "entry_usd": 14.94,
-                "exit_usd": 14.87,
-                "pnl": -0.0883,
+                "entry_usd": 14.97,
+                "exit_usd": 14.86,
+                "pnl": -0.1279,
                 "is_win": false,
-                "duration": "3.3m"
-            },
-            {
-                "ts": 1777744924.4348922,
-                "symbol": "ORDIUSDT",
-                "side": "LONG",
-                "entry_usd": 14.95,
-                "exit_usd": 14.97,
-                "pnl": -0.0047,
-                "is_win": false,
-                "duration": "14.1s"
-            },
-            {
-                "ts": 1777744941.866473,
-                "symbol": "APRUSDT",
-                "side": "LONG",
-                "entry_usd": 15.0,
-                "exit_usd": 15.01,
-                "pnl": -0.0035,
-                "is_win": false,
-                "duration": "1.2m"
+                "duration": "47.3s"
             }
         ]
     }

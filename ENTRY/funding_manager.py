@@ -13,6 +13,7 @@ from ENTRY.funding_filters import FundingFilter1, FundingFilter2
 if TYPE_CHECKING:
     from API.PHEMEX.funding import PhemexFunding, FundingInfo as PhmFundingInfo
     from API.BINANCE.funding import BinanceFunding, FundingInfo as BinanceFundingInfo
+    from CORE._utils import SymbolListManager
 
 logger = UnifiedLogger("entry")
 
@@ -25,9 +26,10 @@ def ensure_ms(ts: int | float) -> int:
     return int(ts)
 
 class FundingManager:
-    def __init__(self, cfg: dict[str, Any], phemex_api: 'PhemexFunding', binance_api: 'BinanceFunding'):
+    def __init__(self, cfg: dict[str, Any], phemex_api: 'PhemexFunding', binance_api: 'BinanceFunding', symbol_manager: 'SymbolListManager'):
         self.phemex_api = phemex_api
         self.binance_api = binance_api
+        self.symbol_manager = symbol_manager
         
         # Лобовой доступ к секциям паттернов фандинга
         self.filter1 = FundingFilter1(cfg["funding_pattern1"])
@@ -72,21 +74,22 @@ class FundingManager:
 
                 phm_rows, bin_rows = await asyncio.gather(*tasks)
 
-                # 2. Нормализация (приведение к ms) и кэширование в словари O(1)
+                # 2. Нормализация (приведение к ms) и кэширование в словари O(1) (только разрешенные)
                 for r in phm_rows:
-                    # Хак: мутируем dataclass или просто храним измененный объект, 
-                    # но так как Frozen=True в dataclass API, пересобираем:
-                    r_dict = r.__dict__.copy()
-                    r_dict['next_funding_time_ms'] = ensure_ms(r.next_funding_time_ms)
-                    # Чтобы не импортировать сам класс, создадим анонимный объект/словарь или оставим как есть. 
-                    # Для простоты засунем прямо объект, предварительно подменив значение через setattr,
-                    # Но в dataclass frozen=True нельзя использовать setattr. Сделаем проще:
+                    sym = r.symbol.upper()
+                    if not self.symbol_manager.is_allowed(sym):
+                        continue
+                        
                     object.__setattr__(r, 'next_funding_time_ms', ensure_ms(r.next_funding_time_ms))
-                    self.phemex_cache[r.symbol.upper()] = r
+                    self.phemex_cache[sym] = r
 
                 for r in bin_rows:
+                    sym = r.symbol.upper()
+                    if not self.symbol_manager.is_allowed(sym):
+                        continue
+                        
                     object.__setattr__(r, 'next_funding_time_ms', ensure_ms(r.next_funding_time_ms))
-                    self.binance_cache[r.symbol.upper()] = r
+                    self.binance_cache[sym] = r
 
                 now_ms = time.time() * 1000
 

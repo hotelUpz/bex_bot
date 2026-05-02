@@ -1,14 +1,19 @@
+# ============================================================
+# FILE: c_log.py
+# ROLE: Унифицированный логгер с поддержкой таймзон и ротацией файлов
+# ============================================================
 from __future__ import annotations
 
 import inspect
 import logging
 import sys
 # import os
+import time
 from datetime import datetime
 from functools import wraps
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, Dict
 
 import pytz
 
@@ -52,21 +57,35 @@ class UnifiedLogger:
                 base_logger.addHandler(console_handler)
 
         self._logger = logging.LoggerAdapter(base_logger, extra={"context": context or name})
+        self._last_logs: Dict[str, float] = {}
+        self._spam_throttle = 10.0 # Секунд между одинаковыми сообщениями
+
+    def _check_spam(self, msg: str) -> bool:
+        now = time.time()
+        if msg in self._last_logs:
+            if now - self._last_logs[msg] < self._spam_throttle:
+                return True
+        self._last_logs[msg] = now
+        return False
 
     def debug(self, msg: str, *args, **kwargs) -> None:
         if LOG_DEBUG:
+            if self._check_spam(msg): return
             self._logger.debug(msg, *args, **kwargs)
 
     def info(self, msg: str, *args, **kwargs) -> None:
         if LOG_INFO:
+            if self._check_spam(msg): return
             self._logger.info(msg, *args, **kwargs)
 
     def warning(self, msg: str, *args, **kwargs) -> None:
         if LOG_WARNING:
+            if self._check_spam(msg): return
             self._logger.warning(msg, *args, **kwargs)
 
     def error(self, msg: str, *args, **kwargs) -> None:
         if LOG_ERROR:
+            # Ошибки не фильтруем от спама, они важны всегда
             self._logger.error(msg, *args, **kwargs)
 
     def exception(self, msg: str, *args, **kwargs) -> None:
