@@ -116,6 +116,7 @@ class TradingBot:
             report_id
         ) if report_id else None
         self.report_interval_hours = self.cfg["app"].get("report_interval_hours", 6.0)
+        self.dex_upd_sec = self.cfg["entry"]["pattern"]["dex_filter"].get("update_prices_sec", 0.5)
 
         self._stream: PhemexStakanStream | None = None
         self._processing: Set[str] = set()
@@ -144,6 +145,9 @@ class TradingBot:
         self.extrime_order_timeout_sec = exit_cfg["extrime_close"]["order_timeout_sec"]     
         self.min_quarantine_threshold_usdt = -abs(self.cfg["risk"]["quarantine"]["min_quarantine_threshold_usdt"])
         self.force_quarantine_threshold_usdt = -abs(self.cfg["risk"]["quarantine"]["force_quarantine_threshold_usdt"])
+        
+        self._exit_spreads_to_flush: Dict[str, Tuple[float, str]] = {} # symbol -> (spread, source)
+        self._last_exit_flush_ts = 0.0
 
     async def _await_task(self, task: asyncio.Task | None):
         if not task: return
@@ -329,6 +333,14 @@ class TradingBot:
     # --- ЛОГИКА АНАЛИЗА И ВЫХОДА ---
     async def _evaluate_exit_scenarios(self, snap: DepthTop, symbol: str, long_key: str, short_key: str) -> None:
         now = time.time()
+        
+        # 1. Проверяем наличие активной позиции ПЕРЕД расчетами
+        pos_l = self.state.active_positions.get(long_key)
+        pos_s = self.state.active_positions.get(short_key)
+        has_pos = (pos_l and pos_l.in_position) or (pos_s and pos_s.in_position)
+        if not has_pos:
+            return
+
         actions_to_execute: List[Tuple] = []
 
         b_price, p_price = self.price_manager.get_prices(symbol)
@@ -337,11 +349,19 @@ class TradingBot:
 
         # ПРИОРИТЕТ ТЕПЕРЬ НА DEX (выход по дексу)
         dex_price = self.price_manager.get_dex_price(symbol)
+        source = "DEX"
         if dex_price > 0:
             current_price_spread = (dex_price - p_price) / p_price * 100
         else:
             # Fallback на Binance если DEX еще не прогрузился
+            source = "BIN"
             current_price_spread = (b_price - p_price) / p_price * 100 if b_price > 0 else 0
+            
+        # Накапливаем данные для логов (анти-спам)
+        self._exit_spreads_to_flush[symbol] = (current_price_spread, source)
+        if now - self._last_exit_flush_ts > 10:
+            self._flush_exit_spread_logs()
+            self._last_exit_flush_ts = now
 
         for pos_key in (long_key, short_key):
             async with self._get_lock(pos_key):
@@ -479,7 +499,7 @@ class TradingBot:
                     if tasks:
                         await asyncio.gather(*tasks)
                 
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(self.dex_upd_sec)
             except Exception as e:
                 logger.error(f"Error in _dex_price_updater_loop: {e}")
                 await asyncio.sleep(1)
@@ -673,6 +693,25 @@ class TradingBot:
                 await target_tg.send_document(state_file, caption="📄 Текущий стейт бота (bot_state.json)")
         except Exception as e:
             logger.error(f"❌ Ошибка отправки отчета разработчику: {e}")
+
+    def _flush_exit_spread_logs(self) -> None:
+        if not self._exit_spreads_to_flush:
+            return
+        
+        items = []
+        fallbacks = []
+        for sym, (spr, src) in self._exit_spreads_to_flush.items():
+            items.append(f"{sym}: {spr:.2f}%({src})")
+            if src == "BIN":
+                fallbacks.append(sym)
+        
+        msg = "📊 [EXIT SPREADS]: " + " | ".join(items)
+        logger.debug(msg)
+        
+        if fallbacks:
+            logger.warning(f"⚠️ [EXIT FALLBACK]: {', '.join(fallbacks)} missing DEX price!")
+            
+        self._exit_spreads_to_flush.clear()
 
     async def _periodic_report_loop(self):
         """Фоновый луп для отправки отчетов каждые N часов."""

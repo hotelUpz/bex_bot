@@ -184,6 +184,8 @@ class SignalEngine:
                 return None
 
         # 1.3 Фильтр: DEX Price (Dexscreener)
+        dex_price = 0.0
+        dex_spread_pct = 0.0
         if self.dex_enabled and self.dex_api:
             # Запрашиваем цену на DEX (с учетом референса p_price для защиты от коллизий)
             pair_data = await self.dex_api.get_price_by_symbol(symbol, ref_price=p_price)
@@ -209,7 +211,7 @@ class SignalEngine:
                     return None
             
             # Если прошли — логируем успех фильтра
-            logger.info(f"✅ DEX Filter OK: {symbol} | DEX: {dex_price}$ | Phemex: {p_price}$ | Spread: {dex_spread_pct:.2f}%")
+            # logger.info(f"✅ DEX Filter OK: {symbol} | DEX: {dex_price}$ | Phemex: {p_price}$ | Spread: {dex_spread_pct:.2f}%")
 
         # Сброс TTL после успешного прохождения всех фильтров
         self._spread_first_seen.pop(pos_key, None)
@@ -219,6 +221,21 @@ class SignalEngine:
         signal.b_price = b_price
         signal.p_price = p_price
         signal.spread = spread_pct
+
+        # РЕЗЮМЕ СИГНАЛА В ЛОГИ
+        rsi_val = self.rsi_manager.get_rsi(symbol) if self.rsi_manager else None
+        rsi_str = f"{rsi_val:.1f}" if rsi_val is not None else "N/A"
+        fair_spread = (p_fair - p_price) / p_price * 100 if p_fair > 0 else 0
+        
+        logger.info(
+            f"🚀 [SIGNAL] {symbol} ({direction}) | "
+            f"Price: {signal.price} | "
+            f"BIN-PHM: {spread_pct:.2f}% | "
+            f"DEX-PHM: {dex_spread_pct:.2f}% | "
+            f"FAIR-PHM: {fair_spread:.2f}% | "
+            f"RSI: {rsi_str} | "
+            f"DEX: {dex_price}$ | BIN: {b_price}$ | PHM: {p_price}$ | FAIR: {p_fair}$"
+        )
         
         # Запускаем фоновую проверку Dexscreener для отчетности (уже не фоном, если фильтр включен, но оставим для совместимости)
         if self.dex_api and not self.dex_enabled:

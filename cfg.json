@@ -17,7 +17,7 @@
     ],
     "app": {
         "name": "Bex Bot",
-        "max_active_positions": 3
+        "max_active_positions": 2
     },
     "phemex": {
         "_fields": {
@@ -84,12 +84,13 @@
         "pattern": {
             "dex_filter": {
                 "enable": true,
-                "min_dex_spread_pct": 0.5
+                "min_dex_spread_pct": 1.0,
+                "update_prices_sec": 0.5
             },
             "binance_trigger": {
                 "enable": true,
-                "spread_to_entry_pct": 1.0,
-                "update_prices_sec": 0.1,
+                "spread_to_entry_pct": 1.5,
+                "update_prices_sec": 0.25,
                 "ttl_sec": 0.0
             },
             "fair_price_filter": {
@@ -135,7 +136,7 @@
         "scenarios": {
             "base": {
                 "enable": true,
-                "spread_to_exit_pct": 1.0,
+                "spread_to_exit_pct": 0.5,
                 "min_target_rate": 0.3,
                 "stabilization_ttl": 0,
                 "order_timeout_sec": 0.5
@@ -144,12 +145,12 @@
                 "enable": true,
                 "stabilization_ttl": 1.5,
                 "negative_spread_pct": 0,
-                "negative_ttl": 180
+                "negative_ttl": 60
             },
             "breakeven_ttl_close": {
                 "enable": true,
                 "order_timeout_sec": 0.5,
-                "position_ttl": 900,
+                "position_ttl": 300,
                 "breakeven_wait_sec": 2,
                 "to_entry_orientation": 0.0
             }
