@@ -173,7 +173,7 @@ class ConfigManager:
             )
             
             # Пересоздаем движок сигналов (математика стакана обновится здесь же)
-            self.tb.signal_engine = SignalEngine(self.tb.cfg["entry"], self.tb.funding_manager)
+            self.tb.signal_engine = SignalEngine(self.tb.cfg["entry"], self.tb.funding_manager, self.tb.rsi_manager, self.tb.dex_api)
 
             # Перезапускаем луп фандинга
             if getattr(self.tb, '_is_running', False):

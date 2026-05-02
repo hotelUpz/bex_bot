@@ -1,0 +1,16 @@
+2026-05-02 16:09:26 | INFO | dex_api | 🔍 [DEXCHECK] BEATUSDT | Dexscreener Price: None$ | DEX: pulsex | Pair: 0x7FaE4C49314a1AfF4F25847458D6438F4C840b0a
+2026-05-02 16:09:26 | INFO | dex_api | 🔍 [DEXCHECK] BTCUSDT | Dexscreener Price: 78262.99$ | DEX: osmosis | Pair: 1943-factory_osmo1z6r6qdknhgsc0zeracktgpcxf43j6sekq07nw8sxduc9lg0qjjlqfu25e3_alloyed_allBTC-ibc_498A0751C798A0D9A389AA3691123DADA57DAA4FE165D5C75894505B876BA6E4
+2026-05-02 16:10:00 | INFO | dex_api | [DEXCHECK] BEATUSDT | Dexscreener Price: 0.000001555$ | DEX: pulsex | Pair: 0xDB832e8734203c04b404E8A0186c2fc1260F4130
+2026-05-02 16:10:00 | INFO | dex_api | [DEXCHECK] BTCUSDT | Dexscreener Price: 78296.86$ | DEX: osmosis | Pair: 1943-factory_osmo1z6r6qdknhgsc0zeracktgpcxf43j6sekq07nw8sxduc9lg0qjjlqfu25e3_alloyed_allBTC-ibc_498A0751C798A0D9A389AA3691123DADA57DAA4FE165D5C75894505B876BA6E4
+2026-05-02 16:11:52 | INFO | dex_api | [DEXCHECK] BEATUSDT | Dexscreener Price: 0.000001555$ | DEX: pulsex | Pair: 0xDB832e8734203c04b404E8A0186c2fc1260F4130
+2026-05-02 16:11:52 | INFO | dex_api | [DEXCHECK] BTCUSDT | Dexscreener Price: 78299.68$ | DEX: osmosis | Pair: 1943-factory_osmo1z6r6qdknhgsc0zeracktgpcxf43j6sekq07nw8sxduc9lg0qjjlqfu25e3_alloyed_allBTC-ibc_498A0751C798A0D9A389AA3691123DADA57DAA4FE165D5C75894505B876BA6E4
+2026-05-02 16:15:39 | INFO | dex_api | [DEXCHECK] BEATUSDT | Dexscreener Price: 2.0099$ | DEX: uniswap | Pair: 0xfcc3F53C2Bd3941020cD448B147CB45cE56bBb3D
+2026-05-02 16:15:39 | INFO | dex_api | [DEXCHECK] BTCUSDT | Dexscreener Price: 64993.74$ | DEX: raydium | Pair: 4S8dBxKb6Myb4nJDwbvTMVcEoRd3PyiYQjApjYK7PZ57
+2026-05-02 16:16:10 | INFO | dex_api | [DEXCHECK] BEATUSDT | Dexscreener Price: 2.0099$ | DEX: uniswap | Pair: 0xfcc3F53C2Bd3941020cD448B147CB45cE56bBb3D
+2026-05-02 16:16:10 | INFO | dex_api | [DEXCHECK] BTCUSDT | Dexscreener Price: 64993.74$ | DEX: raydium | Pair: 4S8dBxKb6Myb4nJDwbvTMVcEoRd3PyiYQjApjYK7PZ57
+2026-05-02 16:17:11 | INFO | dex_api | [DEXCHECK] BEATUSDT | DexPrice: 0.5971$ | Ref: 0.5971$ | DEX: pancakeswap | Pair: 0xe00e95284ddd3747cC61a2D9FE9B7f2fe838dE51
+2026-05-02 16:17:12 | INFO | dex_api | [DEXCHECK] BTCUSDT | DexPrice: 64993.74$ | Ref: None$ | DEX: raydium | Pair: 4S8dBxKb6Myb4nJDwbvTMVcEoRd3PyiYQjApjYK7PZ57
+2026-05-02 16:18:16 | INFO | dex_api | [DEXCHECK] BEATUSDT | DexPrice: 0.5971$ | Ref: 0.5971$ | DEX: pancakeswap | Pair: 0xe00e95284ddd3747cC61a2D9FE9B7f2fe838dE51
+2026-05-02 16:18:16 | INFO | dex_api | [DEXCHECK] BTCUSDT | DexPrice: 64993.74$ | Ref: None$ | DEX: raydium | Pair: 4S8dBxKb6Myb4nJDwbvTMVcEoRd3PyiYQjApjYK7PZ57
+2026-05-02 16:30:13 | INFO | dex_api | [DEXCHECK] BEATUSDT | DexPrice: 0.5971$ | Ref: 0.5971$ | DEX: pancakeswap | Pair: 0xe00e95284ddd3747cC61a2D9FE9B7f2fe838dE51
+2026-05-02 16:30:13 | INFO | dex_api | [DEXCHECK] BTCUSDT | DexPrice: 64993.74$ | Ref: None$ | DEX: raydium | Pair: 4S8dBxKb6Myb4nJDwbvTMVcEoRd3PyiYQjApjYK7PZ57

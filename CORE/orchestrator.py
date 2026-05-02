@@ -20,6 +20,7 @@ from API.BINANCE.ticker import BinanceTickerAPI
 from API.PHEMEX.ticker import PhemexTickerAPI
 from API.PHEMEX.funding import PhemexFunding
 from API.BINANCE.funding import BinanceFunding
+from API.DEX.dexscreener import DexscreenerAPI
 
 from ENTRY.signal_engine import SignalEngine
 from CORE.restorator import BotState
@@ -105,7 +106,8 @@ class TradingBot:
             self.binance_funding_api
         )
 
-        self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager, self.rsi_manager)
+        self.dex_api = DexscreenerAPI(session=self.session)
+        self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager, self.rsi_manager, self.dex_api)
 
         # --- ОТЧЕТНОСТЬ (как в uranus) ---
         report_id = os.getenv("REPORT_CHAT_ID")

@@ -1,7 +1,23 @@
 {
+    "recomendation": [
+        "Вариант А: \"Охотник за скальпами\" (Агрессивный)",
+        "Этот профиль рассчитан на то, чтобы забирать мелкие, но частые расхождения.",
+        "",
+        "spread_to_entry_pct: 0.6% - 0.8%",
+        "ttl_sec: 0.2s - 0.4s (убираем \"залипание\" на 2 секунды)",
+        "update_prices_sec: 0.1s (если позволяют лимиты API)",
+        "max_active_positions: 3 - 5 (одна позиция слишком сильно ограничивает доходность)",
+        "rsi_filter: Выключить (RSI на 1м часто дает ложные сигналы при резких спредах)",
+        "",
+        "Вариант Б: \"Безопасный арбитраж\" (Текущий, но оптимизированный)",
+        "spread_to_entry_pct: 1.2% - 1.5%",
+        "ttl_sec: 0.5s",
+        "orderbook_filter -> min_first_row_usdt_notional: 5 (чтобы заходить даже в мелкий ликвид)",
+        "fair_price_filter -> min_fair_spread_pct: 0.01% (сделать менее чувствительным)"
+    ],
     "app": {
         "name": "Bex Bot",
-        "max_active_positions": 1
+        "max_active_positions": 3
     },
     "phemex": {
         "_fields": {
@@ -68,21 +84,21 @@
         "pattern": {
             "main_spread_pattern": {
                 "enable": true,
-                "spread_to_entry_pct": 2.0,
-                "update_prices_sec": 0.25,
-                "ttl_sec": 2
+                "spread_to_entry_pct": 1.75,
+                "update_prices_sec": 0.1,
+                "ttl_sec": 0.25
             },
             "fair_price_filter": {
                 "enable": true,
-                "min_fair_spread_pct": 0.05
+                "min_fair_spread_pct": 0.01
             },
             "rsi_filter": {
                 "enable": true,
                 "interval": "1m",
                 "limit": 50,
                 "window": 14,
-                "overbought": 75,
-                "oversold": 25,
+                "overbought": 80,
+                "oversold": 20,
                 "full_update_min": 10
             },
             "orderbook_filter": {
@@ -93,7 +109,7 @@
                 "min_first_row_usdt_notional": 10,
                 "max_first_row_usdt_notional": 55000,
                 "max_spread_pct": 0.5,
-                "pattern_ttl_sec": 2
+                "pattern_ttl_sec": 0.1
             },
             "funding_pattern1": {
                 "enable": true,

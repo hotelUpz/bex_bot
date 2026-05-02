@@ -721,3 +721,395 @@
 2026-05-02 00:20:32 | INFO | bot | ⏹ Остановка процессов...
 2026-05-02 00:20:32 | INFO | bot | 💾 Финальное сохранение стейта на диск...
 2026-05-02 00:20:32 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-02 00:35:32 | INFO | bot | ▶️ Инициализация систем...
+2026-05-02 00:35:32 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[PHEMEX]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+  ▪️ leverage: <b>10</b>
+  ▪️ margin_mode: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>1 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>10</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>1</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>15</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-2.0</b>
+    ▪️ max_consecutive_fails: <b>1</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  ▪️ allowed_directions: <b>1 элементов</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>2.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>2</b>
+    🔹 <b>[FAIR_PRICE_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_fair_spread_pct: <b>0.05</b>
+    🔹 <b>[RSI_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ interval: <b>1m</b>
+      ▪️ limit: <b>50</b>
+      ▪️ window: <b>14</b>
+      ▪️ overbought: <b>75</b>
+      ▪️ oversold: <b>25</b>
+      ▪️ full_update_min: <b>10</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>55000</b>
+      ▪️ max_spread_pct: <b>0.5</b>
+      ▪️ pattern_ttl_sec: <b>2</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>1.0</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>180</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>900</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-02 00:35:33 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-02 00:35:33 | INFO | bot | 💰 Стартовый баланс успешно загружен из стейта: 7.01 USDT
+2026-05-02 00:35:33 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-02 00:35:35 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-02 00:35:35 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-02 00:35:36 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-02 00:35:40 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-02 00:36:32 | INFO | bot | ⏹ Остановка процессов...
+2026-05-02 00:36:32 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-02 00:36:32 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-02 13:40:30 | INFO | bot | ▶️ Инициализация систем...
+2026-05-02 13:40:30 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[PHEMEX]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+  ▪️ leverage: <b>10</b>
+  ▪️ margin_mode: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>1 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>10</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>1</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>15</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-2.0</b>
+    ▪️ max_consecutive_fails: <b>1</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  ▪️ allowed_directions: <b>1 элементов</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>2.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>2</b>
+    🔹 <b>[FAIR_PRICE_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_fair_spread_pct: <b>0.05</b>
+    🔹 <b>[RSI_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ interval: <b>1m</b>
+      ▪️ limit: <b>50</b>
+      ▪️ window: <b>14</b>
+      ▪️ overbought: <b>75</b>
+      ▪️ oversold: <b>25</b>
+      ▪️ full_update_min: <b>10</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>55000</b>
+      ▪️ max_spread_pct: <b>0.5</b>
+      ▪️ pattern_ttl_sec: <b>2</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>1.0</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>180</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>900</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-02 13:40:35 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-02 13:40:35 | INFO | bot | 💰 Стартовый баланс успешно загружен из стейта: 7.01 USDT
+2026-05-02 13:40:35 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-02 13:40:37 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-02 13:40:37 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-02 13:40:38 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-02 13:40:39 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-02 15:07:26 | INFO | bot | ⏹ Остановка процессов...
+2026-05-02 15:07:26 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-02 15:07:26 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-02 15:19:25 | INFO | bot | ▶️ Инициализация систем...
+2026-05-02 15:19:25 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[PHEMEX]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+  ▪️ leverage: <b>10</b>
+  ▪️ margin_mode: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>1 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>10</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>1</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>15</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-2.0</b>
+    ▪️ max_consecutive_fails: <b>1</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  ▪️ allowed_directions: <b>1 элементов</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>2.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>2</b>
+    🔹 <b>[FAIR_PRICE_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_fair_spread_pct: <b>0.05</b>
+    🔹 <b>[RSI_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ interval: <b>1m</b>
+      ▪️ limit: <b>50</b>
+      ▪️ window: <b>14</b>
+      ▪️ overbought: <b>75</b>
+      ▪️ oversold: <b>25</b>
+      ▪️ full_update_min: <b>10</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>55000</b>
+      ▪️ max_spread_pct: <b>0.5</b>
+      ▪️ pattern_ttl_sec: <b>2</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>1.0</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>180</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>900</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-02 15:19:27 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-02 15:19:27 | INFO | bot | 💰 Стартовый баланс успешно загружен из стейта: 7.01 USDT
+2026-05-02 15:19:27 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-02 15:19:29 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-02 15:19:29 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-02 15:19:31 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-02 15:19:36 | INFO | bot | ✅ Стейт синхронизирован. В памяти 0 активных позиций.
+2026-05-02 15:50:52 | INFO | bot | [BSBUSDT_LONG] ✅ Вход выполнен. Объем: 23.0 (≈ 14.72 $)
+2026-05-02 15:50:52 | DEBUG | bot | [BSBUSDT_LONG] Зафиксирован лимит скупки: 2.07 (≈ 1.33 $)
+2026-05-02 15:50:57 | DEBUG | bot | [BSBUSDT_LONG] Попытка охоты (HUNTING)...
+2026-05-02 15:50:58 | INFO | bot | [BSBUSDT_LONG] 🏁 Выход выполнен. Объем: 23.0 (≈ 14.75 $)
+2026-05-02 15:50:58 | INFO | bot | [BSBUSDT_LONG] 🛑 Позиция закрыта. 💵 PnL: 0.0092$ | Время: 5.7s
+2026-05-02 15:52:38 | INFO | bot | ⏹ Остановка процессов...
+2026-05-02 15:52:39 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-02 15:52:39 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType

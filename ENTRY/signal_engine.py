@@ -18,15 +18,17 @@ if TYPE_CHECKING:
     from ENTRY.funding_filters import FundingFilter1, FundingFilter2
     from ENTRY.funding_manager import FundingManager
     from CORE.rsi_manager import RSIManager
+    from API.DEX.dexscreener import DexscreenerAPI
 
 
 logger = UnifiedLogger("signal_engine")
 
 class SignalEngine:
-    def __init__(self, cfg: Dict[str, Any], funding_manager: 'FundingManager', rsi_manager: Optional['RSIManager'] = None):
+    def __init__(self, cfg: Dict[str, Any], funding_manager: 'FundingManager', rsi_manager: Optional['RSIManager'] = None, dex_api: Optional['DexscreenerAPI'] = None):
         self.cfg = cfg
         self.funding_manager = funding_manager  
         self.rsi_manager = rsi_manager
+        self.dex_api = dex_api
         
         self.spread_cfg = cfg["pattern"]["main_spread_pattern"]
         self.ob_cfg = cfg["pattern"]["orderbook_filter"]
@@ -58,10 +60,29 @@ class SignalEngine:
         
         self._pattern_first_seen: Dict[str, float] = {}
         self._spread_first_seen: Dict[str, float] = {}
+        
+        self._max_spreads: Dict[str, float] = {}
+        self._last_spread_log_ts = time.time()
 
     def analyze(self, depth: DepthTop, b_price: float, p_price: float, b_fair: float = 0.0, p_fair: float = 0.0) -> Optional[EntryPayload]:
         symbol: str = depth.symbol
         now: float = time.time()
+
+        # --- МОНИТОРИНГ СПРЕДА ---
+        spread_pct = 0.0
+            
+        if not b_price or not p_price:
+            return None
+
+        spread_pct = (b_price - p_price) / p_price * 100
+        abs_spread = abs(spread_pct)
+        if abs_spread > self._max_spreads.get(symbol, 0.0):
+            self._max_spreads[symbol] = abs_spread
+        
+        if now - self._last_spread_log_ts >= 60:
+            self._flush_spread_logs()
+            self._last_spread_log_ts = now
+    # -------------------------
         
         # 0. Проверка фандинга (глобальный фильтр)
         if not self.funding_manager.is_trade_allowed(symbol):
@@ -70,13 +91,7 @@ class SignalEngine:
         # 1. Главный сигнал: main_spread_pattern
         if not self.spread_enabled:
             return None
-            
-        if not b_price or not p_price:
-            return None
 
-        # Расчет спреда: (binance - phemex) / phemex
-        spread_pct = (b_price - p_price) / p_price * 100
-        
         direction: Optional[Literal["LONG", "SHORT"]] = None
         if spread_pct >= self.spread_to_entry_pct:
             direction = "LONG"
@@ -171,6 +186,11 @@ class SignalEngine:
         signal.p_price = p_price
         signal.spread = spread_pct
         
+        # Запускаем фоновую проверку Dexscreener для отчетности
+        if self.dex_api:
+            import asyncio
+            asyncio.create_task(self.dex_api.log_price_for_report(symbol, ref_price=p_price))
+        
         return signal
 
     def _setup_directions(self, cfg: Dict[str, Any]) -> None:
@@ -185,3 +205,14 @@ class SignalEngine:
         if not any(d in ("LONG", "SHORT") for d in self.allowed_directions):
             logger.warning(f"⚠️ Критическая ошибка в конфиге allowed_directions: {self.allowed_directions}. Сброс на LONG+SHORT.")
             self.allowed_directions = ["LONG", "SHORT"]
+
+    def _flush_spread_logs(self) -> None:
+        if not self._max_spreads:
+            return
+        
+        sorted_items = sorted(self._max_spreads.items(), key=lambda x: x[1], reverse=True)
+        top_10 = sorted_items[:10]
+        
+        msg = "📊 [MAX SPREADS 1m]: " + " | ".join([f"{s}: {v:.3f}%" for s, v in top_10])
+        logger.info(msg)
+        self._max_spreads.clear()
