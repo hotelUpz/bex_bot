@@ -39,11 +39,6 @@ class BlackListManager:
             if full_sym not in new_bl:
                 new_bl.append(full_sym)
                 
-            # if "OG" in full_sym: # -- так и оставить закомент.
-            #     new_bl.append(full_sym.replace("OG", "0G"))
-            # if "0G" in full_sym:
-            #     new_bl.append(full_sym.replace("0G", "OG"))
-                
         self.symbols = new_bl
         return self.symbols
 
@@ -77,6 +72,7 @@ class PriceCacheManager:
         self.phemex_prices: Dict[str, float] = {}
         self.binance_fair_prices: Dict[str, float] = {}
         self.phemex_fair_prices: Dict[str, float] = {}
+        self.dex_prices: Dict[str, float] = {}
         
         self._is_running = False
         self._last_fetch_ts = 0.0
@@ -131,6 +127,10 @@ class PriceCacheManager:
     def get_fair_prices(self, symbol: str) -> Tuple[float, float]:
         """Возвращает (BinanceFairPrice, PhemexFairPrice)"""
         return self.binance_fair_prices.get(symbol, 0.0), self.phemex_fair_prices.get(symbol, 0.0)
+
+    def get_dex_price(self, symbol: str) -> float:
+        """Возвращает последнюю закешированную цену с Dexscreener"""
+        return self.dex_prices.get(symbol, 0.0)
 
     def get_all_phemex_prices(self) -> Dict[str, float]:
         return self.phemex_prices
@@ -192,7 +192,7 @@ class ConfigManager:
 
             # --- ОБНОВЛЕНИЕ PriceCacheManager ---
             if hasattr(self.tb, 'price_manager'):
-                new_upd = self.tb.cfg.get("entry", {}).get("pattern", {}).get("main_spread_pattern", {}).get("update_prices_sec", 0.25)
+                new_upd = self.tb.cfg.get("entry", {}).get("pattern", {}).get("binance_trigger", {}).get("update_prices_sec", 0.25)
                 self.tb.price_manager.upd_sec = new_upd
 
             # --- ПЕРЕЗАГРУЗКА СЦЕНАРИЕВ ВЫХОДА ---
@@ -234,11 +234,17 @@ class Reporters:
             f"Binance: {b_price} | Phemex: {p_price}"
         )
 
-
     @staticmethod
     def extrime_alert(symbol: str, reason: str) -> str:
         return f"🚨 <b>ОТКАЗ API</b>\n#{symbol}\nЭкстрим ордера отклоняются: {reason}"
 
     @staticmethod
-    def exit_success(pos_key: str, semantic: str, price: float) -> str:
-        return f"✅ <b>{semantic}</b>\n#{pos_key}\nЦена закрытия: <b>{price}</b>"
+    def exit_success(pos_key: str, semantic: str, price: float, pnl: float = 0.0, emoji: str = "💵") -> str:
+        # Форматируем PnL с плюсом для прибыли
+        pnl_str = f"+{pnl:.4f}" if pnl > 0 else f"{pnl:.4f}"
+        return (
+            f"{emoji} <b>{semantic}</b>\n"
+            f"#{pos_key}\n"
+            f"Цена закрытия: <b>{price}</b>\n"
+            f"PnL: <b>{pnl_str}$</b>"
+        )

@@ -60,8 +60,8 @@ class TradingBot:
         self.signal_timeout_sec = self.cfg["entry"]["signal_timeout_sec"]
         self.hedge_mode = self.cfg["risk"]["hedge_mode"]
         
-        # main_spread_pattern update interval
-        upd_sec = self.cfg["entry"]["pattern"]["main_spread_pattern"]["update_prices_sec"]
+        # binance_trigger update interval
+        upd_sec = self.cfg["entry"]["pattern"]["binance_trigger"]["update_prices_sec"]
         
         api_key = os.getenv("API_KEY") or self.cfg["credentials"]["api_key"]
         api_secret = os.getenv("API_SECRET") or self.cfg["credentials"]["api_secret"]
@@ -332,10 +332,16 @@ class TradingBot:
         actions_to_execute: List[Tuple] = []
 
         b_price, p_price = self.price_manager.get_prices(symbol)
-        if p_price <= 0 or b_price <= 0:
+        if p_price <= 0:
             return
 
-        current_price_spread = (b_price - p_price) / p_price * 100
+        # ПРИОРИТЕТ ТЕПЕРЬ НА DEX (выход по дексу)
+        dex_price = self.price_manager.get_dex_price(symbol)
+        if dex_price > 0:
+            current_price_spread = (dex_price - p_price) / p_price * 100
+        else:
+            # Fallback на Binance если DEX еще не прогрузился
+            current_price_spread = (b_price - p_price) / p_price * 100 if b_price > 0 else 0
 
         for pos_key in (long_key, short_key):
             async with self._get_lock(pos_key):
@@ -407,7 +413,7 @@ class TradingBot:
         b_price, p_price = self.price_manager.get_prices(symbol)
         b_fair, p_fair = self.price_manager.get_fair_prices(symbol)
         
-        signal: "EntryPayload" = self.signal_engine.analyze(snap, b_price, p_price, b_fair, p_fair)
+        signal: "EntryPayload" = await self.signal_engine.analyze(snap, b_price, p_price, b_fair, p_fair)
         if not signal: return
 
         pos_key = f"{symbol}_{signal.side}"
@@ -451,6 +457,42 @@ class TradingBot:
                     p.in_pending = False
                     if not getattr(p, 'in_position', False):
                         p.marked_for_death_ts = time.time()
+
+    async def _dex_price_updater_loop(self):
+        """
+        Фоновый цикл обновления цен с Dexscreener для всех ОТКРЫТЫХ позиций.
+        Частота ~0.5 сек.
+        """
+        logger.info("🚀 DEX Price Updater loop started (0.5s interval for active positions)")
+        while self._is_running:
+            try:
+                # Берем уникальные символы всех активных позиций
+                active_symbols = set(pos.symbol for pos in self.state.active_positions.values())
+                
+                if active_symbols:
+                    tasks = []
+                    for symbol in active_symbols:
+                        # Используем Phemex цену как референс для точного поиска на DEX
+                        _, p_price = self.price_manager.get_prices(symbol)
+                        tasks.append(self._update_single_dex_price(symbol, p_price))
+                    
+                    if tasks:
+                        await asyncio.gather(*tasks)
+                
+                await asyncio.sleep(0.5)
+            except Exception as e:
+                logger.error(f"Error in _dex_price_updater_loop: {e}")
+                await asyncio.sleep(1)
+
+    async def _update_single_dex_price(self, symbol: str, ref_price: float):
+        try:
+            pair_data = await self.dex_api.get_price_by_symbol(symbol, ref_price=ref_price)
+            if pair_data:
+                price_str = pair_data.get("priceUsd")
+                if price_str:
+                    self.price_manager.dex_prices[symbol] = float(price_str)
+        except Exception as e:
+            logger.debug(f"Failed to update DEX price for {symbol}: {e}")
 
     async def _process_symbol_pipeline(self, snap: DepthTop):
         symbol = snap.symbol
@@ -529,7 +571,7 @@ class TradingBot:
                                     self.apply_loss_quarantine(pos.symbol, net_pnl)
 
                                 if self.tg:
-                                    msg = Reporters.exit_success(pos_key, semantic, exit_pr)
+                                    msg = Reporters.exit_success(pos_key, semantic, exit_pr, net_pnl, emoji)
                                     msg += f"\n⏳ Время в сделке: {format_duration(duration_sec)}"
                                     asyncio.create_task(self.tg.send_message(msg))
                                     
@@ -597,6 +639,10 @@ class TradingBot:
         self._price_updater_task = asyncio.create_task(self.price_manager.loop())
         await self._await_task(getattr(self, '_funding_task', None))
         self._funding_task = asyncio.create_task(self.funding_manager.run())
+        
+        # Запускаем фоновое обновление DEX цен для открытых позиций
+        self._dex_updater_task = asyncio.create_task(self._dex_price_updater_loop())
+        
         await asyncio.sleep(1)
 
         self._private_ws_task = asyncio.create_task(

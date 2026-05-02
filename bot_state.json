@@ -1,26 +1,45 @@
 {
     "positions": {},
     "fails": {
-        "BSBUSDT": 0
+        "BSBUSDT": 0,
+        "KNCUSDT": 1,
+        "LABUSDT": 0,
+        "ORDIUSDT": 1,
+        "APRUSDT": 1
     },
     "quarantine": {},
     "analytics": {
         "start_balance": 7.009788109182,
-        "current_balance": 7.019012995182,
+        "current_balance": 6.922531765322133,
         "max_balance": 7.019012995182,
-        "min_balance": 7.009788109182,
-        "mdd_usd": 0.0,
-        "mdd_pct": 0.0,
+        "min_balance": 6.922531765322133,
+        "mdd_usd": 0.09648122985986696,
+        "mdd_pct": 1.3745697568318185,
         "max_profit_usd": 0.0092,
         "max_profit_pct": 0.1316,
         "total_wins": 1,
-        "total_losses": 0,
-        "total_pnl": 0.009224886000000106,
+        "total_losses": 3,
+        "total_pnl": -0.08725634385986743,
         "symbols": {
             "BSBUSDT": {
                 "wins": 1,
                 "losses": 0,
                 "pnl": 0.009224886000000106
+            },
+            "KNCUSDT": {
+                "wins": 0,
+                "losses": 1,
+                "pnl": -0.08828863999999957
+            },
+            "ORDIUSDT": {
+                "wins": 0,
+                "losses": 1,
+                "pnl": -0.00470269000000028
+            },
+            "APRUSDT": {
+                "wins": 0,
+                "losses": 1,
+                "pnl": -0.00348989985986768
             }
         },
         "history": [
@@ -33,6 +52,36 @@
                 "pnl": 0.0092,
                 "is_win": true,
                 "duration": "5.7s"
+            },
+            {
+                "ts": 1777741710.707408,
+                "symbol": "KNCUSDT",
+                "side": "LONG",
+                "entry_usd": 14.94,
+                "exit_usd": 14.87,
+                "pnl": -0.0883,
+                "is_win": false,
+                "duration": "3.3m"
+            },
+            {
+                "ts": 1777744924.4348922,
+                "symbol": "ORDIUSDT",
+                "side": "LONG",
+                "entry_usd": 14.95,
+                "exit_usd": 14.97,
+                "pnl": -0.0047,
+                "is_win": false,
+                "duration": "14.1s"
+            },
+            {
+                "ts": 1777744941.866473,
+                "symbol": "APRUSDT",
+                "side": "LONG",
+                "entry_usd": 15.0,
+                "exit_usd": 15.01,
+                "pnl": -0.0035,
+                "is_win": false,
+                "duration": "1.2m"
             }
         ]
     }

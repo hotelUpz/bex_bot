@@ -82,11 +82,15 @@
             "LONG"
         ],
         "pattern": {
-            "main_spread_pattern": {
+            "dex_filter": {
                 "enable": true,
-                "spread_to_entry_pct": 1.75,
+                "min_dex_spread_pct": 0.5
+            },
+            "binance_trigger": {
+                "enable": true,
+                "spread_to_entry_pct": 1.0,
                 "update_prices_sec": 0.1,
-                "ttl_sec": 0.25
+                "ttl_sec": 0.0
             },
             "fair_price_filter": {
                 "enable": true,

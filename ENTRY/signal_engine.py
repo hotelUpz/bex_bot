@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import time
+import asyncio
 from typing import Dict, Any, Optional, TYPE_CHECKING, Literal
 
 from ENTRY.pattern_math import StakanEntryPattern
@@ -12,10 +13,10 @@ from CORE.models_fsm import EntryPayload
 from c_log import UnifiedLogger
 
 if TYPE_CHECKING:
-    from API.PHEMEX.funding import PhemexFunding
-    from API.BINANCE.funding import BinanceFunding
+    # from API.PHEMEX.funding import PhemexFunding
+    # from API.BINANCE.funding import BinanceFunding
     from API.PHEMEX.stakan import DepthTop
-    from ENTRY.funding_filters import FundingFilter1, FundingFilter2
+    # from ENTRY.funding_filters import FundingFilter1, FundingFilter2
     from ENTRY.funding_manager import FundingManager
     from CORE.rsi_manager import RSIManager
     from API.DEX.dexscreener import DexscreenerAPI
@@ -30,17 +31,18 @@ class SignalEngine:
         self.rsi_manager = rsi_manager
         self.dex_api = dex_api
         
-        self.spread_cfg = cfg["pattern"]["main_spread_pattern"]
+        self.binance_trigger_cfg = cfg["pattern"]["binance_trigger"]
         self.ob_cfg = cfg["pattern"]["orderbook_filter"]
         self.fair_cfg = cfg["pattern"].get("fair_price_filter", {"enable": False})
         self.rsi_cfg = cfg["pattern"].get("rsi_filter", {"enable": False})
+        self.dex_cfg = cfg["pattern"].get("dex_filter", {"enable": False})
         
         self.pattern_math = StakanEntryPattern(self.ob_cfg)
         
-        # main_spread_pattern
-        self.spread_enabled = self.spread_cfg["enable"]
-        self.spread_to_entry_pct = abs(self.spread_cfg["spread_to_entry_pct"])
-        self.spread_ttl = self.spread_cfg["ttl_sec"]
+        # binance_trigger
+        self.spread_enabled = self.binance_trigger_cfg["enable"]
+        self.spread_to_entry_pct = abs(self.binance_trigger_cfg["spread_to_entry_pct"])
+        self.spread_ttl = self.binance_trigger_cfg["ttl_sec"]
         
         # orderbook_filter
         self.ob_enabled = self.ob_cfg["enable"]
@@ -55,6 +57,10 @@ class SignalEngine:
         self.rsi_overbought = self.rsi_cfg.get("overbought", 70)
         self.rsi_oversold = self.rsi_cfg.get("oversold", 30)
 
+        # dex_filter
+        self.dex_enabled = self.dex_cfg.get("enable", False)
+        self.min_dex_spread_pct = abs(self.dex_cfg.get("min_dex_spread_pct", 0.0))
+
         self.allowed_directions: list[str] = []
         self._setup_directions(cfg)
         
@@ -64,7 +70,7 @@ class SignalEngine:
         self._max_spreads: Dict[str, float] = {}
         self._last_spread_log_ts = time.time()
 
-    def analyze(self, depth: DepthTop, b_price: float, p_price: float, b_fair: float = 0.0, p_fair: float = 0.0) -> Optional[EntryPayload]:
+    async def analyze(self, depth: DepthTop, b_price: float, p_price: float, b_fair: float = 0.0, p_fair: float = 0.0) -> Optional[EntryPayload]:
         symbol: str = depth.symbol
         now: float = time.time()
 
@@ -88,7 +94,7 @@ class SignalEngine:
         if not self.funding_manager.is_trade_allowed(symbol):
             return None
 
-        # 1. Главный сигнал: main_spread_pattern
+        # 1. Триггер: binance_trigger
         if not self.spread_enabled:
             return None
 
@@ -177,6 +183,34 @@ class SignalEngine:
             if now - first_seen_p < self.ob_ttl:
                 return None
 
+        # 1.3 Фильтр: DEX Price (Dexscreener)
+        if self.dex_enabled and self.dex_api:
+            # Запрашиваем цену на DEX (с учетом референса p_price для защиты от коллизий)
+            pair_data = await self.dex_api.get_price_by_symbol(symbol, ref_price=p_price)
+            if not pair_data:
+                logger.debug(f"⚠️ DEX Filter: {symbol} не найден на Dexscreener или нет ликвидности. Пропуск.")
+                return None
+            
+            dex_price = float(pair_data.get("priceUsd", 0))
+            if dex_price <= 0:
+                return None
+            
+            dex_spread_pct = (dex_price - p_price) / p_price * 100
+            
+            if direction == "LONG":
+                # Для лонга: цена на DEX должна быть ВЫШЕ цены Phemex на порог
+                if dex_spread_pct < self.min_dex_spread_pct:
+                    logger.debug(f"⚠️ DEX Filter [LONG]: {symbol} DexPrice({dex_price}) <= Phemex({p_price}) + {self.min_dex_spread_pct}%")
+                    return None
+            else: # SHORT
+                # Для шорта: цена на DEX должна быть НИЖЕ цены Phemex на порог
+                if dex_spread_pct > -self.min_dex_spread_pct:
+                    logger.debug(f"⚠️ DEX Filter [SHORT]: {symbol} DexPrice({dex_price}) >= Phemex({p_price}) - {self.min_dex_spread_pct}%")
+                    return None
+            
+            # Если прошли — логируем успех фильтра
+            logger.info(f"✅ DEX Filter OK: {symbol} | DEX: {dex_price}$ | Phemex: {p_price}$ | Spread: {dex_spread_pct:.2f}%")
+
         # Сброс TTL после успешного прохождения всех фильтров
         self._spread_first_seen.pop(pos_key, None)
         self._pattern_first_seen.pop(pos_key, None)
@@ -186,9 +220,8 @@ class SignalEngine:
         signal.p_price = p_price
         signal.spread = spread_pct
         
-        # Запускаем фоновую проверку Dexscreener для отчетности
-        if self.dex_api:
-            import asyncio
+        # Запускаем фоновую проверку Dexscreener для отчетности (уже не фоном, если фильтр включен, но оставим для совместимости)
+        if self.dex_api and not self.dex_enabled:
             asyncio.create_task(self.dex_api.log_price_for_report(symbol, ref_price=p_price))
         
         return signal
