@@ -109,3 +109,139 @@
 2026-05-01 21:51:11 | INFO | api | BTCUSDT: Last Close = 78120.9 at 1777672200
 2026-05-01 21:51:11 | INFO | api | ETHUSDT: Last Close = 2289.65 at 1777672200
 2026-05-01 21:51:11 | INFO | api | SOLUSDT: Last Close = 83.65 at 1777672200
+2026-05-01 23:04:31 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): 'ClientResponse' object has no attribute 'status_code'
+2026-05-01 23:06:49 | ERROR | api | Private API Failed (GET /g-accounts/accountPositions): HTTP 400: {"msg":"Missing required parameter,Required query parameter 'currency' is not present.","code":10500}
+2026-05-01 23:07:34 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:34 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:35 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:35 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:36 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:36 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:36 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:36 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:37 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:37 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:38 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:38 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:38 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:39 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:39 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:39 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:40 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:10:05 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:05 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:05 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:06 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:06 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:06 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:07 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:07 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:07 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:08 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:08 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:08 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:08 | ERROR | api | Private API Failed (PUT /g-positions/margin-mode): HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:09 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:09 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages
+2026-05-01 23:34:37 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:37 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:38 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:38 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:38 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:39 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:39 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:39 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:40 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:40 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:00 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:00 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:01 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:01 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:01 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:02 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:02 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:02 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:03 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:03 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:03 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:03 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:04 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:04 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:05 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:05 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:05 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:05 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:06 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:06 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:52 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): HTTP 400: {"msg":"Missing required parameter,Required query parameter 'symbol' is not present.","code":10500}
+2026-05-01 23:39:58 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:58 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:58 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:58 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:59 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:59 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:59 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:40:00 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:42:27 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000SHIBUSDT
+2026-05-01 23:42:28 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000SHIBUSDT
+2026-05-01 23:42:28 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000SHIBUSDT
+2026-05-01 23:43:15 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000PEPEUSDT
+2026-05-01 23:43:15 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000PEPEUSDT
+2026-05-01 23:43:15 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000PEPEUSDT
+2026-05-01 23:43:16 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000FLOKIUSDT
+2026-05-01 23:43:16 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000FLOKIUSDT
+2026-05-01 23:43:16 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000FLOKIUSDT
+2026-05-01 23:43:18 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000XECUSDT
+2026-05-01 23:43:18 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000XECUSDT
+2026-05-01 23:43:18 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000XECUSDT
+2026-05-01 23:43:35 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000BONKUSDT
+2026-05-01 23:43:35 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000BONKUSDT
+2026-05-01 23:43:35 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000BONKUSDT
+2026-05-01 23:43:39 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000SATSUSDT
+2026-05-01 23:43:39 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000SATSUSDT
+2026-05-01 23:43:39 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000SATSUSDT
+2026-05-01 23:43:39 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000RATSUSDT
+2026-05-01 23:43:40 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000RATSUSDT
+2026-05-01 23:43:40 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000RATSUSDT
+2026-05-01 23:44:12 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000000BABYDOGEUSDT
+2026-05-01 23:44:12 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000000BABYDOGEUSDT
+2026-05-01 23:44:13 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000000BABYDOGEUSDT
+2026-05-01 23:44:18 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000CATUSDT
+2026-05-01 23:44:18 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000CATUSDT
+2026-05-01 23:44:18 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000CATUSDT
+2026-05-01 23:44:24 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000000MOGUSDT
+2026-05-01 23:44:24 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000000MOGUSDT
+2026-05-01 23:44:25 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000000MOGUSDT
+2026-05-01 23:44:29 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000CHEEMSUSDT
+2026-05-01 23:44:29 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000CHEEMSUSDT
+2026-05-01 23:44:29 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [10500]: Failed to find symbol U1000CHEEMSUSDT
+2026-05-01 23:45:19 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages for polit contract
+2026-05-01 23:45:19 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages for polit contract
+2026-05-02 00:07:43 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000SHIBUSDT
+2026-05-02 00:08:33 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000PEPEUSDT
+2026-05-02 00:08:34 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000FLOKIUSDT
+2026-05-02 00:08:35 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000XECUSDT
+2026-05-02 00:08:53 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000BONKUSDT
+2026-05-02 00:08:57 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000SATSUSDT
+2026-05-02 00:08:58 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000RATSUSDT
+2026-05-02 00:09:32 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000000BABYDOGEUSDT
+2026-05-02 00:09:38 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000CATUSDT
+2026-05-02 00:09:44 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000000MOGUSDT
+2026-05-02 00:09:49 | ERROR | api | Private API Failed (PUT /g-positions/switch-pos-mode-sync): Phemex Error [10500]: Failed to find symbol U1000CHEEMSUSDT
+2026-05-02 00:10:43 | ERROR | api | Private API Failed (PUT /g-positions/leverage): Phemex Error [39108]: invalid leverages for polit contract
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 37 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🔐 Private WS Подключен. Отправляем авторизацию...
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:23 | INFO | api | ✅ Авторизация успешна! Подписываемся на канал (aop_p.subscribe)...
+2026-05-02 00:20:24 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.
+2026-05-02 00:20:24 | INFO | api | 🎯 Подписка ПРИНЯТА БИРЖЕЙ! Канал USDT-фьючерсов открыт.
+2026-05-02 00:20:24 | INFO | api | 🌐 Stakan WS подключен: на 40 монет.

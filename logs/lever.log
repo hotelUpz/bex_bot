@@ -1,0 +1,1219 @@
+2026-05-01 23:04:31 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:04:31 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:06:48 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:06:48 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:07:30 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:07:30 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:07:34 | DEBUG | lever | [BTCUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:34 | ERROR | lever | [BTCUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:35 | DEBUG | lever | [ETHUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:35 | ERROR | lever | [ETHUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:36 | DEBUG | lever | [XRPUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:36 | ERROR | lever | [XRPUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:36 | DEBUG | lever | [ADAUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:36 | ERROR | lever | [ADAUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:37 | DEBUG | lever | [SOLUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:37 | ERROR | lever | [SOLUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:38 | DEBUG | lever | [UNIUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:38 | ERROR | lever | [UNIUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:38 | DEBUG | lever | [DOTUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:39 | ERROR | lever | [DOTUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:39 | DEBUG | lever | [LINKUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:07:39 | ERROR | lever | [LINKUSDT] Ошибка настройки: private api request failed: phemex error [10500]: api signature verification failed.
+2026-05-01 23:07:40 | DEBUG | lever | [ATOMUSDT] Skip margin mode update: Private API request failed: Phemex Error [10500]: API Signature verification failed.
+2026-05-01 23:10:03 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:10:03 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:10:05 | DEBUG | lever | [BTCUSDT] Skip margin mode update: Private API request failed: HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:05 | WARNING | lever | [BTCUSDT] Плечо 10x отклонено. Фолбэк на 100.0x...
+2026-05-01 23:10:05 | ERROR | lever | [BTCUSDT] Ошибка Fallback: Private API request failed: Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:06 | DEBUG | lever | [ETHUSDT] Skip margin mode update: Private API request failed: HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:06 | WARNING | lever | [ETHUSDT] Плечо 10x отклонено. Фолбэк на 100.0x...
+2026-05-01 23:10:06 | ERROR | lever | [ETHUSDT] Ошибка Fallback: Private API request failed: Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:07 | DEBUG | lever | [XRPUSDT] Skip margin mode update: Private API request failed: HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:07 | WARNING | lever | [XRPUSDT] Плечо 10x отклонено. Фолбэк на 50.0x...
+2026-05-01 23:10:07 | ERROR | lever | [XRPUSDT] Ошибка Fallback: Private API request failed: Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:08 | DEBUG | lever | [ADAUSDT] Skip margin mode update: Private API request failed: HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:08 | WARNING | lever | [ADAUSDT] Плечо 10x отклонено. Фолбэк на 50.0x...
+2026-05-01 23:10:08 | ERROR | lever | [ADAUSDT] Ошибка Fallback: Private API request failed: Phemex Error [39108]: invalid leverages
+2026-05-01 23:10:08 | DEBUG | lever | [SOLUSDT] Skip margin mode update: Private API request failed: HTTP 401: {"code": "401","msg": "401 Miss Signature."}
+2026-05-01 23:10:09 | WARNING | lever | [SOLUSDT] Плечо 10x отклонено. Фолбэк на 50.0x...
+2026-05-01 23:10:09 | ERROR | lever | [SOLUSDT] Ошибка Fallback: Private API request failed: Phemex Error [39108]: invalid leverages
+2026-05-01 23:34:35 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:34:35 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:34:37 | WARNING | lever | [BTCUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:34:37 | ERROR | lever | [BTCUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:38 | WARNING | lever | [ETHUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:34:38 | ERROR | lever | [ETHUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:38 | WARNING | lever | [XRPUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:34:39 | ERROR | lever | [XRPUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:39 | WARNING | lever | [ADAUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:34:39 | ERROR | lever | [ADAUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:34:40 | WARNING | lever | [SOLUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:34:40 | ERROR | lever | [SOLUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:35:52 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:35:52 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:35:56 | INFO | lever | ℹ️ Текущий режим аккаунта: Hedged
+2026-05-01 23:35:56 | DEBUG | lever | [BTCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:35:56 | DEBUG | lever | [ETHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:35:57 | DEBUG | lever | [XRPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:35:57 | DEBUG | lever | [ADAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:35:58 | DEBUG | lever | [SOLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:35:58 | DEBUG | lever | [UNIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:35:59 | DEBUG | lever | [DOTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:35:59 | DEBUG | lever | [LINKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:36:00 | DEBUG | lever | [ATOMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:36:00 | WARNING | lever | [LTCUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:00 | ERROR | lever | [LTCUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:01 | WARNING | lever | [DOGEUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:01 | ERROR | lever | [DOGEUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:01 | WARNING | lever | [TWTUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:02 | ERROR | lever | [TWTUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:02 | WARNING | lever | [BNBUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:02 | ERROR | lever | [BNBUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:03 | WARNING | lever | [MANAUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:03 | ERROR | lever | [MANAUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:03 | WARNING | lever | [APEUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:03 | ERROR | lever | [APEUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:04 | WARNING | lever | [LUNCUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:04 | ERROR | lever | [LUNCUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:05 | WARNING | lever | [FLOWUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:05 | ERROR | lever | [FLOWUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:05 | WARNING | lever | [NEOUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:05 | ERROR | lever | [NEOUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:36:06 | WARNING | lever | [ACHUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:36:06 | ERROR | lever | [ACHUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:38:57 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:38:57 | INFO | lever | 🔄 Принудительная установка режима Hedged для аккаунта...
+2026-05-01 23:38:57 | ERROR | lever | ❌ Ошибка при переключении режима: name 'client' is not defined
+2026-05-01 23:38:57 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:39:51 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:39:51 | INFO | lever | 🔄 Принудительная установка режима Hedged для аккаунта...
+2026-05-01 23:39:52 | ERROR | lever | ❌ Ошибка при переключении режима: Private API request failed: HTTP 400: {"msg":"Missing required parameter,Required query parameter 'symbol' is not present.","code":10500}
+2026-05-01 23:39:52 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:39:53 | INFO | lever | ℹ️ Текущий режим аккаунта: Hedged
+2026-05-01 23:39:53 | DEBUG | lever | [BTCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:54 | DEBUG | lever | [ETHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:54 | DEBUG | lever | [XRPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:55 | DEBUG | lever | [ADAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:55 | DEBUG | lever | [SOLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:56 | DEBUG | lever | [UNIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:56 | DEBUG | lever | [DOTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:57 | DEBUG | lever | [LINKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:57 | DEBUG | lever | [ATOMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:39:58 | WARNING | lever | [LTCUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:39:58 | ERROR | lever | [LTCUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:58 | WARNING | lever | [DOGEUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:39:58 | ERROR | lever | [DOGEUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:59 | WARNING | lever | [TWTUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:39:59 | ERROR | lever | [TWTUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:39:59 | WARNING | lever | [BNBUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:40:00 | ERROR | lever | [BNBUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [20004]: TE_ERR_INCONSISTENT_POS_MODE
+2026-05-01 23:41:51 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-01 23:41:51 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-01 23:41:55 | INFO | lever | ℹ️ Текущий режим аккаунта: Hedged
+2026-05-01 23:41:56 | DEBUG | lever | [BTCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:41:56 | DEBUG | lever | [ETHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:41:57 | DEBUG | lever | [XRPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:41:58 | DEBUG | lever | [ADAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:41:58 | DEBUG | lever | [SOLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:41:59 | DEBUG | lever | [UNIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:00 | DEBUG | lever | [DOTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:01 | DEBUG | lever | [LINKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:01 | DEBUG | lever | [ATOMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:02 | DEBUG | lever | [LTCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:03 | DEBUG | lever | [DOGEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:03 | DEBUG | lever | [TWTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:04 | DEBUG | lever | [BNBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:05 | DEBUG | lever | [MANAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:05 | DEBUG | lever | [APEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:06 | DEBUG | lever | [LUNCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:07 | DEBUG | lever | [FLOWUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:08 | DEBUG | lever | [NEOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:08 | DEBUG | lever | [ACHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:09 | DEBUG | lever | [BANDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:10 | DEBUG | lever | [VETUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:10 | DEBUG | lever | [API3USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:11 | DEBUG | lever | [SUSHIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:12 | DEBUG | lever | [ENJUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:12 | DEBUG | lever | [XTZUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:13 | DEBUG | lever | [CHZUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:13 | DEBUG | lever | [JASMYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:14 | DEBUG | lever | [THETAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:15 | DEBUG | lever | [TRXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:15 | DEBUG | lever | [RUNEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:16 | DEBUG | lever | [AXSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:17 | DEBUG | lever | [ETCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:17 | DEBUG | lever | [RSRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:18 | DEBUG | lever | [FILUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:19 | DEBUG | lever | [AVAXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:19 | DEBUG | lever | [GMTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:20 | DEBUG | lever | [ZRXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:21 | DEBUG | lever | [MTLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:21 | DEBUG | lever | [LUNA2USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:22 | DEBUG | lever | [CRVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:22 | DEBUG | lever | [APTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:23 | DEBUG | lever | [MASKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:24 | DEBUG | lever | [CELOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:24 | DEBUG | lever | [ZECUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:25 | DEBUG | lever | [EGLDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:26 | DEBUG | lever | [MAGICUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:26 | DEBUG | lever | [GALAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:27 | DEBUG | lever | [ALICEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:27 | DEBUG | lever | [U1000SHIBUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000SHIBUSDT
+2026-05-01 23:42:28 | WARNING | lever | [U1000SHIBUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:42:28 | ERROR | lever | [U1000SHIBUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000SHIBUSDT
+2026-05-01 23:42:29 | DEBUG | lever | [STORJUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:29 | DEBUG | lever | [GRTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:30 | DEBUG | lever | [ARUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:30 | DEBUG | lever | [IMXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:31 | DEBUG | lever | [QTUMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:32 | DEBUG | lever | [OGNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:32 | DEBUG | lever | [QNTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:33 | DEBUG | lever | [RVNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:34 | DEBUG | lever | [LDOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:34 | DEBUG | lever | [ZILUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:35 | DEBUG | lever | [ALGOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:36 | DEBUG | lever | [GMXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:36 | DEBUG | lever | [C98USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:37 | DEBUG | lever | [CHRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:38 | DEBUG | lever | [BCHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:38 | DEBUG | lever | [KAVAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:39 | DEBUG | lever | [FLUXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:40 | DEBUG | lever | [SNXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:40 | DEBUG | lever | [BATUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:41 | DEBUG | lever | [NEARUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:42 | DEBUG | lever | [YFIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:42 | DEBUG | lever | [ROSEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:43 | DEBUG | lever | [ENSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:44 | DEBUG | lever | [SANDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:44 | DEBUG | lever | [PAXGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:45 | DEBUG | lever | [XLMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:46 | DEBUG | lever | [SKLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:46 | DEBUG | lever | [DYDXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:47 | DEBUG | lever | [INJUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:47 | DEBUG | lever | [ARPAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:48 | DEBUG | lever | [AAVEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:49 | DEBUG | lever | [AGLDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:49 | DEBUG | lever | [DASHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:50 | DEBUG | lever | [ONTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:51 | DEBUG | lever | [OPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:51 | DEBUG | lever | [1INCHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:52 | DEBUG | lever | [STGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:53 | DEBUG | lever | [ICPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:53 | DEBUG | lever | [COTIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:54 | DEBUG | lever | [LPTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:55 | DEBUG | lever | [KNCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:55 | DEBUG | lever | [HFTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:56 | DEBUG | lever | [KSMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:57 | DEBUG | lever | [IOTXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:57 | DEBUG | lever | [COMPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:58 | DEBUG | lever | [MINAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:59 | DEBUG | lever | [ANKRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:42:59 | DEBUG | lever | [ZENUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:00 | DEBUG | lever | [WOOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:00 | DEBUG | lever | [YGGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:01 | DEBUG | lever | [PEOPLEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:02 | DEBUG | lever | [IOSTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:02 | DEBUG | lever | [TUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:03 | DEBUG | lever | [FETUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:04 | DEBUG | lever | [HIGHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:04 | DEBUG | lever | [BLURUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:05 | DEBUG | lever | [ASTRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:06 | DEBUG | lever | [CFXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:06 | DEBUG | lever | [STXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:07 | DEBUG | lever | [SSVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:08 | DEBUG | lever | [HBARUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:08 | DEBUG | lever | [CKBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:09 | DEBUG | lever | [RLCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:10 | DEBUG | lever | [LQTYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:10 | DEBUG | lever | [ARBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:11 | DEBUG | lever | [IDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:12 | DEBUG | lever | [TLMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:12 | DEBUG | lever | [ICXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:13 | DEBUG | lever | [BELUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:13 | DEBUG | lever | [RPLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:14 | DEBUG | lever | [SUIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:15 | DEBUG | lever | [U1000PEPEUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000PEPEUSDT
+2026-05-01 23:43:15 | WARNING | lever | [U1000PEPEUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:43:15 | ERROR | lever | [U1000PEPEUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000PEPEUSDT
+2026-05-01 23:43:16 | DEBUG | lever | [EDUUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:16 | DEBUG | lever | [U1000FLOKIUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000FLOKIUSDT
+2026-05-01 23:43:16 | WARNING | lever | [U1000FLOKIUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:43:16 | ERROR | lever | [U1000FLOKIUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000FLOKIUSDT
+2026-05-01 23:43:17 | DEBUG | lever | [ORDIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:18 | DEBUG | lever | [U1000XECUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000XECUSDT
+2026-05-01 23:43:18 | WARNING | lever | [U1000XECUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:43:18 | ERROR | lever | [U1000XECUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000XECUSDT
+2026-05-01 23:43:19 | DEBUG | lever | [MAVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:19 | DEBUG | lever | [XVGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:20 | DEBUG | lever | [WLDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:21 | DEBUG | lever | [PENDLEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:21 | DEBUG | lever | [AUCTIONUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:22 | DEBUG | lever | [ARKMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:22 | DEBUG | lever | [SEIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:23 | DEBUG | lever | [CYBERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:24 | DEBUG | lever | [TRBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:24 | DEBUG | lever | [XVSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:25 | DEBUG | lever | [DUSKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:26 | DEBUG | lever | [NMRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:26 | DEBUG | lever | [ARKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:27 | DEBUG | lever | [BIGTIMEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:28 | DEBUG | lever | [BNTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:28 | DEBUG | lever | [WAXPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:29 | DEBUG | lever | [POLYXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:30 | DEBUG | lever | [GASUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:30 | DEBUG | lever | [TIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:31 | DEBUG | lever | [MEMEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:32 | DEBUG | lever | [CAKEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:32 | DEBUG | lever | [STEEMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:33 | DEBUG | lever | [ILVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:33 | DEBUG | lever | [KASUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:34 | DEBUG | lever | [BEAMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:35 | DEBUG | lever | [U1000BONKUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000BONKUSDT
+2026-05-01 23:43:35 | WARNING | lever | [U1000BONKUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:43:35 | ERROR | lever | [U1000BONKUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000BONKUSDT
+2026-05-01 23:43:36 | DEBUG | lever | [PYTHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:36 | DEBUG | lever | [SUPERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:37 | DEBUG | lever | [USTCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:38 | DEBUG | lever | [ONGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:38 | DEBUG | lever | [JTOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:39 | DEBUG | lever | [U1000SATSUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000SATSUSDT
+2026-05-01 23:43:39 | WARNING | lever | [U1000SATSUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:43:39 | ERROR | lever | [U1000SATSUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000SATSUSDT
+2026-05-01 23:43:39 | DEBUG | lever | [U1000RATSUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000RATSUSDT
+2026-05-01 23:43:40 | WARNING | lever | [U1000RATSUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:43:40 | ERROR | lever | [U1000RATSUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000RATSUSDT
+2026-05-01 23:43:40 | DEBUG | lever | [ACEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:41 | DEBUG | lever | [MOVRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:42 | DEBUG | lever | [POWRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:42 | DEBUG | lever | [XAIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:43 | DEBUG | lever | [WIFUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:44 | DEBUG | lever | [MANTAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:44 | DEBUG | lever | [ONDOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:45 | DEBUG | lever | [UMAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:46 | DEBUG | lever | [LSKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:46 | DEBUG | lever | [ALTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:47 | DEBUG | lever | [JUPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:48 | DEBUG | lever | [ZETAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:48 | DEBUG | lever | [RONUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:49 | DEBUG | lever | [DYMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:50 | DEBUG | lever | [MAVIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:50 | DEBUG | lever | [PIXELUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:51 | DEBUG | lever | [STRKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:51 | DEBUG | lever | [GLMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:52 | DEBUG | lever | [PORTALUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:53 | DEBUG | lever | [TONUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:53 | DEBUG | lever | [AXLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:54 | DEBUG | lever | [METISUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:55 | DEBUG | lever | [AEVOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:55 | DEBUG | lever | [VANRYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:56 | DEBUG | lever | [BOMEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:57 | DEBUG | lever | [ETHFIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:57 | DEBUG | lever | [POPCATUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:58 | DEBUG | lever | [WUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:59 | DEBUG | lever | [ENAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:43:59 | DEBUG | lever | [TNSRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:00 | DEBUG | lever | [SAGAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:00 | DEBUG | lever | [TAOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:01 | DEBUG | lever | [MERLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:02 | DEBUG | lever | [MEWUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:02 | DEBUG | lever | [REZUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:03 | DEBUG | lever | [BRETTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:04 | DEBUG | lever | [BBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:04 | DEBUG | lever | [PTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:05 | DEBUG | lever | [NOTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:06 | DEBUG | lever | [TURBOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:06 | DEBUG | lever | [IOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:07 | DEBUG | lever | [ZKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:08 | DEBUG | lever | [ZROUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:08 | DEBUG | lever | [BANANAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:09 | DEBUG | lever | [RENDERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:10 | DEBUG | lever | [RAREUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:10 | DEBUG | lever | [SYNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:11 | DEBUG | lever | [SUNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:12 | DEBUG | lever | [MBOXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:12 | DEBUG | lever | [U1000000BABYDOGEUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000000BABYDOGEUSDT
+2026-05-01 23:44:12 | WARNING | lever | [U1000000BABYDOGEUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:44:13 | ERROR | lever | [U1000000BABYDOGEUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000000BABYDOGEUSDT
+2026-05-01 23:44:13 | DEBUG | lever | [NEIROUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:14 | DEBUG | lever | [POLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:14 | DEBUG | lever | [FIDAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:15 | DEBUG | lever | [CATIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:16 | DEBUG | lever | [HMSTRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:16 | DEBUG | lever | [DIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:17 | DEBUG | lever | [EIGENUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:18 | DEBUG | lever | [U1000CATUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000CATUSDT
+2026-05-01 23:44:18 | WARNING | lever | [U1000CATUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:44:18 | ERROR | lever | [U1000CATUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000CATUSDT
+2026-05-01 23:44:19 | DEBUG | lever | [DEEPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:19 | DEBUG | lever | [SCRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:20 | DEBUG | lever | [MOODENGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:21 | DEBUG | lever | [GOATUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:21 | DEBUG | lever | [SANTOSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:22 | DEBUG | lever | [SAFEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:22 | DEBUG | lever | [GRASSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:23 | DEBUG | lever | [CETUSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:24 | DEBUG | lever | [COWUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:24 | DEBUG | lever | [U1000000MOGUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000000MOGUSDT
+2026-05-01 23:44:24 | WARNING | lever | [U1000000MOGUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:44:25 | ERROR | lever | [U1000000MOGUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000000MOGUSDT
+2026-05-01 23:44:25 | DEBUG | lever | [DRIFTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:26 | DEBUG | lever | [PNUTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:27 | DEBUG | lever | [ACTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:27 | DEBUG | lever | [AKTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:28 | DEBUG | lever | [BANUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:28 | DEBUG | lever | [SCRTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:29 | DEBUG | lever | [U1000CHEEMSUSDT] Note: switch mode attempt: Private API request failed: Phemex Error [10500]: Failed to find symbol U1000CHEEMSUSDT
+2026-05-01 23:44:29 | WARNING | lever | [U1000CHEEMSUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 10x...
+2026-05-01 23:44:29 | ERROR | lever | [U1000CHEEMSUSDT] Ошибка Fallback (10x): Private API request failed: Phemex Error [10500]: Failed to find symbol U1000CHEEMSUSDT
+2026-05-01 23:44:30 | DEBUG | lever | [CHILLGUYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:31 | DEBUG | lever | [MORPHOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:31 | DEBUG | lever | [THEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:32 | DEBUG | lever | [AEROUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:33 | DEBUG | lever | [KAIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:33 | DEBUG | lever | [MOVEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:34 | DEBUG | lever | [ORCAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:34 | DEBUG | lever | [ACXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:35 | DEBUG | lever | [SPXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:36 | DEBUG | lever | [VIRTUALUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:36 | DEBUG | lever | [MEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:37 | DEBUG | lever | [VELODROMEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:38 | DEBUG | lever | [AVAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:38 | DEBUG | lever | [MOCAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:39 | DEBUG | lever | [VANAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:40 | DEBUG | lever | [PENGUUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:40 | DEBUG | lever | [HYPEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:41 | DEBUG | lever | [USUALUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:42 | DEBUG | lever | [CGPTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:42 | DEBUG | lever | [KMNOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:43 | DEBUG | lever | [FARTCOINUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:44 | DEBUG | lever | [AIXBTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:44 | DEBUG | lever | [DEXEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:45 | DEBUG | lever | [PHAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:45 | DEBUG | lever | [ZEREBROUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:46 | DEBUG | lever | [GRIFFAINUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:47 | DEBUG | lever | [BIOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:47 | DEBUG | lever | [SWARMSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:48 | DEBUG | lever | [ALCHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:49 | DEBUG | lever | [COOKIEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:49 | DEBUG | lever | [DUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:50 | DEBUG | lever | [SONICUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:51 | DEBUG | lever | [AVAAIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:51 | DEBUG | lever | [SUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:52 | DEBUG | lever | [TRUMPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:53 | DEBUG | lever | [MELANIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:53 | DEBUG | lever | [ARCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:54 | DEBUG | lever | [SOLVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:54 | DEBUG | lever | [ANIMEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:55 | DEBUG | lever | [VVVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:56 | DEBUG | lever | [PIPPINUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:56 | DEBUG | lever | [BERAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:57 | DEBUG | lever | [TSTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:58 | DEBUG | lever | [LAYERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:58 | DEBUG | lever | [IPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:44:59 | DEBUG | lever | [BROCCOLIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:00 | DEBUG | lever | [HEIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:00 | DEBUG | lever | [SHELLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:01 | DEBUG | lever | [GPSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:02 | DEBUG | lever | [KAITOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:02 | DEBUG | lever | [REDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:03 | DEBUG | lever | [BMTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:04 | DEBUG | lever | [MUBARAKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:04 | DEBUG | lever | [TUTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:05 | DEBUG | lever | [FORMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:05 | DEBUG | lever | [SIRENUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:06 | DEBUG | lever | [EPICUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:07 | DEBUG | lever | [PARTIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:07 | DEBUG | lever | [NILUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:08 | DEBUG | lever | [PLUMEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:09 | DEBUG | lever | [JELLYJELLYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:09 | DEBUG | lever | [WALUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:10 | DEBUG | lever | [MLNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:11 | DEBUG | lever | [GUNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:11 | DEBUG | lever | [STOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:12 | DEBUG | lever | [ATHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:13 | DEBUG | lever | [BABYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:13 | DEBUG | lever | [FHEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:14 | DEBUG | lever | [PROMPTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:14 | DEBUG | lever | [WCTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:15 | DEBUG | lever | [FLUIDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:16 | DEBUG | lever | [KERNELUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:16 | DEBUG | lever | [BANKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:17 | DEBUG | lever | [AERGOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:18 | DEBUG | lever | [HYPERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:18 | DEBUG | lever | [ZORAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:19 | WARNING | lever | [TROLLUSDT] Плечо 10x отклонено. Пробуем безопасный фолбэк 3x...
+2026-05-01 23:45:19 | ERROR | lever | [TROLLUSDT] Ошибка Fallback (3x): Private API request failed: Phemex Error [39108]: invalid leverages for polit contract
+2026-05-01 23:45:20 | DEBUG | lever | [INITUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:20 | DEBUG | lever | [SIGNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:21 | DEBUG | lever | [JSTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:22 | DEBUG | lever | [HAEDALUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:22 | DEBUG | lever | [PUNDIXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:23 | DEBUG | lever | [SYRUPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:24 | DEBUG | lever | [B2USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:24 | DEBUG | lever | [ALPINEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:25 | DEBUG | lever | [ASRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:26 | DEBUG | lever | [SXTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:26 | DEBUG | lever | [DOODUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:27 | DEBUG | lever | [NXPCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:28 | DEBUG | lever | [BANANAS31USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:28 | DEBUG | lever | [CVCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:29 | DEBUG | lever | [AWEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:30 | DEBUG | lever | [SOONUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:30 | DEBUG | lever | [BUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:31 | DEBUG | lever | [BROCCOLIF3BUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:31 | DEBUG | lever | [HUMAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:32 | DEBUG | lever | [SOPHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:33 | DEBUG | lever | [AUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:33 | DEBUG | lever | [LAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:34 | DEBUG | lever | [PUMPBTCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:35 | DEBUG | lever | [HOMEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:35 | DEBUG | lever | [RESOLVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:36 | DEBUG | lever | [SQDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:37 | DEBUG | lever | [TAIKOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:37 | DEBUG | lever | [SPKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:38 | DEBUG | lever | [FUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:39 | DEBUG | lever | [NEWTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:39 | DEBUG | lever | [HUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:40 | DEBUG | lever | [SAHARAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:40 | DEBUG | lever | [ICNTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:41 | DEBUG | lever | [PUMPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:42 | DEBUG | lever | [TACUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:42 | DEBUG | lever | [USELESSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:43 | DEBUG | lever | [ERAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:44 | DEBUG | lever | [TAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:44 | DEBUG | lever | [BICOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:45 | DEBUG | lever | [TREEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:46 | DEBUG | lever | [ESPORTSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:46 | DEBUG | lever | [NAORISUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:47 | DEBUG | lever | [MYXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:48 | DEBUG | lever | [TOWNSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:48 | DEBUG | lever | [PROVEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:49 | DEBUG | lever | [IDOLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:50 | DEBUG | lever | [INUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:50 | DEBUG | lever | [XNYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:51 | DEBUG | lever | [AIOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:52 | DEBUG | lever | [SAPIENUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:52 | DEBUG | lever | [BTRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:53 | DEBUG | lever | [BASUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:53 | DEBUG | lever | [MITOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:54 | DEBUG | lever | [WLFIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:55 | DEBUG | lever | [QUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:55 | DEBUG | lever | [SOMIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:56 | DEBUG | lever | [PTBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:57 | DEBUG | lever | [ARIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:57 | DEBUG | lever | [TAKEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:58 | DEBUG | lever | [OPENUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:59 | DEBUG | lever | [AVNTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:45:59 | DEBUG | lever | [LINEAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:00 | DEBUG | lever | [SKYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:01 | DEBUG | lever | [HOLOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:01 | DEBUG | lever | [XPINUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:02 | DEBUG | lever | [ZKCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:03 | DEBUG | lever | [TOSHIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:03 | DEBUG | lever | [BARDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:04 | DEBUG | lever | [AIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:04 | DEBUG | lever | [STBLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:05 | DEBUG | lever | [ASTERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:06 | DEBUG | lever | [TRADOORUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:06 | DEBUG | lever | [0GUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:07 | DEBUG | lever | [XANUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:08 | DEBUG | lever | [BLESSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:08 | DEBUG | lever | [HEMIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:09 | DEBUG | lever | [COAIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:10 | DEBUG | lever | [XPLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:10 | DEBUG | lever | [MIRAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:11 | DEBUG | lever | [HANAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:12 | DEBUG | lever | [LIGHTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:12 | DEBUG | lever | [AKEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:13 | DEBUG | lever | [NOMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:13 | DEBUG | lever | [FFUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:14 | DEBUG | lever | [TRUTHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:15 | DEBUG | lever | [EDENUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:15 | DEBUG | lever | [2ZUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:16 | DEBUG | lever | [EVAAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:17 | DEBUG | lever | [LYNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:17 | DEBUG | lever | [KGENUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:18 | DEBUG | lever | [4USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:19 | DEBUG | lever | [GIGGLEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:19 | DEBUG | lever | [METUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:20 | DEBUG | lever | [CLOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:21 | DEBUG | lever | [EULUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:21 | DEBUG | lever | [RECALLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:22 | DEBUG | lever | [ENSOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:23 | DEBUG | lever | [YBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:23 | DEBUG | lever | [ZBTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:24 | DEBUG | lever | [RIVERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:24 | DEBUG | lever | [LABUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:25 | DEBUG | lever | [BLUAIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:26 | DEBUG | lever | [TURTLEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:26 | DEBUG | lever | [APRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:27 | DEBUG | lever | [MONUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:28 | DEBUG | lever | [ATUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:28 | DEBUG | lever | [MMTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:29 | DEBUG | lever | [KITEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:30 | DEBUG | lever | [CCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:30 | DEBUG | lever | [TRUSTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:31 | DEBUG | lever | [UAIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:32 | DEBUG | lever | [FOLKSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:32 | DEBUG | lever | [STABLEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:33 | DEBUG | lever | [JCTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:34 | DEBUG | lever | [ALLOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:34 | DEBUG | lever | [BEATUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:35 | DEBUG | lever | [PIEVERSEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:35 | DEBUG | lever | [SENTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:36 | DEBUG | lever | [IRYSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:37 | DEBUG | lever | [WETUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:37 | DEBUG | lever | [POWERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:38 | DEBUG | lever | [NIGHTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:39 | DEBUG | lever | [CYSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:39 | DEBUG | lever | [USUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:40 | DEBUG | lever | [RAVEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:41 | DEBUG | lever | [ZKPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:41 | DEBUG | lever | [GUAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:42 | DEBUG | lever | [LITUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:43 | DEBUG | lever | [MAGMAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:43 | DEBUG | lever | [BREVUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:44 | DEBUG | lever | [COLLECTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:45 | DEBUG | lever | [WHITEWHALEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:45 | DEBUG | lever | [ZAMAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:46 | DEBUG | lever | [FOGOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:47 | DEBUG | lever | [FRAXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:47 | DEBUG | lever | [SPORTFUNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:48 | DEBUG | lever | [ACUUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:48 | DEBUG | lever | [SKRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:49 | DEBUG | lever | [ELSAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:50 | DEBUG | lever | [FIGHTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:50 | DEBUG | lever | [SPACEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:51 | DEBUG | lever | [TSLAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:52 | DEBUG | lever | [XAUUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:52 | DEBUG | lever | [BIRBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:53 | DEBUG | lever | [GWEIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:54 | DEBUG | lever | [XAGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:54 | DEBUG | lever | [INXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:55 | DEBUG | lever | [XPDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:56 | DEBUG | lever | [HOODUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:56 | DEBUG | lever | [INTCUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:57 | DEBUG | lever | [NVDAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:57 | DEBUG | lever | [CRCLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:58 | DEBUG | lever | [METAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:59 | DEBUG | lever | [GOOGLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:46:59 | DEBUG | lever | [AAPLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:00 | DEBUG | lever | [AMZNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:01 | DEBUG | lever | [COINUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:01 | DEBUG | lever | [MSTRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:02 | DEBUG | lever | [BABAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:03 | DEBUG | lever | [ACNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:03 | DEBUG | lever | [UNHUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:04 | DEBUG | lever | [RDDTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:05 | DEBUG | lever | [PLTRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:05 | DEBUG | lever | [ORCLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:06 | DEBUG | lever | [TRIAUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:07 | DEBUG | lever | [ESPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:07 | DEBUG | lever | [AZTECUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:08 | DEBUG | lever | [OPNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:08 | DEBUG | lever | [ROBOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:09 | DEBUG | lever | [XPTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:10 | DEBUG | lever | [KATUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:10 | DEBUG | lever | [COPPERUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:11 | DEBUG | lever | [XTIUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:12 | DEBUG | lever | [XBRUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:12 | DEBUG | lever | [NAS100USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:13 | DEBUG | lever | [GER40USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:14 | DEBUG | lever | [UK100USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:14 | DEBUG | lever | [HK50USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:15 | DEBUG | lever | [US2000USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:16 | DEBUG | lever | [SPYXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:16 | DEBUG | lever | [AUS200USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:17 | DEBUG | lever | [VIXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:18 | DEBUG | lever | [HSCHKDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:18 | DEBUG | lever | [TW88USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:19 | DEBUG | lever | [SP500USDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:19 | DEBUG | lever | [EWYUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:20 | DEBUG | lever | [CFGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:21 | DEBUG | lever | [EWJUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:21 | DEBUG | lever | [EDGEXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:22 | DEBUG | lever | [NGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:23 | DEBUG | lever | [PAYPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:23 | DEBUG | lever | [BSBUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:24 | DEBUG | lever | [PRLUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:25 | DEBUG | lever | [BASEDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:25 | DEBUG | lever | [TSMUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:26 | DEBUG | lever | [QQQUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:27 | DEBUG | lever | [SNDKUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:27 | DEBUG | lever | [MUXUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:28 | DEBUG | lever | [CHIPUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:28 | DEBUG | lever | [GENIUSUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:29 | DEBUG | lever | [AVGOUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:30 | DEBUG | lever | [MSFTUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:30 | DEBUG | lever | [OPGUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:31 | DEBUG | lever | [LITEUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:32 | DEBUG | lever | [AMDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:32 | DEBUG | lever | [AIGENSYNUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:33 | DEBUG | lever | [BLENDUSDT] Setup OK: 10x (Cross) Mode: Hedged
+2026-05-01 23:47:33 | INFO | lever | ✅ Настроено: 505, Уже ок: 0, Пропущено: 1
+2026-05-02 00:02:16 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-02 00:02:16 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-02 00:02:17 | INFO | lever | ℹ️ Текущий режим аккаунта: Hedged
+2026-05-02 00:02:18 | DEBUG | lever | [BTCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:02:18 | DEBUG | lever | [ETHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:02:19 | DEBUG | lever | [XRPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:06:10 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-02 00:06:10 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-02 00:06:11 | INFO | lever | ℹ️ Текущий режим аккаунта: Hedged
+2026-05-02 00:06:12 | DEBUG | lever | [BTCUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:12 | DEBUG | lever | [ETHUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:13 | DEBUG | lever | [XRPUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:14 | DEBUG | lever | [ADAUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:14 | DEBUG | lever | [SOLUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:15 | DEBUG | lever | [UNIUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:16 | DEBUG | lever | [DOTUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:16 | DEBUG | lever | [LINKUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:17 | DEBUG | lever | [ATOMUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:18 | DEBUG | lever | [LTCUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:19 | DEBUG | lever | [DOGEUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:19 | DEBUG | lever | [TWTUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:20 | DEBUG | lever | [BNBUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:21 | DEBUG | lever | [MANAUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:21 | DEBUG | lever | [APEUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:22 | DEBUG | lever | [LUNCUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:23 | DEBUG | lever | [FLOWUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:23 | DEBUG | lever | [NEOUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:24 | DEBUG | lever | [ACHUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:25 | DEBUG | lever | [BANDUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:26 | DEBUG | lever | [VETUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:26 | DEBUG | lever | [API3USDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:27 | DEBUG | lever | [SUSHIUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:28 | DEBUG | lever | [ENJUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:28 | DEBUG | lever | [XTZUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:29 | DEBUG | lever | [CHZUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:30 | DEBUG | lever | [JASMYUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:30 | DEBUG | lever | [THETAUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:31 | DEBUG | lever | [TRXUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:32 | DEBUG | lever | [RUNEUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:32 | DEBUG | lever | [AXSUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:33 | DEBUG | lever | [ETCUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:34 | DEBUG | lever | [RSRUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:35 | DEBUG | lever | [FILUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:06:35 | DEBUG | lever | [AVAXUSDT] Setup OK: 11x (Isolated)
+2026-05-02 00:07:07 | INFO | lever | 🔄 Загрузка спецификаций Phemex...
+2026-05-02 00:07:07 | INFO | lever | 📡 Получение текущих настроек аккаунта...
+2026-05-02 00:07:09 | INFO | lever | ℹ️ Текущий режим аккаунта: Hedged
+2026-05-02 00:07:09 | DEBUG | lever | [BTCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:10 | DEBUG | lever | [ETHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:11 | DEBUG | lever | [XRPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:11 | DEBUG | lever | [ADAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:12 | DEBUG | lever | [SOLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:13 | DEBUG | lever | [UNIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:13 | DEBUG | lever | [DOTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:14 | DEBUG | lever | [LINKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:15 | DEBUG | lever | [ATOMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:16 | DEBUG | lever | [LTCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:16 | DEBUG | lever | [DOGEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:17 | DEBUG | lever | [TWTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:18 | DEBUG | lever | [BNBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:18 | DEBUG | lever | [MANAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:19 | DEBUG | lever | [APEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:20 | DEBUG | lever | [LUNCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:20 | DEBUG | lever | [FLOWUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:21 | DEBUG | lever | [NEOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:22 | DEBUG | lever | [ACHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:22 | DEBUG | lever | [BANDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:23 | DEBUG | lever | [VETUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:24 | DEBUG | lever | [API3USDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:25 | DEBUG | lever | [SUSHIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:25 | DEBUG | lever | [ENJUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:26 | DEBUG | lever | [XTZUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:27 | DEBUG | lever | [CHZUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:27 | DEBUG | lever | [JASMYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:28 | DEBUG | lever | [THETAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:29 | DEBUG | lever | [TRXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:29 | DEBUG | lever | [RUNEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:30 | DEBUG | lever | [AXSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:31 | DEBUG | lever | [ETCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:32 | DEBUG | lever | [RSRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:32 | DEBUG | lever | [FILUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:33 | DEBUG | lever | [AVAXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:34 | DEBUG | lever | [GMTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:34 | DEBUG | lever | [ZRXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:35 | DEBUG | lever | [MTLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:36 | DEBUG | lever | [LUNA2USDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:37 | DEBUG | lever | [CRVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:37 | DEBUG | lever | [APTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:38 | DEBUG | lever | [MASKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:39 | DEBUG | lever | [CELOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:39 | DEBUG | lever | [ZECUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:40 | DEBUG | lever | [EGLDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:41 | DEBUG | lever | [MAGICUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:41 | DEBUG | lever | [GALAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:42 | DEBUG | lever | [ALICEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:43 | DEBUG | lever | [U1000SHIBUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:07:43 | DEBUG | lever | [STORJUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:44 | DEBUG | lever | [GRTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:45 | DEBUG | lever | [ARUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:45 | DEBUG | lever | [IMXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:46 | DEBUG | lever | [QTUMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:47 | DEBUG | lever | [OGNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:47 | DEBUG | lever | [QNTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:48 | DEBUG | lever | [RVNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:49 | DEBUG | lever | [LDOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:50 | DEBUG | lever | [ZILUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:50 | DEBUG | lever | [ALGOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:51 | DEBUG | lever | [GMXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:52 | DEBUG | lever | [C98USDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:52 | DEBUG | lever | [CHRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:53 | DEBUG | lever | [BCHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:54 | DEBUG | lever | [KAVAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:55 | DEBUG | lever | [FLUXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:55 | DEBUG | lever | [SNXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:56 | DEBUG | lever | [BATUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:57 | DEBUG | lever | [NEARUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:57 | DEBUG | lever | [YFIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:58 | DEBUG | lever | [ROSEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:59 | DEBUG | lever | [ENSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:07:59 | DEBUG | lever | [SANDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:00 | DEBUG | lever | [PAXGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:01 | DEBUG | lever | [XLMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:02 | DEBUG | lever | [SKLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:02 | DEBUG | lever | [DYDXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:03 | DEBUG | lever | [INJUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:04 | DEBUG | lever | [ARPAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:04 | DEBUG | lever | [AAVEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:05 | DEBUG | lever | [AGLDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:06 | DEBUG | lever | [DASHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:06 | DEBUG | lever | [ONTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:07 | DEBUG | lever | [OPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:08 | DEBUG | lever | [1INCHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:08 | DEBUG | lever | [STGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:09 | DEBUG | lever | [ICPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:10 | DEBUG | lever | [COTIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:11 | DEBUG | lever | [LPTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:11 | DEBUG | lever | [KNCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:12 | DEBUG | lever | [HFTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:13 | DEBUG | lever | [KSMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:13 | DEBUG | lever | [IOTXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:14 | DEBUG | lever | [COMPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:15 | DEBUG | lever | [MINAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:16 | DEBUG | lever | [ANKRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:16 | DEBUG | lever | [ZENUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:17 | DEBUG | lever | [WOOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:18 | DEBUG | lever | [YGGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:18 | DEBUG | lever | [PEOPLEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:19 | DEBUG | lever | [IOSTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:20 | DEBUG | lever | [TUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:20 | DEBUG | lever | [FETUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:21 | DEBUG | lever | [HIGHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:22 | DEBUG | lever | [BLURUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:22 | DEBUG | lever | [ASTRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:23 | DEBUG | lever | [CFXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:24 | DEBUG | lever | [STXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:25 | DEBUG | lever | [SSVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:25 | DEBUG | lever | [HBARUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:26 | DEBUG | lever | [CKBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:27 | DEBUG | lever | [RLCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:27 | DEBUG | lever | [LQTYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:28 | DEBUG | lever | [ARBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:29 | DEBUG | lever | [IDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:29 | DEBUG | lever | [TLMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:30 | DEBUG | lever | [ICXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:31 | DEBUG | lever | [BELUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:31 | DEBUG | lever | [RPLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:32 | DEBUG | lever | [SUIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:33 | DEBUG | lever | [U1000PEPEUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:08:33 | DEBUG | lever | [EDUUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:34 | DEBUG | lever | [U1000FLOKIUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:08:35 | DEBUG | lever | [ORDIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:35 | DEBUG | lever | [U1000XECUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:08:36 | DEBUG | lever | [MAVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:36 | DEBUG | lever | [XVGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:37 | DEBUG | lever | [WLDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:38 | DEBUG | lever | [PENDLEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:38 | DEBUG | lever | [AUCTIONUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:39 | DEBUG | lever | [ARKMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:40 | DEBUG | lever | [SEIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:41 | DEBUG | lever | [CYBERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:41 | DEBUG | lever | [TRBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:42 | DEBUG | lever | [XVSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:43 | DEBUG | lever | [DUSKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:44 | DEBUG | lever | [NMRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:44 | DEBUG | lever | [ARKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:45 | DEBUG | lever | [BIGTIMEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:46 | DEBUG | lever | [BNTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:46 | DEBUG | lever | [WAXPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:47 | DEBUG | lever | [POLYXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:48 | DEBUG | lever | [GASUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:49 | DEBUG | lever | [TIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:49 | DEBUG | lever | [MEMEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:50 | DEBUG | lever | [CAKEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:51 | DEBUG | lever | [STEEMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:51 | DEBUG | lever | [ILVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:52 | DEBUG | lever | [KASUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:53 | DEBUG | lever | [BEAMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:53 | DEBUG | lever | [U1000BONKUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:08:54 | DEBUG | lever | [PYTHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:55 | DEBUG | lever | [SUPERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:55 | DEBUG | lever | [USTCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:56 | DEBUG | lever | [ONGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:57 | DEBUG | lever | [JTOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:57 | DEBUG | lever | [U1000SATSUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:08:58 | DEBUG | lever | [U1000RATSUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:08:58 | DEBUG | lever | [ACEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:08:59 | DEBUG | lever | [MOVRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:00 | DEBUG | lever | [POWRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:00 | DEBUG | lever | [XAIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:01 | DEBUG | lever | [WIFUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:02 | DEBUG | lever | [MANTAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:03 | DEBUG | lever | [ONDOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:03 | DEBUG | lever | [UMAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:04 | DEBUG | lever | [LSKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:05 | DEBUG | lever | [ALTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:05 | DEBUG | lever | [JUPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:06 | DEBUG | lever | [ZETAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:07 | DEBUG | lever | [RONUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:07 | DEBUG | lever | [DYMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:08 | DEBUG | lever | [MAVIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:09 | DEBUG | lever | [PIXELUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:09 | DEBUG | lever | [STRKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:10 | DEBUG | lever | [GLMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:11 | DEBUG | lever | [PORTALUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:12 | DEBUG | lever | [TONUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:12 | DEBUG | lever | [AXLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:13 | DEBUG | lever | [METISUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:14 | DEBUG | lever | [AEVOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:14 | DEBUG | lever | [VANRYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:15 | DEBUG | lever | [BOMEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:16 | DEBUG | lever | [ETHFIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:16 | DEBUG | lever | [POPCATUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:17 | DEBUG | lever | [WUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:18 | DEBUG | lever | [ENAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:18 | DEBUG | lever | [TNSRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:19 | DEBUG | lever | [SAGAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:20 | DEBUG | lever | [TAOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:21 | DEBUG | lever | [MERLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:21 | DEBUG | lever | [MEWUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:22 | DEBUG | lever | [REZUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:23 | DEBUG | lever | [BRETTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:23 | DEBUG | lever | [BBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:24 | DEBUG | lever | [PTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:25 | DEBUG | lever | [NOTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:25 | DEBUG | lever | [TURBOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:26 | DEBUG | lever | [IOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:27 | DEBUG | lever | [ZKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:27 | DEBUG | lever | [ZROUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:28 | DEBUG | lever | [BANANAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:29 | DEBUG | lever | [RENDERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:30 | DEBUG | lever | [RAREUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:30 | DEBUG | lever | [SYNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:31 | DEBUG | lever | [SUNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:32 | DEBUG | lever | [MBOXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:32 | DEBUG | lever | [U1000000BABYDOGEUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:09:33 | DEBUG | lever | [NEIROUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:34 | DEBUG | lever | [POLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:34 | DEBUG | lever | [FIDAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:35 | DEBUG | lever | [CATIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:36 | DEBUG | lever | [HMSTRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:36 | DEBUG | lever | [DIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:37 | DEBUG | lever | [EIGENUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:38 | DEBUG | lever | [U1000CATUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:09:38 | DEBUG | lever | [DEEPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:39 | DEBUG | lever | [SCRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:40 | DEBUG | lever | [MOODENGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:40 | DEBUG | lever | [GOATUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:41 | DEBUG | lever | [SANTOSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:42 | DEBUG | lever | [SAFEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:42 | DEBUG | lever | [GRASSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:43 | DEBUG | lever | [CETUSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:44 | DEBUG | lever | [COWUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:44 | DEBUG | lever | [U1000000MOGUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:09:45 | DEBUG | lever | [DRIFTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:46 | DEBUG | lever | [PNUTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:46 | DEBUG | lever | [ACTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:47 | DEBUG | lever | [AKTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:48 | DEBUG | lever | [BANUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:49 | DEBUG | lever | [SCRTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:49 | DEBUG | lever | [U1000CHEEMSUSDT] Skip: Symbol not found or not supported
+2026-05-02 00:09:50 | DEBUG | lever | [CHILLGUYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:50 | DEBUG | lever | [MORPHOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:51 | DEBUG | lever | [THEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:52 | DEBUG | lever | [AEROUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:52 | DEBUG | lever | [KAIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:53 | DEBUG | lever | [MOVEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:54 | DEBUG | lever | [ORCAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:55 | DEBUG | lever | [ACXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:55 | DEBUG | lever | [SPXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:56 | DEBUG | lever | [VIRTUALUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:57 | DEBUG | lever | [MEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:57 | DEBUG | lever | [VELODROMEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:58 | DEBUG | lever | [AVAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:59 | DEBUG | lever | [MOCAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:09:59 | DEBUG | lever | [VANAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:00 | DEBUG | lever | [PENGUUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:01 | DEBUG | lever | [HYPEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:01 | DEBUG | lever | [USUALUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:02 | DEBUG | lever | [CGPTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:03 | DEBUG | lever | [KMNOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:04 | DEBUG | lever | [FARTCOINUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:04 | DEBUG | lever | [AIXBTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:05 | DEBUG | lever | [DEXEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:06 | DEBUG | lever | [PHAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:07 | DEBUG | lever | [ZEREBROUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:07 | DEBUG | lever | [GRIFFAINUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:08 | DEBUG | lever | [BIOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:09 | DEBUG | lever | [SWARMSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:09 | DEBUG | lever | [ALCHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:10 | DEBUG | lever | [COOKIEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:11 | DEBUG | lever | [DUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:12 | DEBUG | lever | [SONICUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:12 | DEBUG | lever | [AVAAIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:13 | DEBUG | lever | [SUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:14 | DEBUG | lever | [TRUMPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:14 | DEBUG | lever | [MELANIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:15 | DEBUG | lever | [ARCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:16 | DEBUG | lever | [SOLVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:16 | DEBUG | lever | [ANIMEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:17 | DEBUG | lever | [VVVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:18 | DEBUG | lever | [PIPPINUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:19 | DEBUG | lever | [BERAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:19 | DEBUG | lever | [TSTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:20 | DEBUG | lever | [LAYERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:21 | DEBUG | lever | [IPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:21 | DEBUG | lever | [BROCCOLIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:22 | DEBUG | lever | [HEIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:23 | DEBUG | lever | [SHELLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:23 | DEBUG | lever | [GPSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:24 | DEBUG | lever | [KAITOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:25 | DEBUG | lever | [REDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:26 | DEBUG | lever | [BMTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:26 | DEBUG | lever | [MUBARAKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:27 | DEBUG | lever | [TUTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:28 | DEBUG | lever | [FORMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:28 | DEBUG | lever | [SIRENUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:29 | DEBUG | lever | [EPICUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:30 | DEBUG | lever | [PARTIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:31 | DEBUG | lever | [NILUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:31 | DEBUG | lever | [PLUMEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:32 | DEBUG | lever | [JELLYJELLYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:33 | DEBUG | lever | [WALUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:33 | DEBUG | lever | [MLNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:34 | DEBUG | lever | [GUNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:35 | DEBUG | lever | [STOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:35 | DEBUG | lever | [ATHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:36 | DEBUG | lever | [BABYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:37 | DEBUG | lever | [FHEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:38 | DEBUG | lever | [PROMPTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:38 | DEBUG | lever | [WCTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:39 | DEBUG | lever | [FLUIDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:40 | DEBUG | lever | [KERNELUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:40 | DEBUG | lever | [BANKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:41 | DEBUG | lever | [AERGOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:42 | DEBUG | lever | [HYPERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:43 | DEBUG | lever | [ZORAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:43 | ERROR | lever | [TROLLUSDT] Исключение настройки: private api request failed: phemex error [39108]: invalid leverages for polit contract
+2026-05-02 00:10:44 | DEBUG | lever | [INITUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:45 | DEBUG | lever | [SIGNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:45 | DEBUG | lever | [JSTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:46 | DEBUG | lever | [HAEDALUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:47 | DEBUG | lever | [PUNDIXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:47 | DEBUG | lever | [SYRUPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:48 | DEBUG | lever | [B2USDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:49 | DEBUG | lever | [ALPINEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:49 | DEBUG | lever | [ASRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:50 | DEBUG | lever | [SXTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:51 | DEBUG | lever | [DOODUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:52 | DEBUG | lever | [NXPCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:52 | DEBUG | lever | [BANANAS31USDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:53 | DEBUG | lever | [CVCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:54 | DEBUG | lever | [AWEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:54 | DEBUG | lever | [SOONUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:55 | DEBUG | lever | [BUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:56 | DEBUG | lever | [BROCCOLIF3BUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:56 | DEBUG | lever | [HUMAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:57 | DEBUG | lever | [SOPHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:58 | DEBUG | lever | [AUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:59 | DEBUG | lever | [LAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:10:59 | DEBUG | lever | [PUMPBTCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:00 | DEBUG | lever | [HOMEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:01 | DEBUG | lever | [RESOLVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:01 | DEBUG | lever | [SQDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:02 | DEBUG | lever | [TAIKOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:03 | DEBUG | lever | [SPKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:03 | DEBUG | lever | [FUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:04 | DEBUG | lever | [NEWTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:05 | DEBUG | lever | [HUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:05 | DEBUG | lever | [SAHARAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:06 | DEBUG | lever | [ICNTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:07 | DEBUG | lever | [PUMPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:08 | DEBUG | lever | [TACUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:08 | DEBUG | lever | [USELESSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:09 | DEBUG | lever | [ERAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:10 | DEBUG | lever | [TAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:10 | DEBUG | lever | [BICOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:11 | DEBUG | lever | [TREEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:12 | DEBUG | lever | [ESPORTSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:12 | DEBUG | lever | [NAORISUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:13 | DEBUG | lever | [MYXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:14 | DEBUG | lever | [TOWNSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:14 | DEBUG | lever | [PROVEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:15 | DEBUG | lever | [IDOLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:16 | DEBUG | lever | [INUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:17 | DEBUG | lever | [XNYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:17 | DEBUG | lever | [AIOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:18 | DEBUG | lever | [SAPIENUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:19 | DEBUG | lever | [BTRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:19 | DEBUG | lever | [BASUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:20 | DEBUG | lever | [MITOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:21 | DEBUG | lever | [WLFIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:22 | DEBUG | lever | [QUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:22 | DEBUG | lever | [SOMIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:23 | DEBUG | lever | [PTBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:24 | DEBUG | lever | [ARIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:24 | DEBUG | lever | [TAKEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:25 | DEBUG | lever | [OPENUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:26 | DEBUG | lever | [AVNTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:26 | DEBUG | lever | [LINEAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:27 | DEBUG | lever | [SKYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:28 | DEBUG | lever | [HOLOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:29 | DEBUG | lever | [XPINUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:29 | DEBUG | lever | [ZKCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:30 | DEBUG | lever | [TOSHIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:31 | DEBUG | lever | [BARDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:31 | DEBUG | lever | [AIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:32 | DEBUG | lever | [STBLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:33 | DEBUG | lever | [ASTERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:33 | DEBUG | lever | [TRADOORUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:34 | DEBUG | lever | [0GUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:35 | DEBUG | lever | [XANUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:36 | DEBUG | lever | [BLESSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:36 | DEBUG | lever | [HEMIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:37 | DEBUG | lever | [COAIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:38 | DEBUG | lever | [XPLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:38 | DEBUG | lever | [MIRAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:39 | DEBUG | lever | [HANAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:40 | DEBUG | lever | [LIGHTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:40 | DEBUG | lever | [AKEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:41 | DEBUG | lever | [NOMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:42 | DEBUG | lever | [FFUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:42 | DEBUG | lever | [TRUTHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:43 | DEBUG | lever | [EDENUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:44 | DEBUG | lever | [2ZUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:45 | DEBUG | lever | [EVAAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:45 | DEBUG | lever | [LYNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:46 | DEBUG | lever | [KGENUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:47 | DEBUG | lever | [4USDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:47 | DEBUG | lever | [GIGGLEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:48 | DEBUG | lever | [METUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:49 | DEBUG | lever | [CLOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:49 | DEBUG | lever | [EULUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:50 | DEBUG | lever | [RECALLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:51 | DEBUG | lever | [ENSOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:51 | DEBUG | lever | [YBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:52 | DEBUG | lever | [ZBTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:53 | DEBUG | lever | [RIVERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:54 | DEBUG | lever | [LABUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:54 | DEBUG | lever | [BLUAIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:55 | DEBUG | lever | [TURTLEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:56 | DEBUG | lever | [APRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:56 | DEBUG | lever | [MONUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:57 | DEBUG | lever | [ATUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:58 | DEBUG | lever | [MMTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:58 | DEBUG | lever | [KITEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:11:59 | DEBUG | lever | [CCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:00 | DEBUG | lever | [TRUSTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:01 | DEBUG | lever | [UAIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:01 | DEBUG | lever | [FOLKSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:02 | DEBUG | lever | [STABLEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:03 | DEBUG | lever | [JCTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:03 | DEBUG | lever | [ALLOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:04 | DEBUG | lever | [BEATUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:05 | DEBUG | lever | [PIEVERSEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:05 | DEBUG | lever | [SENTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:06 | DEBUG | lever | [IRYSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:07 | DEBUG | lever | [WETUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:07 | DEBUG | lever | [POWERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:08 | DEBUG | lever | [NIGHTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:09 | DEBUG | lever | [CYSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:10 | DEBUG | lever | [USUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:10 | DEBUG | lever | [RAVEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:11 | DEBUG | lever | [ZKPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:12 | DEBUG | lever | [GUAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:12 | DEBUG | lever | [LITUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:13 | DEBUG | lever | [MAGMAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:14 | DEBUG | lever | [BREVUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:14 | DEBUG | lever | [COLLECTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:15 | DEBUG | lever | [WHITEWHALEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:16 | DEBUG | lever | [ZAMAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:16 | DEBUG | lever | [FOGOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:17 | DEBUG | lever | [FRAXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:18 | DEBUG | lever | [SPORTFUNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:19 | DEBUG | lever | [ACUUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:19 | DEBUG | lever | [SKRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:20 | DEBUG | lever | [ELSAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:21 | DEBUG | lever | [FIGHTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:21 | DEBUG | lever | [SPACEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:22 | DEBUG | lever | [TSLAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:23 | DEBUG | lever | [XAUUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:23 | DEBUG | lever | [BIRBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:24 | DEBUG | lever | [GWEIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:25 | DEBUG | lever | [XAGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:26 | DEBUG | lever | [INXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:26 | DEBUG | lever | [XPDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:27 | DEBUG | lever | [HOODUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:28 | DEBUG | lever | [INTCUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:28 | DEBUG | lever | [NVDAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:29 | DEBUG | lever | [CRCLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:30 | DEBUG | lever | [METAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:30 | DEBUG | lever | [GOOGLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:31 | DEBUG | lever | [AAPLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:32 | DEBUG | lever | [AMZNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:32 | DEBUG | lever | [COINUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:33 | DEBUG | lever | [MSTRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:34 | DEBUG | lever | [BABAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:35 | DEBUG | lever | [ACNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:35 | DEBUG | lever | [UNHUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:36 | DEBUG | lever | [RDDTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:37 | DEBUG | lever | [PLTRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:37 | DEBUG | lever | [ORCLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:38 | DEBUG | lever | [TRIAUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:39 | DEBUG | lever | [ESPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:39 | DEBUG | lever | [AZTECUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:40 | DEBUG | lever | [OPNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:41 | DEBUG | lever | [ROBOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:41 | DEBUG | lever | [XPTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:42 | DEBUG | lever | [KATUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:43 | DEBUG | lever | [COPPERUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:44 | DEBUG | lever | [XTIUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:44 | DEBUG | lever | [XBRUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:45 | DEBUG | lever | [NAS100USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:46 | DEBUG | lever | [GER40USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:46 | DEBUG | lever | [UK100USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:47 | DEBUG | lever | [HK50USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:48 | DEBUG | lever | [US2000USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:49 | DEBUG | lever | [SPYXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:49 | DEBUG | lever | [AUS200USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:50 | DEBUG | lever | [VIXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:51 | DEBUG | lever | [HSCHKDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:51 | DEBUG | lever | [TW88USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:52 | DEBUG | lever | [SP500USDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:53 | DEBUG | lever | [EWYUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:53 | DEBUG | lever | [CFGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:54 | DEBUG | lever | [EWJUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:55 | DEBUG | lever | [EDGEXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:56 | DEBUG | lever | [NGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:56 | DEBUG | lever | [PAYPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:57 | DEBUG | lever | [BSBUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:58 | DEBUG | lever | [PRLUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:58 | DEBUG | lever | [BASEDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:12:59 | DEBUG | lever | [TSMUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:00 | DEBUG | lever | [QQQUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:01 | DEBUG | lever | [SNDKUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:01 | DEBUG | lever | [MUXUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:02 | DEBUG | lever | [CHIPUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:03 | DEBUG | lever | [GENIUSUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:03 | DEBUG | lever | [AVGOUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:04 | DEBUG | lever | [MSFTUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:05 | DEBUG | lever | [OPGUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:05 | DEBUG | lever | [LITEUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:06 | DEBUG | lever | [AMDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:07 | DEBUG | lever | [AIGENSYNUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:07 | DEBUG | lever | [BLENDUSDT] Setup OK: 10x (Cross)
+2026-05-02 00:13:08 | INFO | lever | ✅ Настроено: 505, Уже ок: 0, Пропущено: 1

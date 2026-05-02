@@ -76,7 +76,7 @@ class PhemexPrivateClient:
                 if resp.status_code not in (200, 201, 202, 204):
                     raise RuntimeError(f"HTTP {resp.status_code}: {resp.text}")
                 
-                data = json.loads(resp.content)
+                data = resp.json()
                 code = int(data.get("code", 0))
                 if code != 0:
                     # Специальная обработка 429 от биржи (если будет)
@@ -92,14 +92,6 @@ class PhemexPrivateClient:
         logger.error(f"Private API Failed ({method} {path}): {last_err}")
         raise RuntimeError(f"Private API request failed: {last_err}")
 
-    async def set_leverage(self, symbol: str, leverage: float, mode: str = "hedged") -> Dict[str, Any]:
-        """Установка плеча (G-API)"""
-        lev_str = str(int(leverage)) if float(leverage).is_integer() else str(float(leverage))
-        if mode == "hedged":
-            query_no_q = f"longLeverageRr={lev_str}&shortLeverageRr={lev_str}&symbol={symbol}"
-        else:
-            query_no_q = f"leverageRr={lev_str}&symbol={symbol}"
-        return await self._request("PUT", "/g-positions/leverage", query_no_q=query_no_q)
 
     async def place_market_order(self, symbol: str, side: str, qty: float, pos_side: str, reduce_only: bool = False) -> Dict[str, Any]:
         """Рыночный ордер (G-API)"""
@@ -139,14 +131,50 @@ class PhemexPrivateClient:
         if not symbol or len(symbol) < 3: return {}
         return await self._request("DELETE", "/g-orders/all", query_no_q=f"symbol={symbol}")
 
-    async def get_active_positions(self) -> Dict[str, Any]:
-        """Получение активных позиций (G-API)"""
-        return await self._request("GET", "/g-accounts/accountPositions", query_no_q="currency=USDT")
+    async def get_account_positions(self, currency: str = "USDT") -> Dict[str, Any]:
+        """Получает текущие позиции аккаунта."""
+        return await self._request("GET", "/g-accounts/accountPositions", query_no_q=f"currency={currency}")
 
-    async def switch_position_mode(self, currency: str = "USDT", mode: str = "Hedged") -> Dict[str, Any]:
-        """Переключение режима позиций (Hedged / OneWay)"""
-        body = {"currency": currency, "targetPosMode": mode}
-        return await self._request("PUT", "/g-positions/switch-pos-mode-sync", body=body)
+    async def get_active_positions(self) -> Dict[str, Any]:
+        """Алиас для обратной совместимости с системой Recovery."""
+        return await self.get_account_positions(currency="USDT")
+
+    async def get_position_risk(self, symbol: str) -> Optional[Dict[str, Any]]:
+        """Возвращает данные о рисках конкретной позиции (плечо, режим маржи)."""
+        res = await self.get_account_positions()
+        if res.get("code") != 0:
+            return None
+        
+        positions = res.get("data", {}).get("positions", [])
+        for pos in positions:
+            if pos.get("symbol") == symbol:
+                return pos
+        return None
+
+    async def set_leverage(self, symbol: str, leverage: int, margin_mode: str = "Isolated", pos_mode: str = "Hedged") -> Dict[str, Any]:
+        """
+        Устанавливает плечо и режим маржи для Unified Account (G-API).
+        Автоматически адаптируется под Hedge или OneWay режим позиции.
+        """
+        final_lev = int(leverage)
+        if margin_mode.lower() == "cross":
+            final_lev = -abs(final_lev)
+        else:
+            final_lev = abs(final_lev)
+
+        if pos_mode == "Hedged":
+            # В режиме хеджирования нужно задавать плечо для обеих сторон
+            query = f"symbol={symbol}&longLeverageRr={final_lev}&shortLeverageRr={final_lev}"
+        else:
+            # В режиме OneWay (MergedSingle) используется общий параметр
+            query = f"symbol={symbol}&leverageRr={final_lev}"
+            
+        return await self._request("PUT", "/g-positions/leverage", query_no_q=query)
+
+    async def switch_position_mode(self, symbol: str, mode: str = "Hedged") -> Dict[str, Any]:
+        """Переключение режима позиций (Hedged / OneWay) для конкретного символа."""
+        query = f"symbol={symbol}&targetPosMode={mode}"
+        return await self._request("PUT", "/g-positions/switch-pos-mode-sync", query_no_q=query)
     
     async def get_equity(self, currency: str = "USDT") -> float:
         """Получение Equity (Balance + Unrealized PnL)"""

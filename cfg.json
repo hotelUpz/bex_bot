@@ -3,6 +3,15 @@
         "name": "Bex Bot",
         "max_active_positions": 1
     },
+    "phemex": {
+        "_fields": {
+            "margin_mode": "1 = Cross, 2 = Isolated"
+        },
+        "api_key": "",
+        "api_secret": "",
+        "leverage": 10,
+        "margin_mode": 1
+    },
     "credentials": {
         "api_key": "",
         "api_secret": ""
@@ -26,20 +35,23 @@
     "quota_asset": "USDT",
     "risk": {
         "leverage": {
+            "_fields": {
+                "margin_mode": "1 = Cross, 2 = Isolated"
+            },
             "set_previous": false,
             "used_by_cache": false,
-            "val": 22,
+            "val": 10,
             "delay_sec": 0.3,
-            "margin_mode": 2
+            "margin_mode": 1
         },
         "margin_size": "row",
-        "notional_limit": 20.0,
+        "notional_limit": 15,
         "margin_over_size_pct": 1,
         "hedge_mode": false,
         "quarantine": {
             "min_quarantine_threshold_usdt": -0.2,
             "force_quarantine_threshold_usdt": -2.0,
-            "max_consecutive_fails": 2,
+            "max_consecutive_fails": 1,
             "quarantine_hours": "inf"
         }
     },
@@ -79,8 +91,8 @@
                 },
                 "enable": true,
                 "min_first_row_usdt_notional": 10,
-                "max_first_row_usdt_notional": 15000,
-                "max_spread_pct": 0.75,
+                "max_first_row_usdt_notional": 55000,
+                "max_spread_pct": 0.5,
                 "pattern_ttl_sec": 2
             },
             "funding_pattern1": {
@@ -112,7 +124,7 @@
                 "enable": true,
                 "stabilization_ttl": 1.5,
                 "negative_spread_pct": 0,
-                "negative_ttl": 60
+                "negative_ttl": 180
             },
             "breakeven_ttl_close": {
                 "enable": true,

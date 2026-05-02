@@ -56,30 +56,38 @@ async def _main():
 
     try:
         # Извлекаем параметры для глобальной настройки плечей
-        api_key = os.getenv("API_KEY") or cfg.get("credentials", {}).get("api_key", "")
-        api_secret = os.getenv("API_SECRET") or cfg.get("credentials", {}).get("api_secret", "")
+        # Приоритет: секция "phemex" -> секция "credentials" / "risk"
+        phemex_cfg = cfg.get("phemex", {})
+        api_key = os.getenv("API_KEY") or phemex_cfg.get("api_key") or cfg.get("credentials", {}).get("api_key", "")
+        api_secret = os.getenv("API_SECRET") or phemex_cfg.get("api_secret") or cfg.get("credentials", {}).get("api_secret", "")
         
         risk_cfg = cfg.get("risk", {})
         leverage_cfg = risk_cfg.get("leverage", {})
         
-        # Парсим новую структуру (словарь или число)
-        if isinstance(leverage_cfg, dict):
-            set_previous = leverage_cfg.get("set_previous")
-            leverage_val = leverage_cfg.get("val")
-            use_cache = leverage_cfg.get("used_by_cache", False)
-            margin_mode = leverage_cfg.get("margin_mode", 2)
-            delay_sec = leverage_cfg.get("delay_sec", 0.3)
+        leverage_val = phemex_cfg.get("leverage") or leverage_cfg.get("val")
+        raw_margin = phemex_cfg.get("margin_mode") or leverage_cfg.get("margin_mode", 2)
+        
+        # Маппинг для красивого лога и корректной передачи в setter
+        # 1 / "cross" -> Cross, 2 / "isolated" -> Isolated
+        if str(raw_margin).lower() in ("1", "cross"):
+            margin_mode_str = "Cross"
+            raw_margin = 1
         else:
-            raise TypeError(f"Expected dict for leverage_cfg, got {type(leverage_cfg).__name__}")
+            margin_mode_str = "Isolated"
+            raw_margin = 2
+        
+        set_previous = leverage_cfg.get("set_previous", False)
+        use_cache = leverage_cfg.get("used_by_cache", False)
+        delay_sec = leverage_cfg.get("delay_sec", 0.3)
         
         if set_previous:
             # 1. Запуск глобальной конфигурации
-            logger.info("⚙️ Запуск глобальной конфигурации параметров (Leverage & Margin)...")
+            logger.info(f"⚙️ Запуск глобальной конфигурации (Leverage: {leverage_val}x, Margin: {margin_mode_str})...")
             setter = GlobalLeverageSetter(
                 api_key=api_key,
                 api_secret=api_secret,
                 leverage_val=leverage_val,
-                margin_mode=margin_mode,
+                margin_mode=raw_margin,
                 black_list=bot.black_list,
                 use_cache=use_cache,
                 cache_path=CACHE_PATH,

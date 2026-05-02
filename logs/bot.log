@@ -567,3 +567,157 @@
 2026-05-01 19:58:44 | INFO | bot | ⏹ Остановка процессов...
 2026-05-01 19:58:44 | INFO | bot | 💾 Финальное сохранение стейта на диск...
 2026-05-01 19:58:44 | INFO | bot | 🌐 Shared session closed successfully.
+2026-05-01 23:04:31 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:04:31 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:06:49 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:06:49 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:07:40 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:07:40 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:10:09 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:10:09 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:34:40 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:34:40 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:36:07 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:36:07 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:38:57 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:38:57 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:40:00 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:40:00 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-01 23:47:33 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-01 23:47:33 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-02 00:02:19 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-02 00:02:19 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-02 00:06:36 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-02 00:06:36 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-02 00:13:08 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-02 00:13:08 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
+2026-05-02 00:20:20 | INFO | bot | ▶️ Инициализация систем...
+2026-05-02 00:20:20 | INFO | bot | ⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ
+🎛 <b>[ТЕКУЩИЙ КОНФИГ БОТА]</b>
+🔹 <b>[APP]</b>
+  ▪️ name: <b>Bex Bot</b>
+  ▪️ max_active_positions: <b>1</b>
+🔹 <b>[PHEMEX]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+  ▪️ leverage: <b>10</b>
+  ▪️ margin_mode: <b>1</b>
+🔹 <b>[CREDENTIALS]</b>
+  ▪️ api_key: <b></b>
+  ▪️ api_secret: <b></b>
+🔹 <b>[TG]</b>
+  ▪️ enable: <b>ON</b>
+  ▪️ token: <b></b>
+  ▪️ chat_id: <b></b>
+🔹 <b>[LOG]</b>
+  ▪️ debug: <b>ON</b>
+  ▪️ info: <b>ON</b>
+  ▪️ warning: <b>ON</b>
+  ▪️ error: <b>ON</b>
+  ▪️ max_lines: <b>1500</b>
+  ▪️ timezone: <b>UTC</b>
+▪️ black_list: <b>1 элементов</b>
+▪️ quota_asset: <b>USDT</b>
+🔹 <b>[RISK]</b>
+  🔹 <b>[LEVERAGE]</b>
+    ▪️ set_previous: <b>OFF</b>
+    ▪️ used_by_cache: <b>OFF</b>
+    ▪️ val: <b>10</b>
+    ▪️ delay_sec: <b>0.3</b>
+    ▪️ margin_mode: <b>1</b>
+  ▪️ margin_size: <b>row</b>
+  ▪️ notional_limit: <b>15</b>
+  ▪️ margin_over_size_pct: <b>1</b>
+  ▪️ hedge_mode: <b>OFF</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ min_quarantine_threshold_usdt: <b>-0.2</b>
+    ▪️ force_quarantine_threshold_usdt: <b>-2.0</b>
+    ▪️ max_consecutive_fails: <b>1</b>
+    ▪️ quarantine_hours: <b>inf</b>
+🔹 <b>[ENTRY]</b>
+  ▪️ signal_timeout_sec: <b>0.01</b>
+  ▪️ entry_timeout_sec: <b>0.5</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  🔹 <b>[QUARANTINE]</b>
+    ▪️ quarantine_hours: <b>1</b>
+  ▪️ allowed_directions: <b>1 элементов</b>
+  🔹 <b>[PATTERN]</b>
+    🔹 <b>[MAIN_SPREAD_PATTERN]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_entry_pct: <b>2.0</b>
+      ▪️ update_prices_sec: <b>0.25</b>
+      ▪️ ttl_sec: <b>2</b>
+    🔹 <b>[FAIR_PRICE_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_fair_spread_pct: <b>0.05</b>
+    🔹 <b>[RSI_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ interval: <b>1m</b>
+      ▪️ limit: <b>50</b>
+      ▪️ window: <b>14</b>
+      ▪️ overbought: <b>75</b>
+      ▪️ oversold: <b>25</b>
+      ▪️ full_update_min: <b>10</b>
+    🔹 <b>[ORDERBOOK_FILTER]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ min_first_row_usdt_notional: <b>10</b>
+      ▪️ max_first_row_usdt_notional: <b>55000</b>
+      ▪️ max_spread_pct: <b>0.5</b>
+      ▪️ pattern_ttl_sec: <b>2</b>
+    🔹 <b>[FUNDING_PATTERN1]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ threshold_pct: <b>1.0</b>
+    🔹 <b>[FUNDING_PATTERN2]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ check_interval_sec: <b>60</b>
+      ▪️ skip_before_counter_sec: <b>1800</b>
+      ▪️ diff_threshold_pct: <b>0.05</b>
+🔹 <b>[EXIT]</b>
+  ▪️ max_place_order_retries: <b>1</b>
+  ▪️ min_order_life_sec: <b>0.05</b>
+  🔹 <b>[SCENARIOS]</b>
+    🔹 <b>[BASE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ spread_to_exit_pct: <b>1.0</b>
+      ▪️ min_target_rate: <b>0.3</b>
+      ▪️ stabilization_ttl: <b>0</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+    🔹 <b>[NEGATIVE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ stabilization_ttl: <b>1.5</b>
+      ▪️ negative_spread_pct: <b>0</b>
+      ▪️ negative_ttl: <b>180</b>
+    🔹 <b>[BREAKEVEN_TTL_CLOSE]</b>
+      ▪️ enable: <b>ON</b>
+      ▪️ order_timeout_sec: <b>0.5</b>
+      ▪️ position_ttl: <b>900</b>
+      ▪️ breakeven_wait_sec: <b>2</b>
+      ▪️ to_entry_orientation: <b>0.0</b>
+  🔹 <b>[INTERFERENCE]</b>
+    ▪️ enable: <b>OFF</b>
+    ▪️ stabilization_ttl: <b>2.0</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ usual_vol_pct_to_init_size: <b>3</b>
+    ▪️ max_vol_pct_to_init_size: <b>9</b>
+    ▪️ max_retries_per_level: <b>3</b>
+  🔹 <b>[EXTRIME_CLOSE]</b>
+    ▪️ enable: <b>ON</b>
+    ▪️ order_timeout_sec: <b>0.5</b>
+    ▪️ retry_ttl: <b>3</b>
+    ▪️ retry_num: <b>inf</b>
+    ▪️ bid_to_ask_orientation: <b>0.0</b>
+    ▪️ increase_fraction: <b>5.0</b>
+────────────────────────────────────────
+2026-05-02 00:20:20 | ERROR | bot | ❌ Ошибка Recovery: 'PhemexPrivateClient' object has no attribute 'get_active_positions'
+2026-05-02 00:20:20 | INFO | bot | 📡 Запрашиваем Equity с биржи для инициализации аудита...
+2026-05-02 00:20:21 | INFO | bot | 💰 Стартовый баланс зафиксирован: 7.01 USDT
+2026-05-02 00:20:21 | INFO | bot | 🔄 Прогрев кэша цен и фандинга...
+2026-05-02 00:20:23 | INFO | bot | 🎮 Главная торговая живолупа (Game Loop) запущена.
+2026-05-02 00:20:23 | INFO | bot | 📊 Цикл отчетов запущен (каждые 6.0ч)
+2026-05-02 00:20:24 | INFO | bot | 🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...
+2026-05-02 00:20:24 | ERROR | bot | ❌ Ошибка Recovery: 'PhemexPrivateClient' object has no attribute 'get_active_positions'
+2026-05-02 00:20:32 | INFO | bot | ⏹ Остановка процессов...
+2026-05-02 00:20:32 | INFO | bot | 💾 Финальное сохранение стейта на диск...
+2026-05-02 00:20:32 | DEBUG | bot | Session close note: initializer for ctype 'void *' must be a cdata pointer, not NoneType
