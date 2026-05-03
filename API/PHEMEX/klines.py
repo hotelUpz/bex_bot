@@ -31,6 +31,7 @@ class PhemexKlinesAPI:
         self.interval = interval
         self.limit = limit
         self.semaphore = asyncio.Semaphore(semaphore_limit)
+        self._external_session = session is not None
         self.session = session or AsyncSession(
             impersonate="chrome120",
             http_version=2,
@@ -49,7 +50,8 @@ class PhemexKlinesAPI:
         self.min_interval = 0.15  # 150ms between requests
 
     async def aclose(self):
-        await self.session.close()
+        if not self._external_session and self.session:
+            await self.session.close()
 
     def _get_valid_limit(self, limit: int) -> int:
         """Phemex accepts only specific limit values."""

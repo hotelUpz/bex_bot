@@ -89,6 +89,7 @@
             },
             "binance_trigger": {
                 "enable": true,
+                "spread_mode": "BOOK",
                 "spread_to_entry_pct": 0.75,
                 "update_prices_sec": 0.25,
                 "ttl_sec": 0.25

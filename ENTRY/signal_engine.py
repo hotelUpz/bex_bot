@@ -6,16 +6,15 @@ from __future__ import annotations
 
 import time
 import asyncio
-from typing import Dict, Any, Optional, TYPE_CHECKING, Literal
+from typing import Dict, Any, Optional, TYPE_CHECKING, Literal, Tuple
 
 from ENTRY.pattern_math import StakanEntryPattern
 from CORE.models_fsm import EntryPayload
 from c_log import UnifiedLogger
 
 if TYPE_CHECKING:
-    # from API.PHEMEX.funding import PhemexFunding
-    # from API.BINANCE.funding import BinanceFunding
     from API.PHEMEX.stakan import DepthTop
+    from API.BINANCE.stakan import DepthTop as BinanceDepthTop
     # from ENTRY.funding_filters import FundingFilter1, FundingFilter2
     from ENTRY.funding_manager import FundingManager
     from CORE.rsi_manager import RSIManager
@@ -40,9 +39,12 @@ class SignalEngine:
         self.pattern_math = StakanEntryPattern(self.ob_cfg)
         
         # binance_trigger
-        self.spread_enabled = self.binance_trigger_cfg["enable"]
-        self.spread_to_entry_pct = abs(self.binance_trigger_cfg["spread_to_entry_pct"])
-        self.spread_ttl = self.binance_trigger_cfg["ttl_sec"]
+        self.spread_enabled = self.binance_trigger_cfg.get("enable", False)
+        self.spread_mode = self.binance_trigger_cfg.get("spread_mode", "TICKER").upper()
+        self.spread_to_entry_pct = abs(self.binance_trigger_cfg.get("spread_to_entry_pct", 1.0))
+        self.spread_ttl = self.binance_trigger_cfg.get("ttl_sec", 0.25)
+        if self.spread_enabled:
+            logger.info(f"📡 SignalEngine: Spread Mode = {self.spread_mode}")
         
         # orderbook_filter
         self.ob_enabled = self.ob_cfg.get("enable", False)
@@ -71,17 +73,41 @@ class SignalEngine:
         self._max_spreads: Dict[str, float] = {}
         self._last_spread_log_ts = time.time()
 
-    async def analyze(self, depth: DepthTop, b_price: float, p_price: float, b_fair: float = 0.0, p_fair: float = 0.0) -> Optional[EntryPayload]:
+    async def analyze(self, depth: DepthTop, b_price: float, p_price: float, b_depth: Optional[BinanceDepthTop], b_fair: float = 0.0, p_fair: float = 0.0) -> Optional[EntryPayload]:
+        """
+        Анализ сигнала на вход.
+        Spread Modes:
+        - TICKER: (Binance_Last - Phemex_Last) / Phemex_Last
+        - BOOK: LONG: (Bin_Ask1 - Phm_Ask1) / Phm_Ask1 | SHORT: (Phm_Bid1 - Bin_Bid1) / Bin_Bid1
+        - MID: (Bin_Mid - Phm_Mid) / Phm_Mid
+        """
         symbol: str = depth.symbol
         now: float = time.time()
 
-        # --- МОНИТОРИНГ СПРЕДА ---
-        spread_pct = 0.0
+        # --- РАСЧЕТ СПРЕДА ---
+        if b_depth is None or not b_depth.bids or not b_depth.asks:
+            return None # Нет данных с бинанса - нет входа
             
-        if not b_price or not p_price:
-            return None
+        b_bid1, b_ask1 = b_depth.bids[0][0], b_depth.asks[0][0]
+        p_bid1, p_ask1 = depth.bids[0][0], depth.asks[0][0]
+        
+        # Определяем направление на основе сырого спреда (для логики)
+        # Но финальный spread_pct будет зависеть от режима
+        raw_diff = b_price - p_price
+        direction = "LONG" if raw_diff > 0 else "SHORT"
 
-        spread_pct = (b_price - p_price) / p_price * 100
+        if self.spread_mode == "BOOK":
+            if direction == "LONG":
+                spread_pct = (b_ask1 - p_ask1) / p_ask1 * 100 if p_ask1 > 0 else 0
+            else:
+                spread_pct = (p_bid1 - b_bid1) / b_bid1 * 100 if b_bid1 > 0 else 0
+        elif self.spread_mode == "MID":
+            b_mid = (b_bid1 + b_ask1) / 2
+            p_mid = (p_bid1 + p_ask1) / 2
+            spread_pct = (b_mid - p_mid) / p_mid * 100 if p_mid > 0 else 0
+        else: # TICKER
+            spread_pct = (b_price - p_price) / p_price * 100 if p_price > 0 else 0
+            
         abs_spread = abs(spread_pct)
         if abs_spread > self._max_spreads.get(symbol, 0.0):
             self._max_spreads[symbol] = abs_spread

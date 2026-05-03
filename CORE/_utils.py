@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from CORE.rsi_manager import RSIManager
     from API.DEX.dexscreener import DexscreenerAPI
     from CORE.restorator import BotState
+    from API.BINANCE.stakan import DepthTop as BinanceDepthTop
 
 logger = UnifiedLogger("core")
 
@@ -89,6 +90,7 @@ class PriceCacheManager:
         self.binance_fair_prices: Dict[str, float] = {}
         self.phemex_fair_prices: Dict[str, float] = {}
         self.dex_prices: Dict[str, float] = {}
+        self.binance_depth: Dict[str, 'BinanceDepthTop'] = {} # symbol -> DepthTop
         
         self._is_running = False
         self._last_fetch_ts = 0.0
@@ -143,6 +145,10 @@ class PriceCacheManager:
     def get_prices(self, symbol: str) -> Tuple[float, float]:
         """Возвращает (BinancePrice, PhemexPrice)"""
         return self.binance_prices.get(symbol, 0.0), self.phemex_prices.get(symbol, 0.0)
+
+    def get_binance_depth(self, symbol: str) -> Optional['BinanceDepthTop']:
+        """Возвращает объект DepthTop Binance"""
+        return self.binance_depth.get(symbol)
 
     def get_fair_prices(self, symbol: str) -> Tuple[float, float]:
         """Возвращает (BinanceFairPrice, PhemexFairPrice)"""

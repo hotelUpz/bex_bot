@@ -75,6 +75,7 @@ class ActivePosition:
     
     extrime_retries_count: int = 0
     marked_for_death_ts: float = 0.0
+    exit_reason: str = ""                # Причина выхода (HUNTING, BREAKEVEN, EXTREME, etc.)
 
     def to_dict(self) -> dict:
         return self.__dict__

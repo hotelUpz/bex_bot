@@ -7,7 +7,7 @@ from __future__ import annotations
 import asyncio
 import time
 import traceback
-from typing import Dict, Any, Set, TYPE_CHECKING, List, Tuple
+from typing import Dict, Any, Set, TYPE_CHECKING, List, Tuple, Optional
 import os
 from curl_cffi.requests import AsyncSession
 from pathlib import Path
@@ -20,6 +20,7 @@ from API.BINANCE.ticker import BinanceTickerAPI
 from API.PHEMEX.ticker import PhemexTickerAPI
 from API.PHEMEX.funding import PhemexFunding
 from API.BINANCE.funding import BinanceFunding
+from API.BINANCE.stakan import BinanceStakanStream, DepthTop as BinanceDepthTop
 from API.DEX.dexscreener import DexscreenerAPI
 
 from ENTRY.signal_engine import SignalEngine
@@ -162,8 +163,6 @@ class TradingBot:
         except asyncio.CancelledError: pass
         except Exception as e: logger.debug(f"Task shutdown note: {e}")
 
-
-
     async def _on_ws_subscribe(self):
         """Срабатывает при первом подключении и каждом успешном реконнекте WS"""
         logger.info("🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...")
@@ -248,15 +247,19 @@ class TradingBot:
         if p_price <= 0:
             return
 
-        # ПРИОРИТЕТ ТЕПЕРЬ НА DEX (выход по дексу)
+        # Расчет спреда для выхода (используем Bid1/Ask1 для стабильности)
+        p_bid1, p_ask1 = snap.bids[0][0], snap.asks[0][0]
         dex_price = self.price_manager.get_dex_price(symbol)
         source = "DEX"
+        
         if dex_price > 0:
-            current_price_spread = (dex_price - p_price) / p_price * 100
+            # Для Лонга: насколько DEX выше нашей потенциальной цены продажи (Bid1)
+            # Для Шорта: насколько DEX ниже нашей потенциальной цены покупки (Ask1)
+            # Но для унификации сценариев base/negative используем оценку "DEX vs Phemex Mid" 
+            # или явное разделение. Самое стабильное - Mid или сопоставление сторон.
+            p_mid = (p_bid1 + p_ask1) / 2
+            current_price_spread = (dex_price - p_mid) / p_mid * 100
         else:
-            # Fallback на Binance если DEX еще не прогрузился
-            # source = "BIN"
-            # current_price_spread = (b_price - p_price) / p_price * 100 if b_price > 0 else 0
             logger.warning(f"[{symbol}] DEX price is not available, skipping exit analysis")
             return
             
@@ -291,6 +294,7 @@ class TradingBot:
                             pos.exit_in_flight = True
                             pos.last_extrime_try_ts = now
                             pos.extrime_retries_count += 1
+                            pos.exit_reason = "EXTREME"
                             actions_to_execute.append(("EXTREME", ext_price, self.extrime_order_timeout_sec, pos_key))
                     continue # ЖЕСТКИЙ СКИП
 
@@ -306,6 +310,7 @@ class TradingBot:
                         if be_price:
                             pos.exit_in_flight = True
                             logger.debug(f"[{pos_key}] Попытка закрыть позицию в безубыток (BREAKEVEN)...")
+                            pos.exit_reason = "BREAKEVEN"
                             actions_to_execute.append(("BREAKEVEN", be_price, self.breakeven_order_timeout_sec, pos_key))
                     continue # ЖЕСТКИЙ СКИП
 
@@ -316,6 +321,7 @@ class TradingBot:
                         pos.exit_status = "HUNTING"
                         pos.exit_in_flight = True
                         logger.debug(f"[{pos_key}] Попытка охоты (HUNTING)...")
+                        pos.exit_reason = "HUNTING"
                         actions_to_execute.append(("HUNTING", base_price, self.base_order_timeout_sec, pos_key))
 
                 # 4. СКУПКА (INTERFERENCE) - Истинный параллельный поток
@@ -339,10 +345,12 @@ class TradingBot:
         if not self.risk_manager.check_risk_limits(symbol, self.hedge_mode, self.max_active_positions):
             return
 
+        # 3. Сигнал на вход (только если нет позиции и нет лока)
         b_price, p_price = self.price_manager.get_prices(symbol)
+        b_depth = self.price_manager.get_binance_depth(symbol)
         b_fair, p_fair = self.price_manager.get_fair_prices(symbol)
         
-        signal: "EntryPayload" = await self.signal_engine.analyze(snap, b_price, p_price, b_fair, p_fair)
+        signal: "EntryPayload" = await self.signal_engine.analyze(snap, b_price, p_price, b_depth, b_fair, p_fair)
         if not signal: return
 
         pos_key = f"{symbol}_{signal.side}"
@@ -434,6 +442,8 @@ class TradingBot:
                                 continue
 
                         if getattr(pos, 'is_closed_by_exchange', False):
+                            reason_str = f" [{pos.exit_reason}]" if pos.exit_reason else " [EXTERNAL/MANUAL]"
+                            logger.info(f"[{pos_key}] 🏁 Выход выполнен{reason_str}. Объем: {pos.max_realized_qty} (≈ {round(pos.max_realized_qty * pos.realized_exit_price, 2)} $)")
                             # Обработка закрытия через TradeManager
                             await self.trade_manager.process_position_closure(
                                 pos_key, pos, 
@@ -460,9 +470,19 @@ class TradingBot:
         logger.info("🔄 WS Подписан на приватный канал. Запуск синхронизации стейта (Recover)...")
         await self.state.sync_with_exchange(self.private_client)
 
+    async def _on_binance_depth(self, d: BinanceDepthTop):
+        """Коллбэк для потока стаканов Binance"""
+        if d.bids and d.asks:
+            # Обновляем кэш цен (полный объект DepthTop)
+            self.price_manager.binance_depth[d.symbol] = d
+
     async def start(self):
         if getattr(self, '_is_running', False): return
         self._is_running = True
+        
+        # 0. Загрузка сохраненного стейта (позиции, аналитика)
+        self.state.load()
+        
         logger.info("▶️ Инициализация систем...")
         summary = get_config_summary(self.cfg)
         logger.info(f"⚙️ БОТ ЗАПУЩЕН С НАСТРОЙКАМИ\n{summary}")
@@ -480,7 +500,17 @@ class TradingBot:
 
         # 2. Инициализация менеджеров данных с финальным списком
         upd_sec = self.cfg["entry"]["pattern"]["binance_trigger"]["update_prices_sec"]
-        self.price_manager = PriceCacheManager(self.binance_ticker_api, self.phemex_ticker_api, self.active_symbols, upd_sec, self.rsi_manager)
+        self.price_manager = PriceCacheManager(
+            self.binance_ticker_api, self.phemex_ticker_api, 
+            self.active_symbols, 
+            upd_sec=self.cfg.get("price_update_sec", 0.2),
+            rsi_manager=self.rsi_manager
+        )
+        
+        # Поток стаканов Binance (USDT-M)
+        self.binance_stream = BinanceStakanStream(list(self.active_symbols), chunk_size=50)
+        self._binance_stream_task: Optional[asyncio.Task] = None
+        
         self.funding_manager = FundingManager(self.cfg["entry"]["pattern"], self.phemex_funding_api, self.binance_funding_api, self.symbol_manager)
         self.signal_engine = SignalEngine(self.cfg["entry"], self.funding_manager, self.rsi_manager, self.dex_api)
 
@@ -488,9 +518,9 @@ class TradingBot:
         self.dex_updater.price_manager = self.price_manager
 
         # Прогрев RSI (загрузка истории свечей)
-        if self.rsi_manager.enabled:
+        if self.rsi_manager:
+            logger.info("⏳ Синхронизация RSI (Warmup)...")
             await self.rsi_manager.warmup(list(self.active_symbols))
-            # Запускаем фоновый цикл синхронизации RSI
             self._rsi_sync_task = asyncio.create_task(self.rsi_manager.background_loop(list(self.active_symbols)))
 
         await self.state.sync_with_exchange(self.private_client)
@@ -521,9 +551,11 @@ class TradingBot:
 
         logger.info("🔄 Прогрев кэша цен и фандинга...")
         await self.price_manager.warmup()
+        # 4. Фоновые циклы
         self._price_updater_task = asyncio.create_task(self.price_manager.loop())
-        await self._await_task(getattr(self, '_funding_task', None))
         self._funding_task = asyncio.create_task(self.funding_manager.run())
+        self._binance_stream_task = asyncio.create_task(self.binance_stream.run(self._on_binance_depth))
+        self._game_loop_task = asyncio.create_task(self._main_trading_loop())
         
         # Запускаем фоновое обновление DEX цен для открытых позиций
         self._dex_updater_task = asyncio.create_task(self.dex_updater.run())
@@ -541,7 +573,6 @@ class TradingBot:
         self._stream = PhemexStakanStream(symbols=list(self.active_symbols), depth=10, chunk_size=40)
         self._stream_task = asyncio.create_task(self._stream.run(self._stakan_data_sink))
 
-        self._game_loop_task = asyncio.create_task(self._main_trading_loop())
         self._report_task = asyncio.create_task(self._periodic_report_loop())
 
 
@@ -591,15 +622,20 @@ class TradingBot:
         self.price_manager.stop()
         self.funding_manager.stop()
         self.rsi_manager.stop()
+        self.binance_stream.stop()
         if self._stream: self._stream.stop()
         await self.private_ws.aclose()
+        
+        # Ожидаем завершения всех задач
         await self._await_task(getattr(self, '_price_updater_task', None))
         await self._await_task(getattr(self, '_funding_task', None))
+        await self._await_task(getattr(self, '_binance_stream_task', None))
         await self._await_task(getattr(self, '_private_ws_task', None))
         await self._await_task(getattr(self, '_stream_task', None))
         await self._await_task(getattr(self, '_game_loop_task', None))
         await self._await_task(getattr(self, '_report_task', None))
         await self._await_task(getattr(self, '_rsi_sync_task', None))
+        await self._await_task(getattr(self, '_dex_updater_task', None))
         self._latest_market_data.clear()
         self._processing.clear()
         self._signal_timeouts.clear()

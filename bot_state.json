@@ -1,57 +1,20 @@
 {
     "positions": {},
-    "fails": {
-        "BIOUSDT": 0,
-        "SIRENUSDT": 1
-    },
-    "quarantine": {
-        "SIRENUSDT": "inf"
-    },
+    "fails": {},
+    "quarantine": {},
     "analytics": {
-        "start_balance": 6.923275394742,
-        "current_balance": 6.795810680742001,
-        "max_balance": 6.923707240742001,
-        "min_balance": 6.795810680742001,
-        "mdd_usd": 0.12789655999999994,
-        "mdd_pct": 1.8472265731774862,
-        "max_profit_usd": 0.0004,
-        "max_profit_pct": 0.006238,
-        "total_wins": 1,
-        "total_losses": 1,
-        "total_pnl": -0.12746471399999992,
-        "symbols": {
-            "BIOUSDT": {
-                "wins": 1,
-                "losses": 0,
-                "pnl": 0.00043184600000016615
-            },
-            "SIRENUSDT": {
-                "wins": 0,
-                "losses": 1,
-                "pnl": -0.1278965600000001
-            }
-        },
-        "history": [
-            {
-                "ts": 1777762919.4963691,
-                "symbol": "BIOUSDT",
-                "side": "LONG",
-                "entry_usd": 14.97,
-                "exit_usd": 14.99,
-                "pnl": 0.0004,
-                "is_win": true,
-                "duration": "20.7s"
-            },
-            {
-                "ts": 1777764677.9824617,
-                "symbol": "SIRENUSDT",
-                "side": "LONG",
-                "entry_usd": 14.97,
-                "exit_usd": 14.86,
-                "pnl": -0.1279,
-                "is_win": false,
-                "duration": "47.3s"
-            }
-        ]
+        "start_balance": 6.810726375742,
+        "current_balance": 6.810726375742,
+        "max_balance": 6.810726375742,
+        "min_balance": 6.810726375742,
+        "mdd_usd": 0.0,
+        "mdd_pct": 0.0,
+        "max_profit_usd": 0.0,
+        "max_profit_pct": 0.0,
+        "total_wins": 0,
+        "total_losses": 0,
+        "total_pnl": 0.0,
+        "symbols": {},
+        "history": []
     }
 }
